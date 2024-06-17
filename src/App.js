@@ -3,7 +3,7 @@ import './App.css';
 import Header from './admin_Panel/header/Header'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
+import Add_new_product from './admin_Panel/product/Add_new_product'
 
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
  <>
   <div>
     <Header/>
+    <Add_new_product/>
   </div>
  </>
   );
