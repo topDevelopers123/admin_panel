@@ -1,19 +1,18 @@
-.banner-icon i {
-    margin-right: 16px;
+.banner-img i {
+    font-size: 22px;
     cursor: pointer;
     color: red;
+    position: absolute;
+    left: 84%;
+    top: 20%;
 }
 
-.banner-btn {
-    padding: 8px 16px;
-    border: none;
-    outline: none;
-    background-color: #4D869C;
-    color: #fff;
+.banner-img{
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #c0bebe;
     transition: 0.3s ease-in-out;
-}
-
-.banner-btn:hover {
-    background-color: #CDE8E5;
-    color: #000;
+    box-shadow: 4px 4px 3px 3px rgba(0, 0, 0, 0.3);
+    width: 100%;
 }
