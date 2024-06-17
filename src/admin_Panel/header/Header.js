@@ -15,6 +15,7 @@ function Header() {
                 </div> */}
                 <div className="">
                   <h4 className="logo-text">Mayavi</h4>
+                  
                 </div>
               </div>
               <div className="mobile-toggle-menu d-block d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
