@@ -1,0 +1,19 @@
+.banner-icon i {
+    margin-right: 16px;
+    cursor: pointer;
+    color: red;
+}
+
+.banner-btn {
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    background-color: #4D869C;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.banner-btn:hover {
+    background-color: #CDE8E5;
+    color: #000;
+}
