@@ -14,9 +14,9 @@ function App() {
   <div>
     <Header/>
    
-        <Add_new_product_table />
+
         <Category />
-    <Banner/>
+ 
   </div>
  </>
   );
