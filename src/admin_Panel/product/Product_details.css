@@ -1,0 +1,9 @@
+.images_div img{
+    width: 100px;
+    height: 100px;
+}
+
+tbody tr td{
+ vertical-align: middle;    
+ 
+}

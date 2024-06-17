@@ -3,92 +3,142 @@ import './Add_new_product.css'
 
 function Add_new_product() {
   return (
-      <div className='container-fluid add_product_main_box mt-3'>
-        <div className='container  '>
-            <h1 className='text-center'>ADD NEW PRODUCT</h1>
-            <div className='row '>
-                <div className='col-12 my-3'>
-                    <label>Product Title</label>
-                    <input className='w-100 mt-2 form-control' placeholder='Add Title' type='text' />
-                </div>
+      <>
+      <div className="wrapper">
+        <div className="page-wrapper">
+          <div className="page-content">
+            <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+              <div className="breadcrumb-title pe-3">Mayavi Fashion</div>
+              <div className="ps-3">
+                <nav aria-label="breadcrumb">
+                  <ol className="breadcrumb mb-0 p-0">
+                    <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                    </li>
+                    <li className="breadcrumb-item active" aria-current="page">Add New Product</li>
+                  </ol>
+                </nav>
+              </div>
 
-                <div className='col-12 my-3'>
-                    <label>Product Description</label>
-                    <input className='w-100 mt-2 form-control' placeholder='Add Description' type='text' />
-                </div>
-
-
-                <div className='col-12 my-3'>
-                    <label>Category</label>
-                    <select className='w-100 mt-2 form-select' >
-                        <option></option>
-                        <option>Men's</option>
-                        <option>Women's</option>
-                        <option>Kid's</option>
-                    </select>
-                   
-                </div>
-
-                <div className='col-12 my-3'>
-                    <label>Sub Category</label>
-                      <select className='w-100 mt-2 form-select'>
-                          <option></option>
-                          <option>Topwear</option>
-                          <option>Bottomwear</option>
-                          <option>Footwear</option>
-                      </select>
-                </div>
-
-
-                <div className='col-12 my-3'>
-                    <label>Sub Inner Category</label>
-                      <select className='w-100 mt-2 form-select'>
-                          <option></option>
-                          <option>Jeans</option>
-                          <option>Tshirt</option>
-                          <option>Shoes</option>
-                      </select>
-                </div>
-
-
-                <div className='col-12 my-3'>
-                    <label>Local Charges</label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add Local Charges" type='number'  />
-                </div>
-
-                 <div className='col-12 my-3'>
-                    <label>Zonal Charges</label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add Zonal Charges" type='number' />
-                </div>
-
-                 <div className='col-12 my-3'>
-                    <label>National Charges </label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add National Charges" type='number' />
-                </div>
-
-                 <div className='col-12 my-3'>
-                    <label>Local Deadline</label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add Local Charges" type='number' />
-                </div>
-
-                 <div className='col-12 my-3'>
-                    <label>Zonal Deadline</label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add Zonal Charges" type='number' />
-                </div>
-
-                 <div className='col-12 my-3'>
-                    <label>National Deadline</label>
-                      <input className='w-100 mt-2 form-control' placeholder="Add National Charges" type='number' />
-                </div>
-
-                  <div className='col-12 my-3'>
-                      <button className='w-100 mt-2 btn btn-primary fw-bold fs-5'>Submit</button>
-                  </div>
-
-                
             </div>
+
+            <div className="card">
+              <div className="card-body p-4">
+                <h5 className="card-title">Add New Product</h5>
+                <hr />
+                <div className="form-body mt-4">
+                  <div className="row">
+                    <div className="border border-3 p-4 rounded">
+
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Product Title</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Product Description</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Category</label>
+                          <select className="form-select">
+                            <option></option>
+                            <option>Men's</option>
+                           
+                          </select>
+                       
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Sub Category</label>
+                          <select className="form-select">
+                            <option></option>
+                            <option>Topwear</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Sub Inner Category</label>
+                          <select className="form-select">
+                            <option></option>
+                            <option>T-shirt</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Local Charges</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Zonal Charges</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">National Charges</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Local Deadline</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">Zonal Deadline</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label for="cat_name" className="form-label">National Deadline</label>
+                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                        </div>
+                      </div>
+
+                      <div className="col-12">
+                        <div className="d-grid w-50 m-auto">
+                          <button type="button" className="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                      
+                      
+                      {/* <div className="col-lg-12">
+
+                        <div className="mb-3 ">
+                          <label for="inputProductImages" className="form-label">Upload Category Image</label>
+                          <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple />
+                        </div>
+                        <div className="col-12">
+                          <div className="d-grid w-50 m-auto">
+                            <button type="button" className="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </div> */}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
+
+      </div>
+      </>
   )
 }
 
