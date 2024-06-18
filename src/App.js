@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './admin_Panel/header/Header';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import './App.css';
+
 import Header from './admin_Panel/header/Header';
 import Add_new_banner from './admin_Panel/banner/Add_new_banner';
 import Category from './admin_Panel/category/main_category/Category';
@@ -21,6 +21,7 @@ import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 
