@@ -9,13 +9,13 @@ function Product_details_table() {
               <div className="page-content">
                
                   <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                      <div className="breadcrumb-title pe-3">eCommerce</div>
+                      <div className="breadcrumb-title pe-3">Mayavi Fashion</div>
                       <div className="ps-3">
                           <nav aria-label="breadcrumb">
                               <ol className="breadcrumb mb-0 p-0">
                                   <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
                                   </li>
-                                  <li className="breadcrumb-item active" aria-current="page">Orders</li>
+                                  <li className="breadcrumb-item active" aria-current="page">Product Details Table</li>
                               </ol>
                           </nav>
                       </div>

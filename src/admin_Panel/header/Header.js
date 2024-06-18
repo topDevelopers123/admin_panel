@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Header.css";
+import { Link } from 'react-router-dom';
 import user_img from "./img/user_img.png"
 
 function Header() {
@@ -103,11 +104,11 @@ function Header() {
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="banner.php"><i className="bx bx-radio-circle"></i>Banner</a>
+                        <Link className="dropdown-item" to="/banner"><i className="bx bx-radio-circle"></i>Banner</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="add_banner.php"><i className="bx bx-radio-circle"></i>Add New
-                          Banner</a>
+                        <Link className="dropdown-item" to="/add-new-banner"><i className="bx bx-radio-circle"></i>Add New
+                          Banner</Link>
                       </li>
                     </ul>
                   </li>
@@ -125,15 +126,19 @@ function Header() {
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="products.php"><i className="bx bx-radio-circle"></i>Products</a>
+                        <Link className="dropdown-item" to="/product-details"><i className="bx bx-radio-circle"></i>Product Details</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="product_details.php"><i className="bx bx-radio-circle"></i>Product
-                          Details</a>
+                        <Link className="dropdown-item" to="/product_details_table"><i className="bx bx-radio-circle"></i>Product
+                          Details Table</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="add_new_product.php"><i className="bx bx-radio-circle"></i>Add New
-                          Products</a>
+                        <Link className="dropdown-item" to="/add-new-product"><i className="bx bx-radio-circle"></i>Add New
+                          Products</Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/add-new-product-table"><i className="bx bx-radio-circle"></i>Add New
+                          Products Table</Link>
                       </li>
                     </ul>
                   </li>
@@ -151,39 +156,40 @@ function Header() {
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="category.php"><i className="bx bx-radio-circle"></i>Category</a>
+                        <Link className="dropdown-item" to="/category"><i className="bx bx-radio-circle"></i>Category</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="sub_category.php"><i className="bx bx-radio-circle"></i>Sub Category</a>
+                        <Link className="dropdown-item" to="/sub_category"><i className="bx bx-radio-circle"></i>Sub Category</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="sub_inner_category.php"><i className="bx bx-radio-circle"></i>Sub Inner
-                          Category</a>
+                        <Link className="dropdown-item" to="/sub_inner_category"><i className="bx bx-radio-circle"></i>Sub Inner
+                          Category</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="category_table.php"><i className="bx bx-radio-circle"></i>Category
-                          Table</a>
+                        <Link className="dropdown-item" to="/category_table"><i className="bx bx-radio-circle"></i>Category
+                          Table</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="sub_category_table.php"><i className="bx bx-radio-circle"></i>Sub Category
-                          Table</a>
+                        <Link className="dropdown-item" to="/Sub_category_table"><i className="bx bx-radio-circle"></i>Sub Category
+                          Table</Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="sub_inner_category_table.php"><i className="bx bx-radio-circle"></i>Sub Inner Category
-                          Table</a>
+                        <Link className="dropdown-item" to="/sub_inner_category_table"><i className="bx bx-radio-circle"></i>Sub Inner Category
+                          Table</Link>
                       </li>
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="orders.php">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="/orders">
                       <div className="parent-icon">
                         <i class="bi bi-bag-check"></i>
                       </div>
                       <div className="menu-title d-flex align-items-center">
+                        
                         Order
                       </div>
 
-                    </a>
+                    </Link>
 
                   </li>
 
