@@ -14,23 +14,21 @@ import Sub_category_table from './admin_Panel/category/sub_category/Sub_category
 import Sub_inner_category_table from './admin_Panel/category/sub_inner_category/Sub_inner_category_table';
 import Order from './admin_Panel/order/order';
 import Banner from './admin_Panel/banner/Banner'
-
-// import Order from './admin_Panel/order/Order';
-import Index from './admin_Panel/index/Index'
+import Index from './admin_Panel/index/Index';
 import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
 
-import Admin_panel from './admin_Panel/admin_panel';
 
 function App() {
   return (
     <> 
       <BrowserRouter>
-        <Header />s
+        <Header />
         <Routes>
           <Route path='/banner' element={<Banner />} />
+          <Route path='/' element={<Index />} />
           <Route path='/add-new-banner' element={<Add_new_banner />} />
           <Route path='/product-details' element={<Product_details />} />
           <Route path='/add-new-product' element={<Add_new_product />} />
@@ -47,7 +45,6 @@ function App() {
 
 
         </Routes>
-        <Admin_panel />
       </BrowserRouter>
     </>
   );
