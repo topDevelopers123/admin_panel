@@ -12,7 +12,7 @@ import Category_table from './admin_Panel/category/main_category/Category_table'
 import Sub_category_table from './admin_Panel/category/sub_category/Sub_category_table';
 import Sub_inner_category_table from './admin_Panel/category/sub_inner_category/Sub_inner_category_table';
 // import Order from './admin_Panel/order/Order';
-
+import Index from './admin_Panel/index/Index'
 import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 
@@ -22,7 +22,7 @@ function App() {
  <>
   <div>
     <Header/>
-    <Product_details />
+        <Index />
  
 
   </div>

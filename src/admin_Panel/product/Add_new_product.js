@@ -2,6 +2,7 @@ import React from 'react'
 import './Add_new_product.css'
 
 function Add_new_product() {
+
   return (
       <>
       <div className="wrapper">
