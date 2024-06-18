@@ -19,6 +19,7 @@ function App() {
  <>
   <div>
     <Header/>
+        <Add_new_product />
 
   </div>
  </>
