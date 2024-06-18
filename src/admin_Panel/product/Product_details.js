@@ -26,16 +26,20 @@ function Product_details() {
                                   <ol className="breadcrumb mb-0 p-0">
                                       <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
                                       </li>
-                                      <li className="breadcrumb-item active" aria-current="page">Add New Product Details</li>
+                                      <li className="breadcrumb-item active" aria-current="page">Product Details</li>
                                   </ol>
                               </nav>
                           </div>
 
                       </div>
 
+
+
+
+
                       <div className="card">
                           <div className="card-body p-4">
-                              <h5 className="card-title">Add New Product Details</h5>
+                              <h5 className="card-title">Product Details</h5>
                               <hr />
                               <div className="form-body mt-4">
                                   <div className="row">
@@ -109,25 +113,25 @@ function Product_details() {
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="cat_name" className="form-label">MRP</label>
-                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter MRP" />
                                               </div>
                                           </div>
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="cat_name" className="form-label">Selling Price</label>
-                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Selling Price" />
                                               </div>
                                           </div>
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="cat_name" className="form-label">Selling Quantity</label>
-                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                                                  <input type="text" className="form-control" id="cat_name"                                                                                                                                                                                                                                                                    placeholder="Enter Selling Quantity" />
                                               </div>
                                           </div>
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="cat_name" className="form-label">In Stock</label>
-                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                                                  <input type="text" className="form-control" id="cat_name" placeholder="In Stock Value" />
                                               </div>
                                           </div>
                                              
