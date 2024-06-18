@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 function Product_details() {
+    const [selectedImages, setSelectedImages] = useState([]);
+
+    const handleImageChange = (event) => {
+        const files = Array.from(event.target.files);
+        const newImages = files.map((file) => ({
+            file,
+            url: URL.createObjectURL(file)
+        }));
+        setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    };
+    // const handleRemoveImage = (url) => {
+    //     setSelectedImages((prevImages) => prevImages.filter((image) => image.url !== url));
+    // };
   return (
     <div>
           <div className="wrapper">
@@ -51,13 +64,45 @@ function Product_details() {
                                               </div>
                                           </div>
                                           <div className="col-12">
-                                              <div className="mb-3">
-                                                  <label for="cat_name" className="form-label">Images</label>
-                                                
-                                                      
-                                                     <input type='file'/>
-
-                                            
+                                              <div className="form-body mt-4">
+                                                  <div className="row">
+                                                      <div className="col-lg-12">
+                                                              <div className="mb-3">
+                                                                  <label htmlFor="image-upload" className="form-label mb-3">Upload Image</label><br></br>
+                                                                  <input
+                                                                      id="image-upload"
+                                                                      type="file"
+                                                                      accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                                                                      multiple
+                                                                      onChange={handleImageChange}
+                                                                  />
+                                                              </div>
+                                                             
+                                                              <div className="image-preview mt-4">
+                                                                  {selectedImages.map((image, index) => (
+                                                                      <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                                                                          <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                                                                          <button
+                                                                              type="button"
+                                                                            //   onClick={() => handleRemoveImage(image.url)}
+                                                                              style={{
+                                                                                  position: 'absolute',
+                                                                                  top: '5px',
+                                                                                  right: '5px',
+                                                                                  background: 'red',
+                                                                                  color: 'white',
+                                                                                  border: 'none',
+                                                                                  borderRadius: '50%',
+                                                                                  cursor: 'pointer'
+                                                                              }}
+                                                                          >
+                                                                              &times;
+                                                                          </button>
+                                                                      </div>
+                                                                  ))}
+                                                              </div>
+                                                      </div>
+                                                  </div>
                                               </div>
                                           </div>
 
