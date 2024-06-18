@@ -75,22 +75,9 @@ function Header() {
                       <div className="menu-title d-flex align-items-center">
                         Dashboard
                       </div>
-                      <div className="ms-auto dropy-icon">
-                        <i className="bi bi-chevron-down"></i>
-                      </div>
+                     
                     </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="index.php"><i className="bx bx-cart"></i>Admin
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="analytics.php"><i className="bx bx-pie-chart-alt"></i>Analytics</a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="sales.php"><i className="bx bx-shield-alt-2"></i>Sales</a>
-                      </li>
-                    </ul>
+                    
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">

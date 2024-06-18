@@ -15,6 +15,8 @@ import Sub_inner_category_table from './admin_Panel/category/sub_inner_category/
 import Order from './admin_Panel/order/order';
 import Banner from './admin_Panel/banner/Banner'
 
+// import Order from './admin_Panel/order/Order';
+import Index from './admin_Panel/index/Index'
 import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
@@ -26,7 +28,7 @@ function App() {
   return (
     <> 
       <BrowserRouter>
-        <Header />
+        <Header />s
         <Routes>
           <Route path='/banner' element={<Banner />} />
           <Route path='/add-new-banner' element={<Add_new_banner />} />
