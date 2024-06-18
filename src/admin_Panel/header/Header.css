@@ -80,13 +80,7 @@ a {
 /* Header */
 
 .topbar {
-    position: fixed;
-    top: 0;
-
-    left: 0px;
-
-    right: 0;
-
+   
     height: 60px;
 
     background: #4d869c;
@@ -281,13 +275,7 @@ ul.scroll-menu {
     }
 
     .primary-menu .navbar {
-        position: fixed;
-
-        top: 60px;
-
-        right: 0;
-
-        left: 0;
+        
 
         z-index: 9;
 
