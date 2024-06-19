@@ -1,5 +1,6 @@
 import logo from './logo.svg';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import './App.css';
@@ -18,6 +19,8 @@ import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 
 function App() {
