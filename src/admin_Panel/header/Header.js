@@ -15,7 +15,7 @@ function Header() {
                   <img src="assets/images/logo-icon.png" className="logo-icon" alt="logo icon" />
                 </div> */}
                 <div className="">
-                  <h4 className="logo-text">Mayavi</h4>
+                  <Link to="/"><h4 className="logo-text">Mayavi</h4></Link>
                   
                 </div>
               </div>
@@ -72,8 +72,8 @@ function Header() {
                       <div className="parent-icon">
                         <i class="bi bi-house-door"></i>
                       </div>
-                      <div className="menu-title d-flex align-items-center">
-                        Dashboard
+                      <div className=" d-flex align-items-center">
+                        <Link to="/" className='text-dark'>Dashboard</Link>
                       </div>
                      
                     </a>

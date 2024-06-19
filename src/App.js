@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
 import './App.css';
 import Header from './admin_Panel/header/Header';
 import Add_new_banner from './admin_Panel/banner/Add_new_banner';
@@ -41,9 +40,6 @@ function App() {
           <Route path='/sub_inner_category_table' element={<Sub_inner_category_table />} />
           <Route path='/sub_inner_category' element={<Sub_inner_category />} />
           <Route path='/orders' element={<Order />} />
-
-
-
         </Routes>
       </BrowserRouter>
     </>

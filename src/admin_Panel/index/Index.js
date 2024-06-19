@@ -73,8 +73,8 @@ function index() {
   return (
       <div>
         
-          <div className="page-wrapper">
-              <div className="page-content">
+          <div className="page-wrapper mt-5">
+              <div className="page-content p-0">
                 
                   <div className="row row-cols-1 row-cols-lg-12">
                       <div className="col-4">
