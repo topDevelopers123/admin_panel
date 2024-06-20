@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom'
 import "./Add_new_banner.css";
+import { useBannerAuthContext } from '../../Context/index.context';
+
 
 function AddNewBanner() {
     const [selectedImages, setSelectedImages] = useState([]);
+    const [file, setFile] = useState(null)
 
+    const {image_Handler,disable} = useBannerAuthContext()
+        
     const handleImageChange = (event) => {
-        const files = Array.from(event.target.files);
-        const newImages = files.map((file) => ({
-            file,
-            url: URL.createObjectURL(file)
-        }));
-        setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+      const file = event.target.files[0]
+      
+        setFile(file)
+      const newFile = URL.createObjectURL(file)
+      setSelectedImages(newFile)
+    //   const formData = new FormData()
+    //   formData.append("image", file)
+    //     image_Handler(formData)
     };
+
+    const uploadImage = () => {
+        const formData = new FormData()
+          formData.append("image", file)
+          console.log(formData);
+            image_Handler(formData)
+    }
+
+    
 
    
 
@@ -25,7 +42,7 @@ function AddNewBanner() {
                             <div className="ps-3">
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a></li>
+                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
                                         <li className="breadcrumb-item active" aria-current="page">Add Banner</li>
                                     </ol>
                                 </nav>
@@ -41,9 +58,9 @@ function AddNewBanner() {
                                         <div className="col-lg-12">
                                             <div className="border border-3 p-4 rounded">
                                                 <div className="mb-3 text-center">
-                                                    <label htmlFor="image-upload" className="form-label mb-3">Upload Banner</label><br></br>
+                                                    <label  className="form-label mb-3">Upload Banner</label><br></br>
                                                     <input
-                                                        id="image-upload"
+                                                        id=""
                                                         type="file"
                                                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                                                         multiple
@@ -52,13 +69,13 @@ function AddNewBanner() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
-                                                        <button type="button" className="btn btn-primary">Upload Banner</button>
+                                                        <button disabled={disable} type="button" className="btn btn-primary" onClick={uploadImage}>Upload Banner</button>
                                                     </div>
                                                 </div>
                                                 <div className="image-preview mt-4">
-                                                    {selectedImages.map((image, index) => (
-                                                        <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                                                            <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                                                    {
+                                                        <div  className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                                                            <img src={selectedImages} alt={"image"} style={{ maxWidth: '150px', maxHeight: '150px' }} />
                                                             <button
                                                                 type="button"
                                                                
@@ -72,11 +89,12 @@ function AddNewBanner() {
                                                                     borderRadius: '50%',
                                                                     cursor: 'pointer'
                                                                 }}
+
                                                             >
                                                                 &times;
                                                             </button>
                                                         </div>
-                                                    ))}
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

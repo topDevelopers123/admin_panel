@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Category_table() {
   return (
@@ -10,7 +11,7 @@ function Category_table() {
                       <div className="ps-3">
                           <nav aria-label="breadcrumb">
                               <ol className="breadcrumb mb-0 p-0">
-                                  <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                  <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                   </li>
                                   <li className="breadcrumb-item active" aria-current="page">Category Table</li>
                               </ol>
@@ -51,8 +52,8 @@ function Category_table() {
                                           <td>June 10, 2020</td>
                                           <td>
                                               <div className="d-flex order-actions">
-                                                  <a href="javascript:;" className=""><i className="bi bi-pencil-square"></i></a>
-                                                  <a href="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></a>
+                                                  <Link to="javascript:;" className=""><i className="bi bi-pencil-square"></i></Link>
+                                                  <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></Link>
                                               </div>
                                           </td>
                                       </tr>
@@ -68,8 +69,8 @@ function Category_table() {
                                           <td>June 10, 2020</td>
                                           <td>
                                               <div className="d-flex order-actions">
-                                                  <a href="javascript:;" className=""><i className="bi bi-pencil-square"></i></a>
-                                                  <a href="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></a>
+                                                  <Link to="javascript:;" className=""><i className="bi bi-pencil-square"></i></Link>
+                                                  <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></Link>
                                               </div>
                                           </td>
                                       </tr>
@@ -85,8 +86,8 @@ function Category_table() {
                                           <td>June 10, 2020</td>
                                           <td>
                                               <div className="d-flex order-actions">
-                                                  <a href="javascript:;" className=""><i className="bi bi-pencil-square"></i></a>
-                                                  <a href="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></a>
+                                                  <Link to="javascript:;" className=""><i className="bi bi-pencil-square"></i></Link>
+                                                  <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill"></i></Link>
                                               </div>
                                           </td>
                                       </tr>

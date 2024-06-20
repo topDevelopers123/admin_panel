@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Sub_inner_category() {
   return (
@@ -11,7 +12,7 @@ function Sub_inner_category() {
                           <div className="ps-3">
                               <nav aria-label="breadcrumb">
                                   <ol className="breadcrumb mb-0 p-0">
-                                      <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                      <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                       </li>
                                       <li className="breadcrumb-item active" aria-current="page">Add Sub Inner Category</li>
                                   </ol>
@@ -28,30 +29,30 @@ function Sub_inner_category() {
                                   <div className="row">
                                       <div className="border border-3 p-4 rounded">
 
-                                          <div class="col-12">
-                                              <div class="mb-3">
-                                                  <label for="inputProductType" class="form-label">Select Category</label>
-                                                  <select class="form-select" id="inputProductType">
+                                          <div className="col-12">
+                                              <div className="mb-3">
+                                                  <label for="inputProductType" className="form-label">Select Category</label>
+                                                  <select className="form-select" id="inputProductType">
                                                       <option value="men" selected>Men</option>
                                                       <option value="women">Women</option>
                                                       <option value="kid">Kid</option>
                                                   </select>
                                               </div>
                                           </div>
-                                          <div class="col-12">
-                                              <div class="mb-3">
-                                                  <label for="inputProductType" class="form-label">Select Sub Category</label>
-                                                  <select class="form-select" id="inputProductType">
+                                          <div className="col-12">
+                                              <div className="mb-3">
+                                                  <label for="inputProductType" className="form-label">Select Sub Category</label>
+                                                  <select className="form-select" id="inputProductType">
                                                       <option value="topwear" selected>Topwear</option>
                                                       <option value="bottomwear">Bottomwear</option>
                                                       <option value="footwear">Footwear</option>
                                                   </select>
                                               </div>
                                           </div>
-                                          <div class="col-12">
-                                              <div class="mb-3">
-                                                  <label for="subinnercat_name" class="form-label">Sub Inner Category Name</label>
-                                                  <input type="text" class="form-control" id="subinnercat_name" placeholder="Enter Sub Inner Category Name"/>
+                                          <div className="col-12">
+                                              <div className="mb-3">
+                                                  <label for="subinnercat_name" className="form-label">Sub Inner Category Name</label>
+                                                  <input type="text" className="form-control" id="subinnercat_name" placeholder="Enter Sub Inner Category Name"/>
                                               </div>
                                           </div>
                                           <div className="col-12">
