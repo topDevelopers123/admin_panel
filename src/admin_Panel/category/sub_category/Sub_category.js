@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Sub_category() {
     return (
@@ -11,7 +12,7 @@ function Sub_category() {
                             <div className="ps-3">
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                         </li>
                                         <li className="breadcrumb-item active" aria-current="page">Add Category</li>
                                     </ol>
@@ -28,10 +29,10 @@ function Sub_category() {
                                     <div className="row">
                                         <div className="border border-3 p-4 rounded">
 
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="inputProductType" class="form-label">Select Parent Category</label>
-                                                    <select class="form-select" id="inputProductType">
+                                            <div className="col-12">
+                                                <div className="mb-3">
+                                                    <label for="inputProductType" className="form-label">Select Parent Category</label>
+                                                    <select className="form-select" id="inputProductType">
                                                         <option value="men" selected>Men</option>
                                                         <option value="women">Women</option>
                                                         <option value="kid">Kid</option>
@@ -40,10 +41,10 @@ function Sub_category() {
                                             </div>
                                             <div className="col-lg-12">
 
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label for="subcat_name" class="form-label">Sub Category Name</label>
-                                                        <input type="text" class="form-control" id="subcat_name" placeholder="Enter Sub Category Name"/>
+                                                <div className="col-12">
+                                                    <div className="mb-3">
+                                                        <label for="subcat_name" className="form-label">Sub Category Name</label>
+                                                        <input type="text" className="form-control" id="subcat_name" placeholder="Enter Sub Category Name"/>
                                                     </div>
                                                 </div>
                                             </div>

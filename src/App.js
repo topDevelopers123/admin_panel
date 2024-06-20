@@ -20,14 +20,15 @@ import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <> 
+    <Toaster/>
       <BrowserRouter>
         <Header />
+     
         <Routes>
           <Route path='/banner' element={<Banner />} />
           <Route path='/' element={<Index />} />

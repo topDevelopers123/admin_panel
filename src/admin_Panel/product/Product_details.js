@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 function Product_details() {
     const [selectedImages, setSelectedImages] = useState([]);
@@ -24,7 +25,7 @@ function Product_details() {
                           <div className="ps-3">
                               <nav aria-label="breadcrumb">
                                   <ol className="breadcrumb mb-0 p-0">
-                                      <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                      <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                       </li>
                                       <li className="breadcrumb-item active" aria-current="page">Product Details</li>
                                   </ol>

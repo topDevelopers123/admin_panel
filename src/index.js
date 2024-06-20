@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthContextProvider from './Context/authContext/authContext';
+import BannerContext from './Context/authContext/bannerContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <AuthContextProvider>
+    <BannerContext>
     <App />
+      </BannerContext>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
