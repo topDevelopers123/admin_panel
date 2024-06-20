@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCategoryContext } from '../../../Context/index.context'
 
 function Category() {
+
+    const {addCategory} = useCategoryContext()
+    const [image,setImage] = useState(null)
+    const [data,setData] = useState({
+        image:null,
+        name:null
+    })
+    const imageHadler = (e) => {
+        const file = e.target.files[0]
+        const imageURl = URL.createObjectURL(file)
+        setImage(imageURl)
+        setData({...data,image:file})
+    }
+
+    const submitHandler = () => {
+        const formData = new FormData()
+        formData.append("category_name",data.name)
+        formData.append("image",data.image)
+        addCategory(formData)
+        
+    }
+   
+   
+    
+   
+
   return (
     <div>
           <div className="wrapper">
@@ -32,22 +59,23 @@ function Category() {
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="cat_name" className="form-label">Category Name</label>
-                                                  <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name"/>
+                                                  <input type="text" className="form-control" id="cat_name" onChange={(e) => setData({...data,name:e.target.value})}  placeholder="Enter Category Name"/>
                                               </div>
                                           </div>
                                           <div className="col-lg-12">
 
                                               <div className="mb-3 ">
                                                   <label for="inputProductImages" className="form-label">Upload Category Image</label>
-                                                  <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple/>
+                                                  <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" onChange={imageHadler} />
                                               </div>
                                               <div className="col-12">
                                                   <div className="d-grid w-50 m-auto">
-                                                      <button type="button" className="btn btn-primary">Submit</button>
+                                                      <button type="button" className="btn btn-primary" onClick={submitHandler}>Submit</button>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
+                                      <img src={image} />
 
                                   </div>
                               </div>
