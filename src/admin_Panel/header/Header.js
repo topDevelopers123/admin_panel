@@ -97,6 +97,13 @@ function Header() {
                         <Link className="dropdown-item" to="/add-new-banner"><i className="bx bx-radio-circle"></i>Add New
                           Banner</Link>
                       </li>
+                      <li>
+                        <Link className="dropdown-item" to="/short-banner"><i className="bx bx-radio-circle"></i>Short Banner</Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" to="/add-short-banner"><i className="bx bx-radio-circle"></i>Add Short
+                          Banner</Link>
+                      </li>
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
