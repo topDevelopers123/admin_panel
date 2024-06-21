@@ -8,7 +8,7 @@ function Add_short_banner() {
     const [selectedImages, setSelectedImages] = useState([]);
     const [file, setFile] = useState(null)
 
-    const { image_Handler, disable } = useBannerAuthContext()
+    const { shortBanner_Handler, disable } = useBannerAuthContext()
 
     const handleImageChange = (event) => {
         const file = event.target.files[0]
@@ -25,7 +25,7 @@ function Add_short_banner() {
         const formData = new FormData()
         formData.append("image", file)
         console.log(formData);
-        image_Handler(formData)
+        shortBanner_Handler(formData)
     }
 
 
