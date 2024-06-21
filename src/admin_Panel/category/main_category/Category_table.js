@@ -5,7 +5,7 @@ import '../main_category/Category_table.css'
 
 function Category_table() {
     const { getCatgoryData, deleteCategory, editCategory } = useCategoryContext()
-    const [ind,setIndex] = useState(null)
+    const [ind, setIndex] = useState(null)
     const [flag, setFlag] = useState(false)
     const [editData, setEditData] = useState({
         image:null,
@@ -84,14 +84,14 @@ const saveHandler = (id) => {
                                                     <div className="d-flex align-items-center cat_img">
                                                         <div className="ms-2">
                                                             {flag && ind === index ?
-                                                                <><input type='file' onChange={imageHandler} />  <img src={image ? image : item.image.image_url } /> </> : <img src={item.image.image_url} alt="img"/>}
+                                                                <><input type='file' onChange={imageHandler} />  <img src={image ? image : item.image.image_url} /> </> : <img src={item.image.image_url} alt="img" />}
 
                                                         </div>
-                                                       
+
                                                     </div>
-                                                   
+
                                                 </td>
-                                               
+
                                                 {/*  */}
                                                 <td>
                                                     {flag && ind === index ? <input type='text' defaultValue={item?.category_name} onChange={(event) => setEditData({...editData, category_name:event.target.value})} className='bg-blue-100 text-center rounded py-2' /> : item?.category_name}
@@ -108,20 +108,23 @@ const saveHandler = (id) => {
                                                         : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) ;setEditData({...editData, image:item.image}) }}></i></Link>
                                                         <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
                                                         </>
+                                                            : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) }}></i></Link>
+                                                                <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
+                                                            </>
                                                         }
-                                                       
+
                                                     </div>
                                                 </td>
-                                             
+
                                             </tr>
-                                            
-                                            
+
+
                                         })}
-                                  
+
                                     </tbody>
                                 </table>
 
-                              
+
                             </div>
                         </div>
                     </div>
