@@ -124,7 +124,7 @@ function Header() {
                           Products</Link>
                       </li>
                       <li>
-                        <Link className="dropdown-item" to="/add-new-product-table"><i className="bx bx-radio-circle"></i>Add New
+                        <Link className="dropdown-item" to="/add-new-product-table"><i className="bx bx-radio-circle"></i> 
                           Products Table</Link>
                       </li>
                     </ul>

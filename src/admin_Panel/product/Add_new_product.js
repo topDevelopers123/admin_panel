@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Add_new_product.css'
 
 function Add_new_product() {
+
+  const [productData, setproductData] = useState({
+    title: "",
+    description: "",
+    category: "",
+    sub_category: "",
+    sub_inner_category: "",
+    local_charges: "",
+    zonal_charges: "",
+    national_charges: "",
+    local_deadline: "",
+    zonal_deadline: "",
+    national_deadline: ""
+  
+  })
+  console.log(productData);
 
   return (
       <>
@@ -34,20 +50,22 @@ function Add_new_product() {
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Product Title</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData , title: e.target.value})} className="form-control" id="cat_name" placeholder="Enter Category Name" required />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Product Description</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, description: e.target.value })}  className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Category</label>
-                          <select className="form-select">
+                          <select className="form-select" onChange={(e) => setproductData({ ...productData, category: e.target.value })}>
                             <option></option>
+                            <option>Men's</option>
+                            <option>Women's</option>
                             <option>Men's</option>
                            
                           </select>
@@ -57,7 +75,7 @@ function Add_new_product() {
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Sub Category</label>
-                          <select className="form-select">
+                          <select className="form-select" onChange={(e) => setproductData({ ...productData, sub_category: e.target.value })}>
                             <option></option>
                             <option>Topwear</option>
 
@@ -67,7 +85,7 @@ function Add_new_product() {
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Sub Inner Category</label>
-                          <select className="form-select">
+                          <select className="form-select" onChange={(e) => setproductData({ ...productData, sub_inner_category: e.target.value })}>
                             <option></option>
                             <option>T-shirt</option>
 
@@ -77,37 +95,37 @@ function Add_new_product() {
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Local Charges</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, local_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Zonal Charges</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, zonal_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">National Charges</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, national_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Local Deadline</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, local_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Zonal Deadline</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, zonal_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">National Deadline</label>
-                          <input type="text" className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <input type="text" onChange={(e) => setproductData({ ...productData, national_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
 
