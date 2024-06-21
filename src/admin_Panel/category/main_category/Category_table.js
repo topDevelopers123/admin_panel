@@ -5,7 +5,7 @@ import '../main_category/Category_table.css'
 
 function Category_table() {
     const { getCatgoryData, deleteCategory, editCategory } = useCategoryContext()
-    const [ind,setIndex] = useState(null)
+    const [ind, setIndex] = useState(null)
     const [flag, setFlag] = useState(false)
 
     const [image, setImage] = useState(null)
@@ -15,7 +15,7 @@ function Category_table() {
         const imageURl = URL.createObjectURL(file)
         console.log(imageURl);
         setImage(imageURl)
-        
+
     }
     console.log(image);
 
@@ -66,44 +66,44 @@ function Category_table() {
                                                     <div className="d-flex align-items-center cat_img">
                                                         <div className="ms-2">
                                                             {flag && ind === index ?
-                                                                <><input type='file' onChange={imageHandler} />  <img src={image ? image : item.image.image_url } /> </> : <img src={item.image.image_url} alt="img"/>}
+                                                                <><input type='file' onChange={imageHandler} />  <img src={image ? image : item.image.image_url} /> </> : <img src={item.image.image_url} alt="img" />}
 
                                                         </div>
-                                                       
+
                                                     </div>
-                                                   
+
                                                 </td>
-                                               
+
                                                 {/*  */}
                                                 <td>
                                                     {flag && ind === index ? <input type='text' value={item?.category_name} /> : item?.category_name}
-                                                    
-                                                    
+
+
                                                 </td>
                                                 <td>{item?.createdAt.split("T")[0]}</td>
                                                 <td>
                                                     <div className="d-flex order-actions">
-                                                        {flag && index === ind ?<> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy"></i>
+                                                        {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy"></i>
                                                         </Link>
-                                                        <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={()=>setFlag(!flag)} ></i></Link>
+                                                            <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => setFlag(!flag)} ></i></Link>
                                                         </>
-                                                        : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) }}></i></Link>
-                                                        <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
-                                                        </>
+                                                            : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) }}></i></Link>
+                                                                <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
+                                                            </>
                                                         }
-                                                       
+
                                                     </div>
                                                 </td>
-                                             
+
                                             </tr>
-                                            
-                                            
+
+
                                         })}
-                                  
+
                                     </tbody>
                                 </table>
 
-                              
+
                             </div>
                         </div>
                     </div>
