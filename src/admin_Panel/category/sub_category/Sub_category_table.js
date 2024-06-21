@@ -17,6 +17,7 @@ function Sub_category_table() {
         console.log(editData);
         edit_Sub_Category(editData, id)
     }
+
     
 
   return (
@@ -70,13 +71,13 @@ function Sub_category_table() {
                                             <td>{item?.createdAt.split("T")[0]}</td>
                                             <td>
                                                 <div className="d-flex order-actions">
-                                                    {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => saveHandler(item._id)}></i>
+                                                    {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => { saveHandler(item._id); setFlag(false) }}></i>
                                                         </Link>
 
                                                         <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
                                                          </> :
                                                       
-                                                        <><Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setEditData({ ...editData, parent_category: item.parent_category._id }) ; setIndex(index) }}></i></Link>
+                                                        <><Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setEditData({ ...editData, parent_category: item.parent_category._id, sub_category_name:item.sub_category_name }) ; setIndex(index) }}></i></Link>
                                                             <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Sub_Category(item._id)}></i></Link> </> 
                                     }
                                                 </div>
