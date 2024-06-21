@@ -80,7 +80,7 @@ function BannerContext({ children }) {
 
             const resp = await axios.post("/banner/create", data, {
                 headers: {
-                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzNiYmVlMGY3YWZmOTllZTZhYzcwOSIsImVtYWlsIjoicGFyYXNqaXNjb0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4Njc5MjF9.vdZMZETfxZ0qaP1rhpjq5OQNM5nDxXO7B6Iu9-ZK9bg`
+                    'Authorization': `Bearer ${authorizeToken}`
                 }
             })
             toast.dismiss(toastId);
@@ -94,7 +94,6 @@ function BannerContext({ children }) {
         finally { setDisable(false) }
 
     }
-
     useEffect(() => {
         getBanner()
     }, [])
