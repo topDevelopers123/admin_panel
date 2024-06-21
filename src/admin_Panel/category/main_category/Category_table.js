@@ -108,9 +108,7 @@ const saveHandler = (id) => {
                                                         : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) ;setEditData({...editData, image:item.image}) }}></i></Link>
                                                         <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
                                                         </>
-                                                            : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) }}></i></Link>
-                                                                <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
-                                                            </>
+                                                           
                                                         }
 
                                                     </div>
