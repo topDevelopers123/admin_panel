@@ -1,8 +1,8 @@
 import logo from './logo.svg';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
 import './App.css';
 import Header from './admin_Panel/header/Header';
 import Add_new_banner from './admin_Panel/banner/Add_new_banner';
@@ -19,13 +19,16 @@ import Add_new_product from './admin_Panel/product/Add_new_product'
 import Product_details from './admin_Panel/product/Product_details';
 import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <> 
+    <Toaster/>
       <BrowserRouter>
         <Header />
+     
         <Routes>
           <Route path='/banner' element={<Banner />} />
           <Route path='/' element={<Index />} />
@@ -41,9 +44,6 @@ function App() {
           <Route path='/sub_inner_category_table' element={<Sub_inner_category_table />} />
           <Route path='/sub_inner_category' element={<Sub_inner_category />} />
           <Route path='/orders' element={<Order />} />
-
-
-
         </Routes>
       </BrowserRouter>
     </>

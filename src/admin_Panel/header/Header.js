@@ -15,7 +15,7 @@ function Header() {
                   <img src="assets/images/logo-icon.png" className="logo-icon" alt="logo icon" />
                 </div> */}
                 <div className="">
-                  <h4 className="logo-text">Mayavi</h4>
+                  <Link to="/"><h4 className="logo-text">Mayavi</h4></Link>
                   
                 </div>
               </div>
@@ -34,15 +34,15 @@ function Header() {
                
               </div>
               <div className="user-box dropdown px-3">
-                <a className="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <Link className="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src={user_img} className="user-img" alt="user avatar" />
                   <div className="user-info ps-3">
                     <p className="user-name mb-0">Admin</p>
                   </div>
-                </a>
+                </Link>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item" href="javascript:;"><i className="bx bx-log-out-circle"></i><span>Logout</span></a>
+                    <Link className="dropdown-item" to="javascript:;"><i className="bx bx-log-out-circle"></i><span>Logout</span></Link>
                   </li>
                 </ul>
               </div>
@@ -51,7 +51,7 @@ function Header() {
         </header>
         <div className="primary-menu">
           <nav className="navbar navbar-expand-lg align-items-center">
-            <div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
               <div className="offcanvas-header border-bottom">
                 <div className="d-flex align-items-center">
                   <div className="">
@@ -68,27 +68,27 @@ function Header() {
               <div className="offcanvas-body">
                 <ul className="navbar-nav align-items-center flex-grow-1">
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
                       <div className="parent-icon">
-                        <i class="bi bi-house-door"></i>
+                        <i className="bi bi-house-door"></i>
                       </div>
-                      <div className="menu-title d-flex align-items-center">
-                        Dashboard
+                      <div className=" d-flex align-items-center">
+                        <Link to="/" className='text-dark'>Dashboard</Link>
                       </div>
                      
-                    </a>
+                    </Link>
                     
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
-                      <div className="parent-icon"><i class="bi bi-images"></i></div>
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
+                      <div className="parent-icon"><i className="bi bi-images"></i></div>
                       <div className="menu-title d-flex align-items-center">
                         Banners
                       </div>
                       <div className="ms-auto dropy-icon">
                         <i className="bi bi-chevron-down"></i>
                       </div>
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
                       <li>
                         <Link className="dropdown-item" to="/banner"><i className="bx bx-radio-circle"></i>Banner</Link>
@@ -100,9 +100,9 @@ function Header() {
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
                       <div className="parent-icon">
-                        <i class="bi bi-cart-check"></i>
+                        <i className="bi bi-cart-check"></i>
                       </div>
                       <div className="menu-title d-flex align-items-center">
                         Product
@@ -110,7 +110,7 @@ function Header() {
                       <div className="ms-auto dropy-icon">
                         <i className="bi bi-chevron-down"></i>
                       </div>
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
                       <li>
                         <Link className="dropdown-item" to="/product-details"><i className="bx bx-radio-circle"></i>Product Details</Link>
@@ -130,9 +130,9 @@ function Header() {
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
                       <div className="parent-icon">
-                       <i class="bi bi-ui-checks-grid"></i>
+                       <i className="bi bi-ui-checks-grid"></i>
                       </div>
                       <div className="menu-title d-flex align-items-center">
                         Category
@@ -140,7 +140,7 @@ function Header() {
                       <div className="ms-auto dropy-icon">
                         <i className="bi bi-chevron-down"></i>
                       </div>
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
                       <li>
                         <Link className="dropdown-item" to="/category"><i className="bx bx-radio-circle"></i>Category</Link>
@@ -169,7 +169,7 @@ function Header() {
                   <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="/orders">
                       <div className="parent-icon">
-                        <i class="bi bi-bag-check"></i>
+                        <i className="bi bi-bag-check"></i>
                       </div>
                       <div className="menu-title d-flex align-items-center">
                         

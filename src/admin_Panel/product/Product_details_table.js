@@ -1,6 +1,7 @@
 import React from 'react'
 import './Product_details.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
+import { Link } from 'react-router-dom'
 
 function Product_details_table() {
   return (
@@ -13,7 +14,7 @@ function Product_details_table() {
                       <div className="ps-3">
                           <nav aria-label="breadcrumb">
                               <ol className="breadcrumb mb-0 p-0">
-                                  <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                  <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                   </li>
                                   <li className="breadcrumb-item active" aria-current="page">Product Details Table</li>
                               </ol>
@@ -71,8 +72,8 @@ function Product_details_table() {
                                               5
                                           </td>
                                           <td className=''>
-                                              <button className='bg-transparent border-0'>  <i class="bi bi-pencil-square mx-2"></i></button>
-                                              <button className='bg-transparent border-0'><i class="bi bi-trash3 mx-2"></i></button>
+                                              <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2"></i></button>
+                                              <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
                                           </td>
                                       </tr>
                                       

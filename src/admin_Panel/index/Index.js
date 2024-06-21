@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./Index.css";
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
@@ -73,8 +74,8 @@ function index() {
   return (
       <div>
         
-          <div className="page-wrapper">
-              <div className="page-content">
+          <div className="page-wrapper mt-5">
+              <div className="page-content p-0">
                 
                   <div className="row row-cols-1 row-cols-lg-12">
                       <div className="col-4">
@@ -242,10 +243,10 @@ function index() {
                                           <div className="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i className="bx bx-dots-horizontal-rounded"></i>
                                           </div>
                                           <div className="dropdown-menu dropdown-menu-end">
-                                              <a className="dropdown-item" href="javaScript:;">Action</a>
-                                              <a className="dropdown-item" href="javaScript:;">Another action</a>
+                                              <Link className="dropdown-item" to="javaScript:;">Action</Link>
+                                              <Link className="dropdown-item" to="javaScript:;">Another action</Link>
                                               <div className="dropdown-divider"></div>
-                                              <a className="dropdown-item" href="javaScript:;">Something else here</a>
+                                              <Link className="dropdown-item" to="javaScript:;">Something else here</Link>
                                           </div>
                                       </div>
                                   </div>

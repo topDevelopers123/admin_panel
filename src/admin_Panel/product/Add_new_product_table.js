@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Add_new_product_table.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 function Add_new_product_table() {
@@ -13,7 +14,7 @@ function Add_new_product_table() {
                       <div className="ps-3">
                           <nav aria-label="breadcrumb">
                               <ol className="breadcrumb mb-0 p-0">
-                                  <li className="breadcrumb-item"><a href="javascript:;"><i className="bx bx-home-alt"></i></a>
+                                  <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                   </li>
                                   <li className="breadcrumb-item active" aria-current="page">Add_new_product_table</li>
                               </ol>
@@ -79,8 +80,8 @@ function Add_new_product_table() {
                                               7 days
                                           </td>
                                           <td className=''>
-                                              <button className='bg-transparent border-0'>  <i class="bi bi-pencil-square mx-2"></i></button>
-                                              <button className='bg-transparent border-0'><i class="bi bi-trash3 mx-2"></i></button>
+                                              <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2"></i></button>
+                                              <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
                                           </td>
                                       </tr>
 
