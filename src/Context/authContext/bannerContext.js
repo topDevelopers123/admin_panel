@@ -11,6 +11,7 @@ export const BannerAuthContext = createContext()
 function BannerContext({ children }) {
     const { authorizeToken } = useAuthContext()
     const [bannerData, setBannerData] = useState([])
+    const [ShortbannerData, setShortBannerData] = useState([])
     const [disable, setDisable] = useState(false);
 
     const getBanner = async () => {
@@ -78,15 +79,52 @@ function BannerContext({ children }) {
         const toastId = toast.loading('Loading...');
         try {
 
-            const resp = await axios.post("/banner/create", data, {
+            const resp = await axios.post("/shortBanner/create", data, {
                 headers: {
-                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzNiYmVlMGY3YWZmOTllZTZhYzcwOSIsImVtYWlsIjoicGFyYXNqaXNjb0BnbWFpbC5jb20iLCJpYXQiOjE3MTg4Njc5MjF9.vdZMZETfxZ0qaP1rhpjq5OQNM5nDxXO7B6Iu9-ZK9bg`
+                    'Authorization': `Bearer ${authorizeToken}`
                 }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            getBanner();
+            getShortBanner();
 
+        } catch (error) {
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+        finally { setDisable(false) }
+
+    }
+
+    const getShortBanner = async () => {
+        try {
+            const resp = await axios.get("/shortBanner/get", {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            setShortBannerData(resp.data.data)
+
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    const deleteShortBanner = async (id) => {
+        setDisable(true)
+
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.delete(`/shortBanner/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            getShortBanner();
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
@@ -97,11 +135,12 @@ function BannerContext({ children }) {
 
     useEffect(() => {
         getBanner()
+        getShortBanner()
     }, [])
 
 
     return (
-        <BannerAuthContext.Provider value={{ image_Handler, bannerData, deleteBanner, disable }}>
+        <BannerAuthContext.Provider value={{ image_Handler, bannerData, deleteBanner, disable, shortBanner_Handler, ShortbannerData, deleteShortBanner }}>
             {children}
         </BannerAuthContext.Provider>
     )
