@@ -10,7 +10,7 @@ function Sub_category() {
         sub_category_name:""
     })
 
-    console.log(SubCategory);
+ 
 
     return (
         <div>

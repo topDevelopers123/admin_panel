@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCategoryContext } from '../../../Context/index.context'
 
 function Sub_inner_category() {
+    const { add_Sub_Inner_Category, all_Category } = useCategoryContext()
+    
+    const [sub_inner_Category, setSub_inner_Category] = useState({
+        parent_category: "",
+        sub_category_name: "",
+        sub_inner_category_name:""
+    })
+
+    console.log(all_Category);
+
   return (
     <div>
           <div className="wrapper">
@@ -28,14 +39,14 @@ function Sub_inner_category() {
                               <div className="form-body mt-4">
                                   <div className="row">
                                       <div className="border border-3 p-4 rounded">
-
+                                        
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="inputProductType" className="form-label">Select Category</label>
                                                   <select className="form-select" id="inputProductType">
-                                                      <option value="men" selected>Men</option>
-                                                      <option value="women">Women</option>
-                                                      <option value="kid">Kid</option>
+                                                    <option selected>Select Category</option>
+                                                  
+                                                      
                                                   </select>
                                               </div>
                                           </div>
@@ -43,21 +54,21 @@ function Sub_inner_category() {
                                               <div className="mb-3">
                                                   <label for="inputProductType" className="form-label">Select Sub Category</label>
                                                   <select className="form-select" id="inputProductType">
-                                                      <option value="topwear" selected>Topwear</option>
-                                                      <option value="bottomwear">Bottomwear</option>
-                                                      <option value="footwear">Footwear</option>
+                                                    <option>Select Sub Category</option>
+                                                      
+                                                      
                                                   </select>
                                               </div>
                                           </div>
                                           <div className="col-12">
                                               <div className="mb-3">
                                                   <label for="subinnercat_name" className="form-label">Sub Inner Category Name</label>
-                                                  <input type="text" className="form-control" id="subinnercat_name" placeholder="Enter Sub Inner Category Name"/>
+                                                  <input type="text" className="form-control" id="subinnercat_name" placeholder="Enter Sub Inner Category Name" onChange={(event) => setSub_inner_Category({ ...sub_inner_Category, sub_inner_category_name:event.target.value})} />
                                               </div>
                                           </div>
                                           <div className="col-12">
                                               <div className="d-grid w-50 m-auto">
-                                                  <button type="button" className="btn btn-primary">Submit</button>
+                                                  <button type="button" className="btn btn-primary" onClick={()=>add_Sub_Inner_Category(sub_inner_Category)}>Submit</button>
                                               </div>
 
                                           </div>
