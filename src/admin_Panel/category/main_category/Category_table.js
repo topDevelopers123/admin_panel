@@ -7,17 +7,35 @@ function Category_table() {
     const { getCatgoryData, deleteCategory, editCategory } = useCategoryContext()
     const [ind,setIndex] = useState(null)
     const [flag, setFlag] = useState(false)
+    const [editData, setEditData] = useState({
+        image:null,
+        category_name:""
+    })
+   
+
+const saveHandler = (id) => {
+    
+    const formData = new FormData()
+    formData.append("image", editData.image)
+    formData.append("category_name", editData.category_name)
+    editCategory(formData,id)
+    
+}
+
 
     const [image, setImage] = useState(null)
 
     const imageHandler = (e) => {
+
         const file = e.target.files[0]
         const imageURl = URL.createObjectURL(file)
-        console.log(imageURl);
+     
         setImage(imageURl)
-        
+        setEditData({...editData
+            , image:file
+        })
     }
-    console.log(image);
+
 
 
     return (
@@ -76,18 +94,18 @@ function Category_table() {
                                                
                                                 {/*  */}
                                                 <td>
-                                                    {flag && ind === index ? <input type='text' value={item?.category_name} /> : item?.category_name}
+                                                    {flag && ind === index ? <input type='text' defaultValue={item?.category_name} onChange={(event) => setEditData({...editData, category_name:event.target.value})} className='bg-blue-100 text-center rounded py-2' /> : item?.category_name}
                                                     
                                                     
                                                 </td>
                                                 <td>{item?.createdAt.split("T")[0]}</td>
                                                 <td>
                                                     <div className="d-flex order-actions">
-                                                        {flag && index === ind ?<> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy"></i>
+                                                        {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={()=>saveHandler(item._id)}></i>
                                                         </Link>
                                                         <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={()=>setFlag(!flag)} ></i></Link>
                                                         </>
-                                                        : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) }}></i></Link>
+                                                        : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) ;setEditData({...editData, image:item.image}) }}></i></Link>
                                                         <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
                                                         </>
                                                         }

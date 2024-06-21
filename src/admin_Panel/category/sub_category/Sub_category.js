@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCategoryContext } from '../../../Context/index.context'
 
 function Sub_category() {
+
+    const { add_Sub_Category, getCatgoryData } = useCategoryContext()
+    const [SubCategory, setSubCategory] = useState({
+        parent_category:"",
+        sub_category_name:""
+    })
+
+    console.log(SubCategory);
+
     return (
         <div>
             <div className="wrapper">
@@ -32,10 +42,18 @@ function Sub_category() {
                                             <div className="col-12">
                                                 <div className="mb-3">
                                                     <label for="inputProductType" className="form-label">Select Parent Category</label>
-                                                    <select className="form-select" id="inputProductType">
-                                                        <option value="men" selected>Men</option>
-                                                        <option value="women">Women</option>
-                                                        <option value="kid">Kid</option>
+                                                    <select className="form-select" id="inputProductType" onChange={(event) => setSubCategory({ ...SubCategory, parent_category: event.target.value })}>
+                                                        <option>Select</option>
+
+                                                        {getCatgoryData?.map((item,index)=>{
+                                                            
+                                                            return <option value={item._id} key={index}  >{item.category_name}</option>
+                                                            
+                                                           
+                                                        }    
+                                                        )
+                                                        }
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -44,13 +62,15 @@ function Sub_category() {
                                                 <div className="col-12">
                                                     <div className="mb-3">
                                                         <label for="subcat_name" className="form-label">Sub Category Name</label>
-                                                        <input type="text" className="form-control" id="subcat_name" placeholder="Enter Sub Category Name"/>
+                                                        <input type="text" className="form-control" id="subcat_name" placeholder="Enter Sub Category Name" onChange={
+                                                            (event) => setSubCategory({ ...SubCategory, sub_category_name:event.target.value})
+                                                        }/>
                                                     </div>
                                                 </div>
                                             </div>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
-                                                        <button type="button" className="btn btn-primary">Submit</button>
+                                                    <button type="button" className="btn btn-primary" onClick={() => add_Sub_Category(SubCategory)}>Submit</button>
                                                     </div>
                                                 
                                             </div>
