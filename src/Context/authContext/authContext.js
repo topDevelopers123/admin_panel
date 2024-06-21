@@ -8,7 +8,7 @@ export const AuthContext = createContext()
 
 function AuthContextProvider({children}) {
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"))
-    console.log(authorizeToken);
+    
     
     const register =async (data) => {
         const toastId = toast.loading('Loading...');
