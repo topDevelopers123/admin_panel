@@ -4,33 +4,33 @@ import "./Add_new_banner.css";
 import { useBannerAuthContext } from '../../Context/index.context';
 
 
-function AddNewBanner() {
+function Add_short_banner() {
     const [selectedImages, setSelectedImages] = useState([]);
     const [file, setFile] = useState(null)
 
-    const {image_Handler,disable} = useBannerAuthContext()
-        
+    const { shortBanner_Handler, disable } = useBannerAuthContext()
+
     const handleImageChange = (event) => {
-      const file = event.target.files[0]
-      
+        const file = event.target.files[0]
+
         setFile(file)
-      const newFile = URL.createObjectURL(file)
-      setSelectedImages(newFile)
-    //   const formData = new FormData()
-    //   formData.append("image", file)
-    //     image_Handler(formData)
+        const newFile = URL.createObjectURL(file)
+        setSelectedImages(newFile)
+        //   const formData = new FormData()
+        //   formData.append("image", file)
+        //     image_Handler(formData)
     };
 
     const uploadImage = () => {
         const formData = new FormData()
-          formData.append("image", file)
-          console.log(formData);
-            image_Handler(formData)
+        formData.append("image", file)
+        console.log(formData);
+        shortBanner_Handler(formData)
     }
 
-    
 
-   
+
+
 
     return (
         <div>
@@ -43,7 +43,7 @@ function AddNewBanner() {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
                                         <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
-                                        <li className="breadcrumb-item active" aria-current="page">Add Banner</li>
+                                        <li className="breadcrumb-item active" aria-current="page">Add Short Banner</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -51,14 +51,14 @@ function AddNewBanner() {
 
                         <div className="card">
                             <div className="card-body p-4">
-                                <h5 className="card-title">Add Banner</h5>
+                                <h5 className="card-title">Add Short Banner</h5>
                                 <hr />
                                 <div className="form-body mt-4">
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <div className="border border-3 p-4 rounded">
                                                 <div className="mb-3 text-center">
-                                                    <label  className="form-label mb-3">Upload Banner</label><br></br>
+                                                    <label className="form-label mb-3">Upload Short Banner</label><br></br>
                                                     <input
                                                         id=""
                                                         type="file"
@@ -69,16 +69,16 @@ function AddNewBanner() {
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
-                                                        <button disabled={disable} type="button" className="btn btn-primary" onClick={uploadImage}>Upload Banner</button>
+                                                        <button disabled={disable} type="button" className="btn btn-primary" onClick={uploadImage}>Upload Short Banner</button>
                                                     </div>
                                                 </div>
                                                 <div className="image-preview mt-4">
                                                     {
-                                                        <div  className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                                                        <div className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
                                                             <img src={selectedImages} alt={"image"} style={{ maxWidth: '150px', maxHeight: '150px' }} />
                                                             <button
                                                                 type="button"
-                                                               
+
                                                                 style={{
                                                                     position: 'absolute',
                                                                     top: '5px',
@@ -109,4 +109,4 @@ function AddNewBanner() {
     );
 }
 
-export default AddNewBanner;
+export default Add_short_banner;
