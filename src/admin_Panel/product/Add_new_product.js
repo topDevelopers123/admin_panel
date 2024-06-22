@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Add_new_product.css'
+import { useCategoryContext, useProductAuthContext } from '../../Context/index.context'
 
 function Add_new_product() {
-
+  const { all_Category } = useCategoryContext()
+  const { addProduct } = useProductAuthContext()
   const [productData, setproductData] = useState({
     title: "",
     description: "",
@@ -18,7 +20,8 @@ function Add_new_product() {
     national_deadline: ""
   
   })
-  console.log(productData);
+
+  
 
   return (
       <>
@@ -64,9 +67,17 @@ function Add_new_product() {
                           <label for="cat_name" className="form-label">Category</label>
                           <select className="form-select" onChange={(e) => setproductData({ ...productData, category: e.target.value })}>
                             <option></option>
-                            <option>Men's</option>
+                            {
+
+                              all_Category?.map((item, index) => (
+                                <>
+                                  <option value={item._id} >{item.category_name}</option>
+
+                                </>
+                              ))}
+                            {/* <option>Men's</option>
                             <option>Women's</option>
-                            <option>Men's</option>
+                            <option>Men's</option> */}
                            
                           </select>
                        
@@ -77,7 +88,14 @@ function Add_new_product() {
                           <label for="cat_name" className="form-label">Sub Category</label>
                           <select className="form-select" onChange={(e) => setproductData({ ...productData, sub_category: e.target.value })}>
                             <option></option>
-                            <option>Topwear</option>
+                            {
+                              all_Category?.filter((item) => item._id === productData.category).map((i) => (
+                                i?.Subcategory.map((ite, ind) => (
+                                  <option value={ite._id} >{ite.sub_category_name}</option>
+                                ))
+                              ))
+                            }
+                       
 
                           </select>
                         </div>
@@ -85,9 +103,19 @@ function Add_new_product() {
                       <div className="col-12">
                         <div className="mb-3">
                           <label for="cat_name" className="form-label">Sub Inner Category</label>
-                          <select className="form-select" onChange={(e) => setproductData({ ...productData, sub_inner_category: e.target.value })}>
+                          <select className="form-select" onChange={(e) => setproductData({ ...productData , sub_inner_category: e.target.value })}>
                             <option></option>
-                            <option>T-shirt</option>
+          
+                           {
+                              all_Category?.filter((item) => item._id === productData.category ).map((ind)=>(
+                                ind?.Subcategory?.filter((ite)=>ite._id === productData.sub_category).map((ele)=>(
+                                  ele?.InnerCategory?.map((i)=>(
+                                    <option value={i._id} >{i.sub_inner_category_name}</option>
+                                  ))
+                                ))
+                              ))
+                           }
+                           
 
                           </select>
                         </div>
@@ -131,7 +159,7 @@ function Add_new_product() {
 
                       <div className="col-12">
                         <div className="d-grid w-50 m-auto">
-                          <button type="button" className="btn btn-primary">Submit</button>
+                          <button type="button" className="btn btn-primary" onClick={()=>addProduct(productData)}>Submit</button>
                         </div>
                       </div>
                       
