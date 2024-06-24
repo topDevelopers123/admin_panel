@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Add_new_product_table.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
+import { useProductAuthContext } from '../../Context/index.context'
+
 function Add_new_product_table() {
+    const { allProduct } = useProductAuthContext()
+    const [flag, setFlag] = useState(false)
+    const [index, setIndex] = useState(false)
+    console.log(flag);
   return (
     <div>
 
@@ -46,44 +52,113 @@ function Add_new_product_table() {
                                       </tr>
                                   </thead>
                                   <tbody >
-                                      <tr className=''>
-                                          <td>
-                                              <div className="d-flex align-items-center images_div">
-                                                  <div>
-                                                      <img src={tshirt} />
-                                                  </div>
+                                     
+                                        {allProduct?.map((item,ind)=>(
+                                            <tr className='' >
 
-                                              </div>
-                                          </td>
-                                          <td className=''>Gaspur Antunes</td>
-                                          <td className=''>
-                                             Men's
-                                          </td>
-                                          <td className=''>
-                                              Topwear
-                                          </td>
-                                          <td className=''>T-shirt</td>
-                                          <td className=''>₹50/-</td>
-                                          <td className=''>
-                                              ₹100
-                                          </td>
-                                          <td className=''>
-                                              ₹150
-                                          </td>
-                                          <td className=''>
-                                              3 days
-                                          </td>
-                                          <td className=''>
-                                              5 days
-                                          </td>
-                                          <td className=''>
-                                              7 days
-                                          </td>
-                                          <td className=''>
-                                              <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2"></i></button>
-                                              <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
-                                          </td>
-                                      </tr>
+                                            <>
+                                                <td>
+                                                    <div className="d-flex align-items-center images_div">
+                                                        <div>
+                                                            <img src={tshirt} />
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                                    {flag && index === ind ? <><td> <input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.title} /></td>
+                                                    </>
+                                                :
+                                                <td className=''>{item?.title}</td>
+                                                }
+
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.category[0].category_name} /></td>
+                                                            :
+                                                            <td className=''>{item?.category[0].category_name}</td>
+                                                        }
+                                                    
+                                                    
+                                                </td>
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.sub_category[0].sub_category_name} /></td>
+                                                            :
+                                                            <td className=''>{item?.sub_category[0].sub_category_name}</td>
+                                                        }
+
+                                                    
+                                                </td>
+                                                <td className=''>
+
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.sub_inner_category[0].sub_inner_category_name} /></td>
+                                                            :
+                                                            <td className=''>{item?.sub_inner_category[0].sub_inner_category_name}</td>
+                                                        }
+
+                                                     </td>
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.local_charges} /></td>
+                                                            :
+                                                            <td className=''>  {item?.local_charges}</td>
+                                                        }
+
+                                                  </td>
+                                                <td className=''>
+
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.zonal_charges} /></td>
+                                                            :
+                                                            <td className=''>  {item?.zonal_charges}</td>
+                                                        }
+
+
+                                                    
+                                                </td>
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.national_charges} /></td>
+                                                            :
+                                                            <td className=''>  {item?.national_charges}</td>
+                                                        }
+                                                    
+                                                    
+                                                </td>
+                                                <td className=''>
+
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.local_deadline} /></td>
+                                                            :
+                                                            <td className=''>  {item?.local_deadline}</td>
+                                                        }
+
+
+                                                    
+                                                </td>
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.zonal_deadline} /></td>
+                                                            :
+                                                            <td className=''>  {item?.zonal_deadline}</td>
+                                                        }
+
+
+                                                    
+                                                </td>
+                                                <td className=''>
+                                                        {flag && index === ind ? <td><input type='text' className='text-center py-2 text-dark bg-blue-100' defaultValue={item?.national_deadline} /></td>
+                                                            :
+                                                            <td className=''>  {item?.national_deadline}</td>
+                                                        }
+
+
+                                                    
+                                                </td>
+                                                <td className=''>
+                                                        <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2" onClick={() => { setFlag(!flag); setIndex(ind)}}></i></button>
+                                                    <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
+                                                </td>
+                                            </>
+                                            </tr>
+                                            
+                                        ))}
+                                          
+                                     
 
                                   </tbody>
                               </table>

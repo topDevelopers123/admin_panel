@@ -13,7 +13,9 @@ function CategoryContextProvider({children}) {
     const [disable,setDisable] = useState(false)
     const [getCatgoryData ,setCategory] = useState(null)
     const [get_Sub_Category_data, setGet_Sub_Category_data] = useState(null)
-    
+    const [get_Sub_Inner_Category_data, setGet_Sub_Inner_Category_data] = useState(null)
+    const [all_Category, setAll_Category] = useState(null)
+  
     const getCategory = async () => {
         try {
             const resp = await axios.get("/category/get-admin", {
@@ -93,7 +95,7 @@ function CategoryContextProvider({children}) {
 
     const get_Sub_Category = async () => {
         try {
-            const resp = await axios.get("sub-category/get", {
+            const resp = await axios.get("/sub-category/get", {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -151,7 +153,7 @@ function CategoryContextProvider({children}) {
         const toastId = toast.loading('Loading...');
 
         try {
-            const resp = await axios.delete(`sub-category/delete/${id}`, {
+            const resp = await axios.delete(`/sub-category/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -171,35 +173,91 @@ function CategoryContextProvider({children}) {
 
     // Sub-Inner-Category Code
 
-   
+    const get_All_Category = async () => {
+        try {
+            const resp = await axios.get("/category/category")
+            setAll_Category(resp.data.data);
+         
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    // const add_Sub_InnerCategory = async (data) => {
-    //     console.log(data);
-    //     setDisable(true)
-    //     const toastId = toast.loading('Loading...');
-    //     try {
-    //         const resp = await axios.post("/sub-category/create", data, {
-    //             headers: {
-    //                 'Authorization': `Bearer ${authorizeToken}`
-    //             }
-    //         })
-    //         toast.dismiss(toastId);
-    //         toast.success(resp.data.message)
-    //         console.log(resp);
-    //     } catch (error) {
-    //         toast.dismiss(toastId);
-    //         toast.error(error?.response?.data?.message)
-    //         console.log(error);
-    //     } finally {
-    //         setDisable(false)
-    //     }
-    // }
+
+
+    const add_Sub_Inner_Category = async (data) => {
+        console.log(data);
+        setDisable(true)
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.post("/sub-inner-category/create", data, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Category()
+          
+        } catch (error) {
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+         
+
+        } finally {
+            setDisable(false)
+        }
+    }
+
+    const edit_Sub_Inner_Category = async (data, id) => {
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.put(`/sub-inner-category/update/${id}`, data, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            console.log(resp);
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_Sub_Category()
+        } catch (error) {
+            console.log(error);
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+    }
+
+
+
+    const delete_Sub_Inner_Category = async (id) => {
+        const toastId = toast.loading('Loading...');
+
+        try {
+            const resp = await axios.delete(`/sub-inner-category/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Category()
+     
+        } catch (error) {
+            
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+
+    }
+
 
     
     useEffect(() => {
 
       getCategory()
     get_Sub_Category()
+        get_All_Category()
       
     }, [])
     
@@ -210,7 +268,7 @@ function CategoryContextProvider({children}) {
 
 
     return (
-        <CategoryContext.Provider value={{ addCategory, getCatgoryData, deleteCategory, editCategory, add_Sub_Category, get_Sub_Category_data, edit_Sub_Category, delete_Sub_Category }}>
+        <CategoryContext.Provider value={{ addCategory, getCatgoryData, deleteCategory, editCategory, add_Sub_Category, get_Sub_Category_data, get_Sub_Inner_Category_data, all_Category, edit_Sub_Category, delete_Sub_Category, add_Sub_Inner_Category, delete_Sub_Inner_Category, edit_Sub_Inner_Category }}>
             {children}
         </CategoryContext.Provider>
     )
