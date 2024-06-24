@@ -2,8 +2,11 @@ import React from 'react'
 import './Product_details.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 import { Link } from 'react-router-dom'
+import { useProductAuthContext } from '../../Context/index.context'
 
 function Product_details_table() {
+    const { allProductDetailsData } = useProductAuthContext()
+  
   return (
     <div>
           <div className="page-wrapper">
@@ -30,6 +33,7 @@ function Product_details_table() {
                           <div className="table-responsive">
                               <table className="table mb-0">
                                   <thead className="table-light">
+                                    
                                       <tr>
                                           <th>Image</th>
                                        
@@ -45,37 +49,53 @@ function Product_details_table() {
                                       </tr>
                                   </thead>
                                   <tbody >
-                                      <tr className=''>
-                                          <td>
-                                              <div className="d-flex align-items-center images_div">
-                                                  <div>
-                                                      <img src={tshirt}/>
-                                                  </div>
-                                                  
-                                              </div>
-                                          </td>
-                                          <td className=''>Gaspur Antunes</td>
-                                          <td className=''>
-                                             <select>
-                                                <option>M</option>
-                                             </select>
-                                          </td>
-                                          <td className=''>
-                                              Red
-                                          </td>
-                                          <td className=''>₹1989/-</td>
-                                          <td className=''>₹1599/-</td>
-                                          <td className=''>
-                                             10
-                                          </td>
-                                          <td className=''>
-                                              5
-                                          </td>
-                                          <td className=''>
-                                              <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2"></i></button>
-                                              <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
-                                          </td>
-                                      </tr>
+
+                                      {allProductDetailsData?.map((item, i) => (
+                                          
+                                            <>
+                                              {item?.ProductDetail?.filter((ele, i)=>{
+                                                return item._id === ele.product_id 
+}).map((ite, i)=>(
+    <>
+    {console.log(ite)}
+    <tr tr className='' >
+        <td>
+            <div className="d-flex align-items-center images_div">
+                <div>
+                    <img src={ite.image[0].image_url} />
+                </div>
+
+            </div>
+        </td>
+        <td className=''>{item.title}</td>
+        <td className=''>
+            <select>
+                    <option>{ite.Size}</option>
+            </select>
+        </td>
+        <td className=''>
+            {ite.color}
+        </td>
+            <td className=''>₹{ite.sellingPrice}</td>
+            <td className=''>₹{ite.MRP}</td>
+        <td className=''>
+                {ite.selling_quantity}
+        </td>
+        <td className=''>
+                {ite.inStock}
+        </td>
+        <td className=''>
+            <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2"></i></button>
+            <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button>
+        </td>
+    </tr>
+    </>
+))}
+                                         
+                                      </>
+                                      ))}
+                                      
+                                     
                                       
                                   </tbody>
                               </table>

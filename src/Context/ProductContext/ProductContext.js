@@ -13,6 +13,7 @@ function ProductContextProvider({ children }) {
     const { authorizeToken } = useAuthContext()
     const [disable, setDisable] = useState(false);
     const [allProduct, setAllProduct] = useState([])
+    const [allProductDetailsData, setAllProductDetailsData] = useState([])
 
 
     const get_All_Products = async () => {
@@ -47,7 +48,7 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-     
+            get_All_Products()
 
         } catch (error) {
             toast.dismiss(toastId);
@@ -60,15 +61,111 @@ function ProductContextProvider({ children }) {
     }
 
 
+    const edit_Product = async (data, id) => {
+        const toastId = toast.loading('Loading...');
+        console.log(data)
+        try {
+            const resp = await axios.put(`/product/update/${id}`, data, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            // console.log(resp);
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Products()
+           
+        } catch (error) {
+            console.log(error);
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+    }
+
+
+    const delete_Product = async (id) => {
+        const toastId = toast.loading('Loading...');
+
+        try {
+            const resp = await axios.delete(`/product/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Products()
+
+        } catch (error) {
+
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+
+    }
+
+
+    // /product-details/create
+
+
+    const addProductDetails = async (data) => {
+        
+        setDisable(true)
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.post("/product-details/create", data, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+
+        } catch (error) {
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+            console.log(error);
+
+        } finally {
+            setDisable(false)
+        }
+    }
+
+
+   
+
+
+    const get_All_Products_Details = async () => {
+        console.log("object")
+        try {
+            const resp = await axios.get("/product/admin-get",
+                {
+                    headers: {
+                        'Authorization': `Bearer ${authorizeToken}`
+                    }
+                }
+            )
+
+
+        
+            setAllProductDetailsData(resp.data.data);
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(()=>{
         get_All_Products()
+        get_All_Products_Details()
     },[])
 
     
 
 
     return (
-        <ProductAuthContext.Provider value={{ addProduct, allProduct }}>
+        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData }}>
             {children}
         </ProductAuthContext.Provider>
     )
