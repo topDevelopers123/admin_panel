@@ -184,7 +184,7 @@ function Add_new_product_table() {
                                                         {/* <button className='bg-transparent border-0'>  <i className="bi bi-pencil-square mx-2" onClick={() => { setFlag(!flag); setIndex(ind); }}></i></button>
                                                     <button className='bg-transparent border-0'><i className="bi bi-trash3 mx-2"></i></button> */}
 
-                                                        {flag ? <>
+                                                        {flag && index === ind? <>
                                                             
                                                             <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => { setFlag(false); saveHandler(item._id) }}></i>
                                                             </Link>
