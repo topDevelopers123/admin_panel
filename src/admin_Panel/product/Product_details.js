@@ -15,6 +15,7 @@ function ProductDetails() {
         inStock: "",
         image: []
     });
+    
 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);

@@ -8,6 +8,7 @@ function Sub_inner_category_table() {
 
     const { all_Category, delete_Sub_Inner_Category, edit_Sub_Inner_Category } = useCategoryContext()
     const [flag, setFlag]= useState(false)
+    const [index, setIndex] = useState(null)
 
     const [editData, setEditData] = useState({
         parent_category1: "",
@@ -65,19 +66,19 @@ function Sub_inner_category_table() {
                                                         <tr>
                                                             <td>{item.category_name}</td>
                                                             <td>{ite.sub_category_name}</td>
-                                                            {flag ? <input type='text' className='text-dark fw-bold rounded' style={{ backgroundColor: "#e6f9ff" }} defaultValue={ele.sub_inner_category_name} onChange={(e) => setEditData({ ...editData, sub_inner_category_name :e.target.value, parent_category1:item._id, parent_category2: ite._id})}/> :
+                                                            {flag && index === ele._id ? <input type='text' className='text-dark fw-bold rounded' style={{ backgroundColor: "#e6f9ff" }} defaultValue={ele.sub_inner_category_name} onChange={(e) => setEditData({ ...editData, sub_inner_category_name :e.target.value, parent_category1:item._id, parent_category2: ite._id})}/> :
                                                             <td>{ele.sub_inner_category_name}</td>
                                                             }
                                                             <td>June 10, 2020</td>
                                                             <td>
                                                                 <div className="d-flex order-actions">
-                                                                {flag ? <>
+                                                                {flag && index === ele._id ? <>
                                                                         <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => {edit_Sub_Inner_Category(editData, ele._id); setFlag(false)}}></i>
                                                                         </Link>
 
                                                                         <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
                                                                         </> : <>
-                                                                            <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(true); setEditData({ ...editData, parent_category1: item._id, parent_category2: ite._id, sub_inner_category_name: ele.sub_inner_category_name })}}></i></Link>
+                                                                            <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(true); setIndex(ele._id);setEditData({ ...editData, parent_category1: item._id, parent_category2: ite._id, sub_inner_category_name: ele.sub_inner_category_name })}}></i></Link>
                                                                             <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Sub_Inner_Category(ele._id)}></i></Link>
                                                                             </>}
                                                                     

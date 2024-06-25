@@ -120,7 +120,8 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-
+            get_All_Products_Details()
+         
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
@@ -156,6 +157,56 @@ function ProductContextProvider({ children }) {
         }
     }
 
+
+    const edit_All_Product_Details = async (data, id) => {
+        const toastId = toast.loading('Loading...');
+        console.log(data, id)
+        try {
+            const resp = await axios.put(`/product-details/update/${id}`, data, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            // console.log(resp);
+            
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Products_Details()
+         
+
+        } catch (error) {
+            console.log(error);
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+    }
+
+
+
+    const delete_All_Product_Details = async (id) => {
+        const toastId = toast.loading('Loading...');
+
+        try {
+            const resp = await axios.delete(`/product-details/delete/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            toast.dismiss(toastId);
+            toast.success(resp.data.message)
+            get_All_Products_Details()
+          
+        } catch (error) {
+
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+
+    }
+
+
+
+
     useEffect(()=>{
         get_All_Products()
         get_All_Products_Details()
@@ -165,7 +216,7 @@ function ProductContextProvider({ children }) {
 
 
     return (
-        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData }}>
+        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details  }}>
             {children}
         </ProductAuthContext.Provider>
     )
