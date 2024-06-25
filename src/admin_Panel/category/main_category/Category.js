@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCategoryContext } from '../../../Context/index.context'
+import '../main_category/Category.css'
 
 function Category() {
 
@@ -65,7 +66,7 @@ function Category() {
                                             <div className="col-lg-12">
 
                                                 <div className="mb-3 ">
-                                                    <label for="inputProductImages" className="form-label">Upload Category Image</label>
+                                                    <label for="inputProductImages" className="form-label">Upload Category Image</label> <br></br>
                                                     <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" onChange={imageHadler} />
                                                 </div>
                                                 <div className="col-12">
@@ -74,8 +75,9 @@ function Category() {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <img className='preview_image' src={image} />
                                         </div>
-                                        <img src={image} />
+                                      
 
                                     </div>
                                 </div>
