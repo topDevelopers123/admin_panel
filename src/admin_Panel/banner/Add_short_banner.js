@@ -14,7 +14,7 @@ function Add_short_banner() {
         const file = event.target.files[0]
 
         setFile(file)
-        const newFile = URL.createObjectURL(file)
+        const newFile = URL?.createObjectURL(file)
         setSelectedImages(newFile)
         //   const formData = new FormData()
         //   formData.append("image", file)

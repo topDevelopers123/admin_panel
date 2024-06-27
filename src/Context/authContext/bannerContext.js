@@ -45,8 +45,9 @@ function BannerContext({ children }) {
             getBanner();
 
         } catch (error) {
+            console.log(error);
             toast.dismiss(toastId);
-            toast.error(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message || error.response.data?.split("<pre>")[1]?.split("</pre>")[0])
         }
         finally { setDisable(false) }
 
@@ -91,6 +92,7 @@ function BannerContext({ children }) {
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
+            console.log(error)
         }
         finally { setDisable(false) }
 
