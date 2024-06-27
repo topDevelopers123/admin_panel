@@ -15,6 +15,8 @@ function ProductDetails() {
         inStock: "",
         image: []
     });
+
+    // console.log(allProduct[0].ProductDetail[0].color);
     
 
     const handleImageChange = (event) => {
@@ -114,50 +116,75 @@ function ProductDetails() {
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="color-select" className="form-label">Color</label>
-                                                <input id="color-select" onChange={(e) => setProductDetail({ ...productDetail, color: e.target.value })} className="form-select" />
+                                                <select id="color-select" onChange={(e) => setProductDetail({ ...productDetail, color: e.target.value })} className="form-select">
+                                                    <option>Select</option>
+                                                    <option>Red</option>
+                                                    <option>Blue</option>
+                                                    <option>Pink</option>
+                                                    <option>Green</option>
+                                                    <option>Black</option>
+                                                    <option>White</option>
+                                                    <option>Gray</option>
+                                                    <option>Yellow</option>
+                                                    <option>Orange</option>
+                                                    <option>Purple</option>
+                                                    <option>Brown</option>
+                                                    <option>Multicolor</option>
+                                                    
+                                                </select>
                                             </div>
                                         </div>
-                                        <div className="col-12">
-                                            <div className="form-body mt-4">
-                                                <div className="row">
-                                                    <div className="col-lg-12">
-                                                        <div className="mb-3">
-                                                            <label htmlFor="image-upload" className="form-label mb-3">Upload Images</label><br />
-                                                            <input
-                                                                id="image-upload"
-                                                                type="file"
-                                                                accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                                                multiple // Allow multiple files
-                                                                onChange={handleImageChange}
-                                                            />
-                                                        </div>
-                                                        <div className="image-preview mt-4">
-                                                            {selectedImages.map((image, index) => (
-                                                                <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                                                                    <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
-                                                                    <button
-                                                                        type="button"
-                                                                        onClick={() => handleImageDelete(image.id)}
-                                                                        style={{
-                                                                            position: 'absolute',
-                                                                            top: '5px',
-                                                                            right: '5px',
-                                                                            background: 'red',
-                                                                            color: 'white',
-                                                                            border: 'none',
-                                                                            borderRadius: '50%',
-                                                                            cursor: 'pointer'
-                                                                        }}
-                                                                    >
-                                                                        &times;
-                                                                    </button>
-                                                                </div>
-                                                            ))}
+                                       
+
+                                        {
+                                            !allProduct.filter((item) => item._id === productDetail.product_id)[0]?.ProductDetail?.filter((lm) => lm.color === productDetail.color).length > 0 && <div className="col-12" >
+                                                <div className="form-body mt-4">
+                                                    <div className="row">
+                                                        { }
+                                                        <div className="col-lg-12">
+                                                            <div className="mb-3">
+                                                                <label htmlFor="image-upload" className="form-label mb-3">Upload Images</label><br />
+                                                                <input
+                                                                    id="image-upload"
+                                                                    type="file"
+                                                                    accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                                                                    multiple // Allow multiple files
+                                                                    onChange={handleImageChange}
+                                                                />
+                                                            </div>
+                                                            <div className="image-preview mt-4">
+                                                                {selectedImages.map((image, index) => (
+                                                                    <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                                                                        <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                                                                        <button
+                                                                            type="button"
+                                                                            onClick={() => handleImageDelete(image.id)}
+                                                                            style={{
+                                                                                position: 'absolute',
+                                                                                top: '5px',
+                                                                                right: '5px',
+                                                                                background: 'red',
+                                                                                color: 'white',
+                                                                                border: 'none',
+                                                                                borderRadius: '50%',
+                                                                                cursor: 'pointer'
+                                                                            }}
+                                                                        >
+                                                                            &times;
+                                                                        </button>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> 
+                                        }
+
+                                        
+                                        
+
+
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="mrp" className="form-label">MRP</label>
