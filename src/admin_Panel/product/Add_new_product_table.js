@@ -87,7 +87,7 @@ function Add_new_product_table() {
                                                         <div className="d-flex align-items-center images_div">
 
                                                             <div>
-                                                                <img src={item?.ProductDetail[0].image[0].image_url} />
+                                                                <img src={item?.ProductDetail[0]?.image[0]?.image_url} />
                                                             </div>
                                                         </div>
                                                     </td>
