@@ -103,14 +103,9 @@ function ProductDetails() {
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="size-select" className="form-label">Size</label>
-                                                <select id="size-select" onChange={(e) => setProductDetail({ ...productDetail, Size: e.target.value })} className="form-select">
-                                                    <option></option>
-                                                    <option>S</option>
-                                                    <option>M</option>
-                                                    <option>L</option>
-                                                    <option>XL</option>
-                                                    <option>XXL</option>
-                                                </select>
+                                                <input id="size-select" onChange={(e) => setProductDetail({ ...productDetail, Size: e.target.value })} className="form-select"/>
+                                                   
+                                                
                                             </div>
                                         </div>
                                         <div className="col-12">

@@ -37,7 +37,7 @@ function ProductContextProvider({ children }) {
 
     
     const addProduct = async (data) => {
-    
+        console.log(data);
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -48,12 +48,13 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
+
             get_All_Products()
 
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
-
+            console.log(error);
 
         } finally {
             setDisable(false)
