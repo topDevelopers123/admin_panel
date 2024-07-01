@@ -177,7 +177,7 @@ function CategoryContextProvider({children}) {
         try {
             const resp = await axios.get("/category/category")
             setAll_Category(resp.data.data);
-            console.log(resp.data.data);
+         
         } catch (error) {
             console.log(error)
         }

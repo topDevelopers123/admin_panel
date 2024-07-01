@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from './Context/authContext/authContext';
 import BannerContext from './Context/authContext/bannerContext';
 import CategoryContextProvider from './Context/categoryContext/categoryContext';
+import ProductContextProvider from './Context/ProductContext/ProductContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <CategoryContextProvider>
+        <ProductContextProvider>
     <BannerContext>
     <App />
       </BannerContext>
+        </ProductContextProvider>
       </CategoryContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Choices from 'choices.js';
-import 'choices.js/public/assets/styles/choices.min.css';
+import { useProductAuthContext } from '../../Context/index.context';
 
 function ProductDetails() {
-
-    const [productDetail, setproductDetail] = useState({
+    const { addProductDetails, allProduct } = useProductAuthContext();
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [productDetail, setProductDetail] = useState({
         product_id: "",
         Size: "",
         color: "",
@@ -14,108 +14,136 @@ function ProductDetails() {
         selling_quantity: "",
         inStock: "",
         image: []
-    })
-    console.log(productDetail);
+    });
 
-    const [selectedImages, setSelectedImages] = useState([]);
-
-    useEffect(() => {
-        new Choices(document.querySelector(".choices-single"));
-    }, []);
+    // console.log(allProduct[0].ProductDetail[0].color);
+    
 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
-        const newImages = files.map((file) => ({
+        const newImages = files.map(file => ({
             id: file.name + file.size, // Unique identifier based on file properties
             url: URL.createObjectURL(file),
-            file
+            file: file
         }));
-        setSelectedImages((prevImages) => [...prevImages, ...newImages]);
-        setproductDetail((prevDetail) => ({
+        setSelectedImages(prevImages => [...prevImages, ...newImages]);
+        setProductDetail(prevDetail => ({
             ...prevDetail,
             image: [...prevDetail.image, ...newImages.map(image => image.file)]
         }));
     };
 
-    const handleImageDelete = (imageId) => {
-        setSelectedImages((prevImages) =>
-            prevImages.filter((image) => image.id !== imageId)
-        );
-        setproductDetail((prevDetail) => ({
+    const handleImageDelete = (id) => {
+        setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
+        setProductDetail(prevDetail => ({
             ...prevDetail,
-            image: prevDetail.image.filter(
-                (file) => file.name + file.size !== imageId
-            )
+            image: prevDetail.image.filter(image => image.name + image.size !== id)
         }));
     };
 
+    const submitHandler = async () => {
+        const formData = new FormData();
+        formData.append('product_id', productDetail.product_id);
+        formData.append('Size', productDetail.Size);
+        formData.append('color', productDetail.color);
+        formData.append('MRP', productDetail.MRP);
+        formData.append('sellingPrice', productDetail.sellingPrice);
+        formData.append('selling_quantity', productDetail.selling_quantity);
+        formData.append('inStock', productDetail.inStock);
+
+        // Append each image file to FormData
+        productDetail.image.forEach((file) => {
+            formData.append(`image`, file);
+        });
+
+        // Call API or dispatch action to add product details
+        try {
+            await addProductDetails(formData);
+            // Optionally handle success or navigate to another page
+        } catch (error) {
+            console.error('Error adding product details:', error);
+            // Handle error
+        }
+    };
 
     return (
-        <div>
-            <div className="wrapper">
-                <div className="page-wrapper">
-                    <div className="page-content">
-                        <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                            <div className="breadcrumb-title pe-3">Mayavi Fashion</div>
-                            <div className="ps-3">
-                                <nav aria-label="breadcrumb">
-                                    <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><Link to="/"><i className="bx bx-home-alt"></i></Link></li>
-                                        <li className="breadcrumb-item active" aria-current="page">Product Details</li>
-                                    </ol>
-                                </nav>
-                            </div>
+        <div className="wrapper">
+            <div className="page-wrapper">
+                <div className="page-content">
+                    <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                        <div className="breadcrumb-title pe-3">Mayavi Fashion</div>
+                        <div className="ps-3">
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb mb-0 p-0">
+                                    <li className="breadcrumb-item"><Link to="/"><i className="bx bx-home-alt"></i></Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Product Details</li>
+                                </ol>
+                            </nav>
                         </div>
+                    </div>
 
-                        <div className="card">
-                            <div className="card-body p-4">
-                                <h5 className="card-title">Product Details</h5>
-                                <hr />
-                                <div className="form-body mt-4">
-                                    <div className="row">
-                                        <div className="border border-3 p-4 rounded">
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="product-select" className="form-label">Select Product</label>
-                                                    <select id="product-select" onChange={(e) => {
-                                                        setproductDetail({
-                                                            ...productDetail, product_id: e.target.value
-                                                        })
-                                                    }} className="form-select choices-single">
-                                                        <option>Search/ Select Product</option>
-                                                        <option>Shirt</option>
-                                                    </select>
-                                                </div>
+                    <div className="card">
+                        <div className="card-body p-4">
+                            <h5 className="card-title">Product Details</h5>
+                            <hr />
+                            <div className="form-body mt-4">
+                                <div className="row">
+                                    <div className="border border-3 p-4 rounded">
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="product-select" className="form-label">Select Product</label>
+                                                <select id="product-select" className="form-select " onChange={(event) => setProductDetail({ ...productDetail, product_id: event.target.value })}>
+                                                    <option>Select Product</option>
+                                                    {allProduct?.map((item, i) => (
+                                                        <option key={i} value={item._id}>{item.title}</option>
+                                                    ))}
+                                                </select>
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="size-select" className="form-label">Size</label>
-                                                    <select id="size-select" onChange={(e) => { setproductDetail({ ...productDetail, Size: e.target.value})}} className="form-select">
-                                                        <option></option>
-                                                        <option>S</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="size-select" className="form-label">Size</label>
+                                                <input id="size-select" onChange={(e) => setProductDetail({ ...productDetail, Size: e.target.value })} className="form-select"/>
+                                                   
+                                                
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="color-select" className="form-label">Color</label>
-                                                    <select id="color-select" onChange={(e) => { setproductDetail({ ...productDetail, color: e.target.value }) }} className="form-select">
-                                                        <option></option>
-                                                        <option>Red</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="color-select" className="form-label">Color</label>
+                                                <select id="color-select" onChange={(e) => setProductDetail({ ...productDetail, color: e.target.value })} className="form-select">
+                                                    <option>Select</option>
+                                                    <option>Red</option>
+                                                    <option>Blue</option>
+                                                    <option>Pink</option>
+                                                    <option>Green</option>
+                                                    <option>Black</option>
+                                                    <option>White</option>
+                                                    <option>Gray</option>
+                                                    <option>Yellow</option>
+                                                    <option>Orange</option>
+                                                    <option>Purple</option>
+                                                    <option>Brown</option>
+                                                    <option>Multicolor</option>
+                                                    
+                                                </select>
                                             </div>
-                                            <div className="col-12">
+                                        </div>
+                                       
+
+                                        {
+                                            !allProduct.filter((item) => item._id === productDetail.product_id)[0]?.ProductDetail?.filter((lm) => lm.color === productDetail.color).length > 0 && <div className="col-12" >
                                                 <div className="form-body mt-4">
                                                     <div className="row">
+                                                        { }
                                                         <div className="col-lg-12">
                                                             <div className="mb-3">
-                                                                <label htmlFor="image-upload" className="form-label mb-3">Upload Image</label><br />
-                                                                <input 
+                                                                <label htmlFor="image-upload" className="form-label mb-3">Upload Images</label><br />
+                                                                <input
                                                                     id="image-upload"
                                                                     type="file"
                                                                     accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                                                    multiple
+                                                                    multiple // Allow multiple files
                                                                     onChange={handleImageChange}
                                                                 />
                                                             </div>
@@ -145,35 +173,40 @@ function ProductDetails() {
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div> 
+                                        }
+
+                                        
+                                        
+
+
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="mrp" className="form-label">MRP</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, MRP: e.target.value })} className="form-control" id="mrp" placeholder="Enter MRP" />
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="mrp" className="form-label">MRP</label>
-                                                    <input type="text" onChange={(e)=>{setproductDetail({...productDetail, MRP: e.target.value})}} className="form-control" id="mrp" placeholder="Enter MRP" />
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="selling-price" className="form-label">Selling Price</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, sellingPrice: e.target.value })} className="form-control" id="selling-price" placeholder="Enter Selling Price" />
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="selling-price" className="form-label">Selling Price</label>
-                                                    <input type="text" onChange={(e) => { setproductDetail({ ...productDetail, sellingPrice: e.target.value }) }} className="form-control" id="selling-price" placeholder="Enter Selling Price" />
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
-                                                    <input type="text" onChange={(e) => { setproductDetail({ ...productDetail, selling_quantity: e.target.value})}}  className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="in-stock" className="form-label">In Stock</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
                                             </div>
-                                            <div className="col-12">
-                                                <div className="mb-3">
-                                                    <label htmlFor="in-stock" className="form-label">In Stock</label>
-                                                    <input type="text" onChange={(e) => { setproductDetail({ ...productDetail, inStock: e.target.value})}} className="form-control" id="in-stock" placeholder="In Stock Value" />
-                                                </div>
-                                            </div>
-                                            <div className="col-12">
-                                                <div className="d-grid w-50 m-auto">
-                                                    <button type="button" className="btn btn-primary">Submit</button>
-                                                </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="d-grid w-50 m-auto">
+                                                <button type="button" className="btn btn-primary" onClick={submitHandler}>Submit</button>
                                             </div>
                                         </div>
                                     </div>

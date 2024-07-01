@@ -164,45 +164,69 @@ function index() {
                       </div>
                   </div>
                   <div className="row mt-5">
-                      <div className="col-12 col-lg-8">
-                          <div className="card radius-10">
-                              <div className="card-header border-bottom-0 bg-transparent">
-                                  <div className="d-lg-flex align-items-center">
-                                      <div>
-                                          <h6 className="font-weight-bold mb-2 mb-lg-0">Historical Analytics</h6>
+                          <div className="col-12 col-lg-8 d-flex">
+                              <div className="card radius-10 w-100">
+                                  <div className="card-body">
+                                      <div className="d-flex align-items-center">
+                                          <div>
+                                              <h6 className="font-weight-bold mb-0">Order Status</h6>
+                                          </div>
+                                          <div className="dropdown ms-auto">
+                                              <div className="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i className="bx bx-dots-horizontal-rounded"></i>
+                                              </div>
+                                              <div className="dropdown-menu dropdown-menu-end">
+                                                  <Link className="dropdown-item" to="javaScript:;">Action</Link>
+                                                  <Link className="dropdown-item" to="javaScript:;">Another action</Link>
+                                                  <div className="dropdown-divider"></div>
+                                                  <Link className="dropdown-item" to="javaScript:;">Something else here</Link>
+                                              </div>
+                                          </div>
                                       </div>
-                                      <div className="font-22 ms-auto"><i className="bx bx-dots-horizontal-rounded"></i>
+                                      <div className='w-[100%] h-[20rem] bg-slate-100 py-3 px-3 rounded-xl' >
+
+                                          <Bar
+                                              data={{
+                                                  labels: ["A", "B", "C"],
+                                                  datasets: [
+                                                      {
+                                                          label: "Booked",
+                                                          data: [200, 100, 400],
+                                                          borderRadius: 5
+                                                      },
+                                                      {
+                                                          label: "In Progress",
+                                                          data: [100, 50, 250],
+                                                          borderRadius: 5
+                                                      },
+                                                      {
+                                                          label: "Cancelled",
+                                                          data: [50, 350, 200],
+                                                          borderRadius: 5
+                                                      },
+
+                                                  ]
+                                              }}
+                                          />
+
                                       </div>
-                                  </div>
-                              </div>
-                              <div className="card-body">
-                                  <div className="d-flex align-items-center ms-auto font-13 gap-2">
-                                      <span className="border px-1 rounded cursor-pointer"><i className="bx bxs-circle text-danger me-1"></i>Visitors</span>
-                                    
-                                      <span className="border px-1 rounded cursor-pointer"><i className="bx bxs-circle text-info me-1"></i>Page Views</span>
-                                  </div>
-                                  <div className='w-[100%] h-[20rem] bg-slate-100 py-3 px-3 rounded-xl' >
-                                      <Bar
-                                          data={{
-                                              labels: ["A", "B", "C"],
-                                              datasets: [
-                                                  {
-                                                      label: "Visitors",
-                                                      data: [200, 300, 400],
-                                                      borderRadius: 5
-                                                  },
-                                                  {
-                                                      label: "Page Views",
-                                                      data: [100, 98, 200],
-                                                      borderRadius: 5
-                                                  },
-                                              ]
-                                          }}
-                                      />
+                                      <div className="d-flex align-items-center justify-content-between text-center">
+                                          <div>
+                                              <h5 className="mb-1 font-weight-bold">289</h5>
+                                              <p className="mb-0 text-secondary">Booked</p>
+                                          </div>
+                                          <div className="mb-1">
+                                              <h5 className="mb-1 font-weight-bold">348</h5>
+                                              <p className="mb-0 text-secondary">In Progress</p>
+                                          </div>
+                                          <div>
+                                              <h5 className="mb-1 font-weight-bold">152</h5>
+                                              <p className="mb-0 text-secondary">Canceled</p>
+                                          </div>
+                                      </div>
                                   </div>
                               </div>
                           </div>
-                      </div>
+
                       <div className="col-12 col-lg-4">
                           <div className="card radius-10 bg-dark">
                               <div className="card-body ">
@@ -231,71 +255,7 @@ function index() {
                           
                       </div>
                   </div>
-                  <div className="row mt-5">
-                      <div className="col-12 col-lg-6 d-flex">
-                          <div className="card radius-10 w-100">
-                              <div className="card-body">
-                                  <div className="d-flex align-items-center">
-                                      <div>
-                                          <h6 className="font-weight-bold mb-0">Order Status</h6>
-                                      </div>
-                                      <div className="dropdown ms-auto">
-                                          <div className="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i className="bx bx-dots-horizontal-rounded"></i>
-                                          </div>
-                                          <div className="dropdown-menu dropdown-menu-end">
-                                              <Link className="dropdown-item" to="javaScript:;">Action</Link>
-                                              <Link className="dropdown-item" to="javaScript:;">Another action</Link>
-                                              <div className="dropdown-divider"></div>
-                                              <Link className="dropdown-item" to="javaScript:;">Something else here</Link>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div className='w-[100%] h-[20rem] bg-slate-100 py-3 px-3 rounded-xl' >
-                                     
-                                          <Bar
-                                              data={{
-                                                  labels: ["A", "B", "C"],
-                                                  datasets: [
-                                                      {
-                                                          label: "Booked",
-                                                          data: [200, 100, 400],
-                                                          borderRadius: 5
-                                                      },
-                                                      {
-                                                          label: "In Progress",
-                                                          data: [100, 50, 250],
-                                                          borderRadius: 5
-                                                      },
-                                                      {
-                                                          label: "Cancelled",
-                                                          data: [50, 350, 200],
-                                                          borderRadius: 5
-                                                      },
-
-                                                  ]
-                                              }}
-                                          />
-                                      
-                                  </div>
-                                  <div className="d-flex align-items-center justify-content-between text-center">
-                                      <div>
-                                          <h5 className="mb-1 font-weight-bold">289</h5>
-                                          <p className="mb-0 text-secondary">Booked</p>
-                                      </div>
-                                      <div className="mb-1">
-                                          <h5 className="mb-1 font-weight-bold">348</h5>
-                                          <p className="mb-0 text-secondary">In Progress</p>
-                                      </div>
-                                      <div>
-                                          <h5 className="mb-1 font-weight-bold">152</h5>
-                                          <p className="mb-0 text-secondary">Canceled</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                   
-                  </div>
+                  
 
 
                 
