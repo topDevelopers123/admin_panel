@@ -26,11 +26,11 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <> 
-    <Toaster/>
+    <>
+      <Toaster />
       <BrowserRouter>
         <Header />
-     
+
         <Routes>
           <Route path='/banner' element={<Banner />} />
           <Route path='/short-banner' element={<ShortBanner />} />
