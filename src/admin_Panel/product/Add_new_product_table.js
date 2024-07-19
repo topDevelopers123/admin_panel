@@ -83,6 +83,7 @@ function Add_new_product_table() {
                                             <tr className='' >
 
                                                 <>
+                                                {/* {console.log(item)} */}
                                                     <td>
                                                         <div className="d-flex align-items-center images_div">
 
@@ -101,14 +102,14 @@ function Add_new_product_table() {
                                                     <td className=''>
 
 
-                                                        <td className=''>{item?.category[0].category_name}</td>
+                                                        <td className=''>{item?.category[0]?.category_name}</td>
 
 
 
                                                     </td>
                                                     <td className=''>
 
-                                                        <td className=''>{item?.sub_category[0].sub_category_name}</td>
+                                                        <td className=''>{item?.sub_category[0]?.sub_category_name}</td>
 
 
 
@@ -116,7 +117,7 @@ function Add_new_product_table() {
                                                     <td className=''>
 
 
-                                                        <td className=''>{item?.sub_inner_category[0].sub_inner_category_name}</td>
+                                                        <td className=''>{item?.sub_inner_category[0]?.sub_inner_category_name}</td>
 
 
                                                     </td>

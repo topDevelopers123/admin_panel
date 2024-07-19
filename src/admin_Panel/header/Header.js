@@ -1,9 +1,12 @@
 import React from 'react'
 import "./Header.css";
+
 import { Link } from 'react-router-dom';
 import user_img from "./img/user_img.png"
 
+
 function Header() {
+
   return (
     <div>
       <div className="header-wrapper">
@@ -68,7 +71,7 @@ function Header() {
               <div className="offcanvas-body">
                 <ul className="navbar-nav align-items-center flex-grow-1">
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle-nocaret" to="#" data-bs-toggle="">
                       <div className="parent-icon">
                         <i className="bi bi-house-door"></i>
                       </div>
@@ -172,6 +175,18 @@ function Header() {
                           Table</Link>
                       </li>
                     </ul>
+                  </li>
+                  <li className="nav-item dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="/users" >
+                      <div className="parent-icon">
+                        <i className="bi bi-person"></i>
+                      </div>
+                      <div className="menu-title d-flex align-items-center">
+                        User
+                      </div>
+                      
+                    </Link>
+                   
                   </li>
                   <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="/orders">

@@ -10,15 +10,15 @@ export const ProductAuthContext = createContext()
 
 function ProductContextProvider({ children }) {
     
-    const { authorizeToken } = useAuthContext()
+    const { authorizeToken, API } = useAuthContext()
     const [disable, setDisable] = useState(false);
     const [allProduct, setAllProduct] = useState([])
     const [allProductDetailsData, setAllProductDetailsData] = useState([])
 
-
+    
     const get_All_Products = async () => {
         try {
-            const resp = await axios.get("/product/admin-get",
+            const resp = await axios.get(`${API}/product/admin-get`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
@@ -37,11 +37,11 @@ function ProductContextProvider({ children }) {
 
     
     const addProduct = async (data) => {
-        console.log(data);
+        
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("/product/create", data, {
+            const resp = await axios.post(`${API}/product/create`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -66,7 +66,7 @@ function ProductContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         console.log(data)
         try {
-            const resp = await axios.put(`/product/update/${id}`, data, {
+            const resp = await axios.put(`${API}/product/update/${id}`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -88,7 +88,7 @@ function ProductContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
 
         try {
-            const resp = await axios.delete(`/product/delete/${id}`, {
+            const resp = await axios.delete(`${API}/product/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -114,7 +114,7 @@ function ProductContextProvider({ children }) {
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("/product-details/create", data, {
+            const resp = await axios.post(`${API}/product-details/create`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -138,9 +138,9 @@ function ProductContextProvider({ children }) {
 
 
     const get_All_Products_Details = async () => {
-        console.log("object")
+        
         try {
-            const resp = await axios.get("/product/admin-get",
+            const resp = await axios.get(`${API}/product/admin-get`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
@@ -163,7 +163,7 @@ function ProductContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         console.log(data, id)
         try {
-            const resp = await axios.put(`/product-details/update/${id}`, data, {
+            const resp = await axios.put(`${API}/product-details/update/${id}`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -188,7 +188,7 @@ function ProductContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
 
         try {
-            const resp = await axios.delete(`/product-details/delete/${id}`, {
+            const resp = await axios.delete(`${API}/product-details/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }

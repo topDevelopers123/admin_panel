@@ -18,7 +18,6 @@ function Add_new_product() {
     local_deadline: "",
     zonal_deadline: "",
     national_deadline: ""
-  
   })
 
   
@@ -156,6 +155,10 @@ function Add_new_product() {
                           <input type="text" onChange={(e) => setproductData({ ...productData, national_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
                         </div>
                       </div>
+
+                  
+                      
+
 
                       <div className="col-12">
                         <div className="d-grid w-50 m-auto">

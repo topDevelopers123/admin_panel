@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
 import "./Index.css";
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
@@ -7,7 +8,31 @@ import { Bar, Doughnut, Line } from "react-chartjs-2"
 defaults.maintainAspectRatio = false
 defaults.responsive = true
 
-function index() {
+const Index =() => {
+    const [totalSelling, setTotalSelling] = useState(0)
+    const { orders } = useOrderAuthContext()
+    const { users } = useUserAuthContext()
+    let totalrevenue = 0 
+     orders?.map((i,)=>(
+         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
+        // Number(i) + Number(r?.ProductDetails[0]?.sellingPrice)
+     ),[])
+
+
+    const booked = orders?.filter((item)=>{
+        return item?.status === "pending"
+    })
+    const delivered = orders?.filter((item)=>{
+        return item?.status === "delivered"
+    })
+   
+    const cancel = orders?.filter((item)=>{
+        return item?.status === "cancelled"
+    })
+   
+  
+    
+    
     const revenue = [
         {
             "label": "Jan",
@@ -77,7 +102,7 @@ function index() {
           <div className="page-wrapper mt-5">
               <div className="page-content p-0">
                 
-                  <div className="row row-cols-1 row-cols-lg-12">
+                  <div className="row row-cols-1 row-cols-lg-12 px-2">
                       <div className="col-4">
                         
                           <div className="card radius-10 overflow-hidden bg-gradient-cosmic">
@@ -86,7 +111,7 @@ function index() {
                                   <div className="d-flex align-items-center">
                                       <div>
                                           <p className="mb-0 text-white">Total Orders</p>
-                                          <h5 className="mb-0 text-white">867</h5>
+                                          <h5 className="mb-0 text-white">{orders?.length}</h5>
                                       </div>
                                       <div className="ms-auto text-white"><i className='bx bx-cart font-30'></i>
                                       </div>
@@ -102,8 +127,8 @@ function index() {
                               <div className="card-body">
                                   <div className="d-flex align-items-center">
                                       <div>
-                                          <p className="mb-0 text-white">Total Income</p>
-                                             <h5 className="mb-0 text-white">₹52,945</h5>
+                                          <p className="mb-0 text-white">Total Orders Income (Delivered)</p>
+                                          <h5 className="mb-0 text-white">₹ {totalrevenue}</h5>
                                       </div>
                                       <div className="ms-auto text-white"><i className='bx bx-wallet font-30'></i>
                                       </div>
@@ -120,7 +145,7 @@ function index() {
                                   <div className="d-flex align-items-center">
                                       <div>
                                           <p className="mb-0 text-white">Total Users</p>
-                                          <h5 className="mb-0 text-white">24.5K</h5>
+                                          <h5 className="mb-0 text-white">{users?.length}</h5>
                                       </div>
                                       <div className="ms-auto text-white"><i className='bx bx-bulb font-30'></i>
                                       </div>
@@ -186,21 +211,21 @@ function index() {
 
                                           <Bar
                                               data={{
-                                                  labels: ["A", "B", "C"],
+                                                  labels: ["Orders"],
                                                   datasets: [
                                                       {
                                                           label: "Booked",
-                                                          data: [200, 100, 400],
+                                                          data: [booked?.length],
                                                           borderRadius: 5
                                                       },
                                                       {
-                                                          label: "In Progress",
-                                                          data: [100, 50, 250],
+                                                          label: "Delivered",
+                                                          data: [delivered?.length],
                                                           borderRadius: 5
                                                       },
                                                       {
                                                           label: "Cancelled",
-                                                          data: [50, 350, 200],
+                                                          data: [cancel?.length],
                                                           borderRadius: 5
                                                       },
 
@@ -209,18 +234,18 @@ function index() {
                                           />
 
                                       </div>
-                                      <div className="d-flex align-items-center justify-content-between text-center">
+                                      <div className="d-flex align-items-center justify-content-between text-center px-3 pt-3">
                                           <div>
-                                              <h5 className="mb-1 font-weight-bold">289</h5>
+                                          <h5 className="mb-1 font-weight-bold">{booked?.length}</h5>
                                               <p className="mb-0 text-secondary">Booked</p>
                                           </div>
                                           <div className="mb-1">
-                                              <h5 className="mb-1 font-weight-bold">348</h5>
-                                              <p className="mb-0 text-secondary">In Progress</p>
+                                          <h5 className="mb-1 font-weight-bold">{delivered?.length}</h5>
+                                              <p className="mb-0 text-secondary">Delivered</p>
                                           </div>
                                           <div>
-                                              <h5 className="mb-1 font-weight-bold">152</h5>
-                                              <p className="mb-0 text-secondary">Canceled</p>
+                                          <h5 className="mb-1 font-weight-bold">{cancel?.length}</h5>
+                                              <p className="mb-0 text-secondary">Cancelled</p>
                                           </div>
                                       </div>
                                   </div>
@@ -265,4 +290,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useOrderAuthContext } from '../../Context/index.context'
 
 function Order() {
+    const { orders } = useOrderAuthContext()
+
+  
     return (
         <div>
             <div className="page-wrapper">
@@ -43,158 +47,62 @@ function Order() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div className="ms-2">
-                                                    <img src="assets/images/category/cat_img/men.jpg" alt="img" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Polo Shirt
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Men
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                   Nikhil
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    9571 Gottlieb Crest, South Darinland, WA 40656
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    16th May 2024
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>Pending</div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>FulFilled</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div className="ms-2">
-                                                    <img src="assets/images/category/cat_img/men.jpg" alt="img" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Polo Shirt
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Men
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                   Nikhil
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    9571 Gottlieb Crest, South Darinland, WA 40656
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    16th May 2024
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>Pending</div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>FulFilled</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div className="ms-2">
-                                                    <img src="assets/images/category/cat_img/men.jpg" alt="img" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Polo Shirt
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Men
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                   Nikhil
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    9571 Gottlieb Crest, South Darinland, WA 40656
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    16th May 2024
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>Pending</div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>FulFilled</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div className="ms-2">
-                                                    <img src="assets/images/category/cat_img/men.jpg" alt="img" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Polo Shirt
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    Men
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                   Nikhil
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    9571 Gottlieb Crest, South Darinland, WA 40656
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="ms-2">
-                                                    16th May 2024
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>Pending</div>
-                                            </td>
-                                            <td>
-                                                <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>FulFilled</div>
-                                            </td>
-                                        </tr>
+                                        {orders?.map((item)=>(
+                                            <tr>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        <img src={item?.ProductDetails
+                                                        [0]?.image[0]?.image_url} alt="img" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        {item?.Product[0]?.title}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        {item?.Product[0]?.category[0]?.category_name}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    
+                                                    <div className="ms-2">
+                                                        {item?.UserAddress
+                                                        [0]?.fullname}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    {console.log(item)}
+                                                    <div className="ms-2">
+                                                        <span>{item?.UserAddress
+                                                        [0].house_no} {item?.UserAddress
+                                                            [0].area} {item?.UserAddress
+                                                            [0].city} {item?.UserAddress
+                                                            [0].state} {item?.UserAddress
+                                                            [0].country} {item?.UserAddress
+                                                            [0].pincode}</span>
+                                                    </div>
+                                                </td>
+                                                    <td>
+                                               
+                                                        <div className="ms-2">
+                                                        {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
+                                                        </div>
+                                              
+                                                    </td>
+                                                
+                                                <td>
+                                                    <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
+                                                </td>
+                                                <td>
+                                                    <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.status}</div>
+                                                </td>
+                                            </tr>
+
+                                        ))}
+                                        
+                                        
                                        
                                     </tbody>
                                 </table>

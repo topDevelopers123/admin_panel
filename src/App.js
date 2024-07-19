@@ -23,6 +23,7 @@ import Add_new_product_table from './admin_Panel/product/Add_new_product_table';
 import Product_details_table from './admin_Panel/product/Product_details_table';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Users from './admin_Panel/Users/Users';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path='/sub_category' element={<Sub_category />} />
           <Route path='/sub_inner_category_table' element={<Sub_inner_category_table />} />
           <Route path='/sub_inner_category' element={<Sub_inner_category />} />
+          <Route path='/users' element={<Users />} />
           <Route path='/orders' element={<Order />} />
         </Routes>
       </BrowserRouter>

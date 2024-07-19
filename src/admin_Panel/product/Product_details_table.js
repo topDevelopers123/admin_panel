@@ -20,6 +20,56 @@ function Product_details_table() {
 
     }) 
 
+    let abc = allProductDetailsData
+    abc.forEach(item => {
+        let url 
+        let color
+        item?.ProductDetail?.map((data,i)=>{
+            if (data?.image.length>0) {
+                url = data?.image[0]?.image_url
+                color = data?.color
+            }else{
+                if (color === data.color) {
+                    data.image.push(url)
+                    
+                }
+            }
+        })
+        
+    });
+    console.log(abc)
+    // let a =[];
+    // allProductDetailsData?.map((item)=>{
+    //     item?.ProductDetail?.map((data)=>{
+    //         if (data.image.length > 0) {
+    //             a.push(data)
+    //         }
+    //     })
+    // })
+    // let b = allProductDetailsData
+    // let cnt = 0
+    // b?.forEach((item)=>{
+    //     item?.ProductDetail?.map(data=>{
+            
+    //            if (data?.image.length === 0) {
+    //               a.map(data2=> {
+    //                 if (data2?.color === data?.color) {
+                        
+    //                       data?.image.push(data2?.image[0]?.image_url)
+    //                 }
+    //               })
+    //            }
+            
+    //     })
+    // })
+// console.log(cnt)
+
+
+
+
+
+    // console.log(allProductDetailsData);
+    
 
 
     return (
@@ -65,7 +115,7 @@ function Product_details_table() {
                                     </thead>
                                     <tbody >
 
-                                        {allProductDetailsData?.map((item, ind) => (
+                                        {abc?.map((item, ind) => (
 
                                             <>
                                                
@@ -73,14 +123,21 @@ function Product_details_table() {
                                                     return item._id === ele.product_id
                                                 }).map((ite, i) => (
                                                     <>
-                                                   
+                                                    {/* {console.log(ite)} */}
                                                         <tr className='' key={ind} >
                                                             <td>
                                                                 <div className="d-flex align-items-center images_div">
+                                                                    {/* {console.log(ite)} */}
                                                                     <div>
-                                                                      
-                                                                            <img src={ite?.image[0]?.image_url} />
+                                                                        {/* item?.ProductDetail[0].image[0]?.image_url */}
+
+                                                                        {/* ite?.image?.length > 0 ? ite?.image[0]?.image_url : item?.ProductDetail[0].image[0]?.image_url */}
+
+                                                                        {ite?.image.length > 1 ? <img src={ite?.image[0]?.image_url} /> :  <img src={ite?.image[0]} />}
                                                                        
+                                                                        {}
+
+                                                                        
                                                                     </div>
 
                                                                 </div>

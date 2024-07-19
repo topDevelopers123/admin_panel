@@ -9,20 +9,20 @@ export const BannerAuthContext = createContext()
 
 
 function BannerContext({ children }) {
-    const { authorizeToken } = useAuthContext()
+    const { authorizeToken, API } = useAuthContext()
     const [bannerData, setBannerData] = useState([])
     const [ShortbannerData, setShortBannerData] = useState([])
     const [disable, setDisable] = useState(false);
 
     const getBanner = async () => {
         try {
-            const resp = await axios.get("/banner/get-admin", {
+            const resp = await axios.get(`${API}/banner/get-admin`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
             setBannerData(resp.data.data)
-
+           
 
         } catch (error) {
             console.log(error);
@@ -35,7 +35,7 @@ function BannerContext({ children }) {
         const toastId = toast.loading('Loading...');
         try {
 
-            const resp = await axios.post("/banner/create", data, {
+            const resp = await axios.post(`${API}/banner/create`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -59,7 +59,7 @@ function BannerContext({ children }) {
 
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.delete(`/banner/delete/${id}`, {
+            const resp = await axios.delete(`${API}/banner/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -80,7 +80,7 @@ function BannerContext({ children }) {
         const toastId = toast.loading('Loading...');
         try {
 
-            const resp = await axios.post("/shortBanner/create", data, {
+            const resp = await axios.post(`${API}/shortBanner/create`, data, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -100,7 +100,7 @@ function BannerContext({ children }) {
 
     const getShortBanner = async () => {
         try {
-            const resp = await axios.get("/shortBanner/get", {
+            const resp = await axios.get(`${API}/shortBanner/get-admin`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
@@ -119,7 +119,7 @@ function BannerContext({ children }) {
 
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.delete(`/shortBanner/delete/${id}`, {
+            const resp = await axios.delete(`${API}/shortBanner/delete/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }

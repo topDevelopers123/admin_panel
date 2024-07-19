@@ -8,12 +8,13 @@ export const AuthContext = createContext()
 
 function AuthContextProvider({children}) {
     const [authorizeToken, setAuthorizeToken] = useState(localStorage.getItem("token"))
-    
+    const API = process.env.REACT_APP_API 
+    // console.log(API);
     
     const register =async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("/user/create", data)
+            const resp = await axios.post(`${API}/user/create`, data)
             localStorage.setItem("token", resp.data.token)
             setAuthorizeToken(resp.data.token) 
             toast.dismiss(toastId);
@@ -29,7 +30,7 @@ function AuthContextProvider({children}) {
     const login = async (data) => {
         const toastId = toast.loading('Loading...');
         try {
-            const resp = await axios.post("/user/login", data)
+            const resp = await axios.post(`${API}/user/login`, data)
           
             localStorage.setItem("token",resp.data.token)
             setAuthorizeToken(resp.data.token) 
@@ -47,7 +48,7 @@ function AuthContextProvider({children}) {
     
 
   return (
-      <AuthContext.Provider value={{ register, login, authorizeToken }}>
+      <AuthContext.Provider value={{ register, login, authorizeToken, API }}>
         {children}
     </AuthContext.Provider>
   )

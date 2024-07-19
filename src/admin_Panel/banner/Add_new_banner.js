@@ -67,6 +67,8 @@ function AddNewBanner() {
                                                         onChange={handleImageChange}
                                                     />
                                                 </div>
+                                                <p className='text-center'>Image Will be Less then 500KB</p>
+                                                <p className='text-center'>Image Type Acceptable: (JPG/JPEG/PNG/WebPG)</p>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
                                                         <button disabled={disable} type="button" className="btn btn-primary" onClick={uploadImage}>Upload Banner</button>
