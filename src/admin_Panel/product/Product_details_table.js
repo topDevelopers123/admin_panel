@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Product_details.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 import { Link } from 'react-router-dom'
@@ -20,58 +20,43 @@ function Product_details_table() {
 
     }) 
 
-    let abc = allProductDetailsData
-    abc.forEach(item => {
-        let url 
-        let color
-        item?.ProductDetail?.map((data,i)=>{
-            if (data?.image.length>0) {
-                url = data?.image[0]?.image_url
-                color = data?.color
-            }else{
-                if (color === data.color) {
-                    data.image.push(url)
-                    
-                }
-            }
-        })
-        
-    });
-    console.log(abc)
-    // let a =[];
-    // allProductDetailsData?.map((item)=>{
-    //     item?.ProductDetail?.map((data)=>{
-    //         if (data.image.length > 0) {
-    //             a.push(data)
+    // let abc = allProductDetailsData
+    // allProductDetailsData.forEach(item => {
+    //     let temp = []
+    //     item?.ProductDetail?.map((data,i)=>{
+    //         if (data.product_id === item._id && data.image.length>0) {
+    //             temp.push({ url:data?.image[0]?.image_url,color: data.color })
+    //         }
+    //         if (data.product_id === item._id && data.image.length === 0 ) {
+    //             temp.forEach(x=>{
+    //                 if (x.color === data.color) {
+    //                     data.image.push( x.url)
+    //                 }
+    //             })
     //         }
     //     })
-    // })
-    // let b = allProductDetailsData
-    // let cnt = 0
-    // b?.forEach((item)=>{
-    //     item?.ProductDetail?.map(data=>{
-            
-    //            if (data?.image.length === 0) {
-    //               a.map(data2=> {
-    //                 if (data2?.color === data?.color) {
-                        
-    //                       data?.image.push(data2?.image[0]?.image_url)
-    //                 }
-    //               })
-    //            }
-            
-    //     })
-    // })
-// console.log(cnt)
+        
+    // });
+    // console.log(abc)
+    allProductDetailsData.forEach(item => {
+        let temp = new Map();
+        item?.ProductDetail?.forEach(data => {
+            if (data.product_id === item._id) {
+                if (data.image.length > 0) {
+                    temp.set(data.color, data.image[0]?.image_url);
+                } else {
+                    const imageUrl = temp.get(data.color);
+                    if (imageUrl) {
+                        data.image.push(imageUrl);
+                    }
+                }
+            }
+        });
+        
+    });
 
 
-
-
-
-    // console.log(allProductDetailsData);
     
-
-
     return (
         <div>
             <div className="page-wrapper">
@@ -115,7 +100,7 @@ function Product_details_table() {
                                     </thead>
                                     <tbody >
 
-                                        {abc?.map((item, ind) => (
+                                        {allProductDetailsData?.map((item, ind) => (
 
                                             <>
                                                

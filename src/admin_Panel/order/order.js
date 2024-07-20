@@ -42,6 +42,7 @@ function Order() {
                                             <th>Username </th>
                                             <th>Address </th>
                                             <th>Order placed at </th>
+                                            <th>Payment Type</th>
                                             <th>Payment Status</th>
                                             <th>Status</th>
                                         </tr>
@@ -93,10 +94,13 @@ function Order() {
                                                     </td>
                                                 
                                                 <td>
-                                                    <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
+                                                    <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.payment_type}</div>
                                                 </td>
                                                 <td>
-                                                    <div className="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.status}</div>
+                                                    <div className={`badge rounded-pill  ${item?.payment_status === "pending" ? " bg-orange-400" : "bg-green-400"} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
+                                                </td>
+                                                <td>
+                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-400" : ""} ${item?.status === "delivered" ? " bg-green-400" : ""} ${item?.status === "cancelled" ? " bg-red-400" : "" } p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
                                                 </td>
                                             </tr>
 
