@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useCategoryContext } from '../../../Context/index.context'
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useCategoryContext } from '../../../Context/index.context';
 
 function Sub_category() {
-
-    const { add_Sub_Category, getCatgoryData } = useCategoryContext()
+    const { add_Sub_Category, getCatgoryData } = useCategoryContext();
     const [SubCategory, setSubCategory] = useState({
-        parent_category:"",
-        sub_category_name:""
-    })
+        parent_category: "",
+        sub_category_name: ""
+    });
+    const [error, setError] = useState("");
 
- 
+    const handleSubmit = () => {
+        if (!SubCategory.parent_category || !SubCategory.sub_category_name) {
+            setError("Please select a parent category and enter a sub category name.");
+        } else {
+            setError("");
+            add_Sub_Category(SubCategory);
+        }
+    };
 
     return (
         <div>
@@ -22,20 +30,11 @@ function Sub_category() {
                             <div className="ps-3">
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
-                                        </li>
-                                        <li className="breadcrumb-item active" aria-current="page">Add Sub+
-                                            
-                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Category</li>
+                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
+                                        <li className="breadcrumb-item active" aria-current="page">Add Sub Category</li>
                                     </ol>
                                 </nav>
                             </div>
-
                         </div>
 
                         <div className="card">
@@ -45,54 +44,57 @@ function Sub_category() {
                                 <div className="form-body mt-4">
                                     <div className="row">
                                         <div className="border border-3 p-4 rounded">
-
                                             <div className="col-12">
                                                 <div className="mb-3">
-                                                    <label for="inputProductType" className="form-label">Select Parent Category</label>
-                                                    <select className="form-select" id="inputProductType" onChange={(event) => setSubCategory({ ...SubCategory, parent_category: event.target.value })}>
+                                                    <label htmlFor="inputProductType" className="form-label">Select Parent Category</label>
+                                                    <select
+                                                        className="form-select"
+                                                        id="inputProductType"
+                                                        onChange={(event) => setSubCategory({ ...SubCategory, parent_category: event.target.value })}
+                                                    >
                                                         <option>Select</option>
-
-                                                        {getCatgoryData?.map((item,index)=>{
-                                                            
-                                                            return <option value={item._id} key={index}  >{item.category_name}</option>
-                                                            
-                                                           
-                                                        }    
-                                                        )
-                                                        }
-                                                        
+                                                        {getCatgoryData?.map((item, index) => (
+                                                            <option value={item._id} key={index}>{item.category_name}</option>
+                                                        ))}
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="col-lg-12">
-
                                                 <div className="col-12">
                                                     <div className="mb-3">
-                                                        <label for="subcat_name" className="form-label">Sub Category Name</label>
-                                                        <input type="text" className="form-control" id="subcat_name" placeholder="Enter Sub Category Name" onChange={
-                                                            (event) => setSubCategory({ ...SubCategory, sub_category_name:event.target.value})
-                                                        }/>
+                                                        <label htmlFor="subcat_name" className="form-label">Sub Category Name</label>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            id="subcat_name"
+                                                            placeholder="Enter Sub Category Name"
+                                                            onChange={(event) => setSubCategory({ ...SubCategory, sub_category_name: event.target.value })}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
-                                                <div className="col-12">
-                                                    <div className="d-grid w-50 m-auto">
-                                                    <button type="button" className="btn btn-primary" onClick={() => add_Sub_Category(SubCategory)}>Submit</button>
+                                            {error && (
+                                                <div className="bg-none border-none col-12">
+                                                    <div className="alert text-danger" role="alert">
+                                                        {error}
                                                     </div>
-                                                
+                                                </div>
+                                            )}
+                                            <div className="col-12">
+                                                <div className="d-grid w-50 m-auto">
+                                                    <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    )
+    );
 }
 
-export default Sub_category
+export default Sub_category;
