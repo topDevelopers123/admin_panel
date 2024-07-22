@@ -1,36 +1,33 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import "./Add_new_banner.css";
 import { useBannerAuthContext } from '../../Context/index.context';
 
-
 function AddNewBanner() {
     const [selectedImages, setSelectedImages] = useState([]);
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState(null);
+    const [error, setError] = useState("");
 
-    const {image_Handler,disable} = useBannerAuthContext()
-        
+    const { image_Handler, disable } = useBannerAuthContext();
+
     const handleImageChange = (event) => {
-      const file = event.target.files[0]
-      
-        setFile(file)
-      const newFile = URL.createObjectURL(file)
-      setSelectedImages(newFile)
-    //   const formData = new FormData()
-    //   formData.append("image", file)
-    //     image_Handler(formData)
+        const file = event.target.files[0];
+        setFile(file);
+        const newFile = URL.createObjectURL(file);
+        setSelectedImages(newFile);
     };
 
     const uploadImage = () => {
-        const formData = new FormData()
-          formData.append("image", file)
-          console.log(formData);
-            image_Handler(formData)
-    }
-
-    
-
-   
+        if (!file) {
+            setError("Please upload a banner image.");
+            return;
+        }
+        setError("");
+        const formData = new FormData();
+        formData.append("image", file);
+        image_Handler(formData);
+    };
 
     return (
         <div>
@@ -58,16 +55,19 @@ function AddNewBanner() {
                                         <div className="col-lg-12">
                                             <div className="border border-3 p-4 rounded">
                                                 <div className="mb-3 text-center">
-                                                    <label  className="form-label mb-3">Upload Banner</label><br></br>
+                                                    <label className="form-label mb-3">Upload Banner</label><br />
                                                     <input
-                                                        id=""
                                                         type="file"
                                                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                                                        multiple
                                                         onChange={handleImageChange}
                                                     />
                                                 </div>
-                                                <p className='text-center'>Image Will be Less then 500KB</p>
+                                                {error && (
+                                                    <div className="alert text-danger text-center" role="alert">
+                                                        {error}
+                                                    </div>
+                                                )}
+                                                <p className='text-center'>Image Will be Less than 500KB</p>
                                                 <p className='text-center'>Image Type Acceptable: (JPG/JPEG/PNG/WebPG)</p>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
@@ -75,12 +75,15 @@ function AddNewBanner() {
                                                     </div>
                                                 </div>
                                                 <div className="image-preview mt-4">
-                                                    {
-                                                        <div  className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                                                            <img src={selectedImages} alt={"image"} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                                                    {selectedImages && (
+                                                        <div className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
+                                                            <img src={selectedImages} alt="image" style={{ maxWidth: '150px', maxHeight: '150px' }} />
                                                             <button
                                                                 type="button"
-                                                               
+                                                                onClick={() => {
+                                                                    setSelectedImages([]);
+                                                                    setFile(null);
+                                                                }}
                                                                 style={{
                                                                     position: 'absolute',
                                                                     top: '5px',
@@ -91,12 +94,11 @@ function AddNewBanner() {
                                                                     borderRadius: '50%',
                                                                     cursor: 'pointer'
                                                                 }}
-
                                                             >
                                                                 &times;
                                                             </button>
                                                         </div>
-                                                    }
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>

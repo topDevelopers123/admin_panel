@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Add_new_product.css'
-import { useCategoryContext, useProductAuthContext } from '../../Context/index.context'
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Add_new_product.css';
+import { useCategoryContext, useProductAuthContext } from '../../Context/index.context';
 
 function Add_new_product() {
-  const { all_Category } = useCategoryContext()
-  const { addProduct } = useProductAuthContext()
-  const [productData, setproductData] = useState({
+  const { all_Category } = useCategoryContext();
+  const { addProduct } = useProductAuthContext();
+  const [productData, setProductData] = useState({
     title: "",
     description: "",
     category: "",
@@ -18,12 +19,25 @@ function Add_new_product() {
     local_deadline: "",
     zonal_deadline: "",
     national_deadline: ""
-  })
+  });
+  const [errors, setErrors] = useState({});
 
-  
+  const validate = () => {
+    const newErrors = {};
+    for (const key in productData) {
+      if (!productData[key]) newErrors[key] = `${key.replace(/_/g, ' ')} is required`;
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (!validate()) return;
+    addProduct(productData);
+  };
 
   return (
-      <>
+    <>
       <div className="wrapper">
         <div className="page-wrapper">
           <div className="page-content">
@@ -32,13 +46,11 @@ function Add_new_product() {
               <div className="ps-3">
                 <nav aria-label="breadcrumb">
                   <ol className="breadcrumb mb-0 p-0">
-                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
-                    </li>
+                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add New Product</li>
                   </ol>
                 </nav>
               </div>
-
             </div>
 
             <div className="card">
@@ -48,137 +60,167 @@ function Add_new_product() {
                 <div className="form-body mt-4">
                   <div className="row">
                     <div className="border border-3 p-4 rounded">
-
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Product Title</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData , title: e.target.value})} className="form-control" id="cat_name" placeholder="Enter Category Name" required />
+                          <label htmlFor="title" className="form-label">Product Title</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, title: e.target.value })}
+                            className="form-control"
+                            id="title"
+                            placeholder="Enter Product Title"
+                          />
+                          {errors.title && <span className="text-danger">{errors.title}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Product Description</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, description: e.target.value })}  className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="description" className="form-label">Product Description</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, description: e.target.value })}
+                            className="form-control"
+                            id="description"
+                            placeholder="Enter Product Description"
+                          />
+                          {errors.description && <span className="text-danger">{errors.description}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Category</label>
-                          <select className="form-select" onChange={(e) => setproductData({ ...productData, category: e.target.value })}>
-                            <option></option>
-                            {
-
-                              all_Category?.map((item, index) => (
-                                <>
-                                  <option value={item._id} >{item.category_name}</option>
-
-                                </>
-                              ))}
-                            {/* <option>Men's</option>
-                            <option>Women's</option>
-                            <option>Men's</option> */}
-                           
+                          <label htmlFor="category" className="form-label">Category</label>
+                          <select
+                            className="form-select"
+                            onChange={(e) => setProductData({ ...productData, category: e.target.value })}
+                          >
+                            <option value="">Select Category</option>
+                            {all_Category?.map((item, index) => (
+                              <option key={index} value={item._id}>{item.category_name}</option>
+                            ))}
                           </select>
-                       
+                          {errors.category && <span className="text-danger">{errors.category}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Sub Category</label>
-                          <select className="form-select" onChange={(e) => setproductData({ ...productData, sub_category: e.target.value })}>
-                            <option></option>
-                            {
-                              all_Category?.filter((item) => item._id === productData.category).map((i) => (
-                                i?.Subcategory.map((ite, ind) => (
-                                  <option value={ite._id} >{ite.sub_category_name}</option>
-                                ))
-                              ))
+                          <label htmlFor="sub_category" className="form-label">Sub Category</label>
+                          <select
+                            className="form-select"
+                            onChange={(e) => setProductData({ ...productData, sub_category: e.target.value })}
+                          >
+                            <option value="">Select Sub Category</option>
+                            {all_Category?.filter(item => item._id === productData.category)
+                              .map(item => item.Subcategory.map((sub, index) => (
+                                <option key={index} value={sub._id}>{sub.sub_category_name}</option>
+                              )))
                             }
-                       
-
                           </select>
+                          {errors.sub_category && <span className="text-danger">{errors.sub_category}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Sub Inner Category</label>
-                          <select className="form-select" onChange={(e) => setproductData({ ...productData , sub_inner_category: e.target.value })}>
-                            <option></option>
-          
-                           {
-                              all_Category?.filter((item) => item._id === productData.category ).map((ind)=>(
-                                ind?.Subcategory?.filter((ite)=>ite._id === productData.sub_category).map((ele)=>(
-                                  ele?.InnerCategory?.map((i)=>(
-                                    <option value={i._id} >{i.sub_inner_category_name}</option>
-                                  ))
-                                ))
-                              ))
-                           }
-                           
-
+                          <label htmlFor="sub_inner_category" className="form-label">Sub Inner Category</label>
+                          <select
+                            className="form-select"
+                            onChange={(e) => setProductData({ ...productData, sub_inner_category: e.target.value })}
+                          >
+                            <option value="">Select Sub Inner Category</option>
+                            {all_Category?.filter(item => item._id === productData.category)
+                              .map(item => item.Subcategory.filter(sub => sub._id === productData.sub_category)
+                                .map(sub => sub.InnerCategory.map((inner, index) => (
+                                  <option key={index} value={inner._id}>{inner.sub_inner_category_name}</option>
+                                ))))
+                            }
                           </select>
+                          {errors.sub_inner_category && <span className="text-danger">{errors.sub_inner_category}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Local Charges</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, local_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="local_charges" className="form-label">Local Charges</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, local_charges: e.target.value })}
+                            className="form-control"
+                            id="local_charges"
+                            placeholder="Enter Local Charges"
+                          />
+                          {errors.local_charges && <span className="text-danger">{errors.local_charges}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Zonal Charges</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, zonal_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="zonal_charges" className="form-label">Zonal Charges</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, zonal_charges: e.target.value })}
+                            className="form-control"
+                            id="zonal_charges"
+                            placeholder="Enter Zonal Charges"
+                          />
+                          {errors.zonal_charges && <span className="text-danger">{errors.zonal_charges}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">National Charges</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, national_charges: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="national_charges" className="form-label">National Charges</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, national_charges: e.target.value })}
+                            className="form-control"
+                            id="national_charges"
+                            placeholder="Enter National Charges"
+                          />
+                          {errors.national_charges && <span className="text-danger">{errors.national_charges}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Local Deadline</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, local_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="local_deadline" className="form-label">Local Deadline</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, local_deadline: e.target.value })}
+                            className="form-control"
+                            id="local_deadline"
+                            placeholder="Enter Local Deadline"
+                          />
+                          {errors.local_deadline && <span className="text-danger">{errors.local_deadline}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">Zonal Deadline</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, zonal_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="zonal_deadline" className="form-label">Zonal Deadline</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, zonal_deadline: e.target.value })}
+                            className="form-control"
+                            id="zonal_deadline"
+                            placeholder="Enter Zonal Deadline"
+                          />
+                          {errors.zonal_deadline && <span className="text-danger">{errors.zonal_deadline}</span>}
                         </div>
                       </div>
                       <div className="col-12">
                         <div className="mb-3">
-                          <label for="cat_name" className="form-label">National Deadline</label>
-                          <input type="text" onChange={(e) => setproductData({ ...productData, national_deadline: e.target.value })} className="form-control" id="cat_name" placeholder="Enter Category Name" />
+                          <label htmlFor="national_deadline" className="form-label">National Deadline</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, national_deadline: e.target.value })}
+                            className="form-control"
+                            id="national_deadline"
+                            placeholder="Enter National Deadline"
+                          />
+                          {errors.national_deadline && <span className="text-danger">{errors.national_deadline}</span>}
                         </div>
                       </div>
-
-                  
-                      
-
 
                       <div className="col-12">
                         <div className="d-grid w-50 m-auto">
-                          <button type="button" className="btn btn-primary" onClick={()=>addProduct(productData)}>Submit</button>
+                          <button type="button" className="btn btn-primary" onClick={() => handleSubmit(productData)}>Submit</button>
                         </div>
                       </div>
-                      
-                      
-                      {/* <div className="col-lg-12">
 
-                        <div className="mb-3 ">
-                          <label for="inputProductImages" className="form-label">Upload Category Image</label>
-                          <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple />
-                        </div>
-                        <div className="col-12">
-                          <div className="d-grid w-50 m-auto">
-                            <button type="button" className="btn btn-primary">Submit</button>
-                          </div>
-                        </div>
-                      </div> */}
                     </div>
 
                   </div>
@@ -189,8 +231,9 @@ function Add_new_product() {
         </div>
 
       </div>
-      </>
+    </>
   )
 }
 
-export default Add_new_product
+export default Add_new_product;
+
