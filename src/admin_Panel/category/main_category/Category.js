@@ -7,6 +7,7 @@ function Category() {
 
     const { addCategory } = useCategoryContext()
     const [image, setImage] = useState(null)
+    const [error,setError] = useState(false)
     const [data, setData] = useState({
         image: null,
         name: null
@@ -19,10 +20,17 @@ function Category() {
     }
 
     const submitHandler = () => {
-        const formData = new FormData()
-        formData.append("category_name", data.name)
-        formData.append("image", data.image)
-        addCategory(formData)
+        console.log(data);
+        if (data.name === null || data.image === null) {
+            setError(true)
+            return
+        }else{
+            const formData = new FormData()
+            formData.append("category_name", data.name)
+            formData.append("image", data.image)
+            addCategory(formData)
+        }
+        
 
     }
 
@@ -61,6 +69,7 @@ function Category() {
                                                 <div className="mb-3">
                                                     <label for="cat_name" className="form-label">Category Name</label>
                                                     <input type="text" className="form-control" id="cat_name" onChange={(e) => setData({ ...data, name: e.target.value })} placeholder="Enter Category Name" />
+                                                    {!data.name && error ? <p className='text-red-500 my-2'>Please Enter Category Name</p> : ""}
                                                 </div>
                                             </div>
                                             <div className="col-lg-12">
@@ -68,6 +77,7 @@ function Category() {
                                                 <div className="mb-3 ">
                                                     <label for="inputProductImages" className="form-label">Upload Category Image</label> <br></br>
                                                     <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" onChange={imageHadler} />
+                                                    {!data.image && error ? <p className='text-red-500 my-2'>Please Select Image</p> : ""}
                                                 </div>
                                                 <div className="col-12">
                                                     <div className="d-grid w-50 m-auto">
