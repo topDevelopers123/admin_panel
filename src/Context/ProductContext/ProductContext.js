@@ -13,12 +13,14 @@ function ProductContextProvider({ children }) {
     const { authorizeToken, API } = useAuthContext()
     const [disable, setDisable] = useState(false);
     const [allProduct, setAllProduct] = useState([])
+    const [page, setPage] = useState(1)
     const [allProductDetailsData, setAllProductDetailsData] = useState([])
 
     
     const get_All_Products = async () => {
+        setDisable(true)
         try {
-            const resp = await axios.get(`${API}/product/admin-get`,
+            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=4`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
@@ -32,6 +34,8 @@ function ProductContextProvider({ children }) {
           
         } catch (error) {
             console.log(error)
+        }finally{
+            setDisable(false)
         }
     }
 
@@ -209,15 +213,20 @@ function ProductContextProvider({ children }) {
 
 
     useEffect(()=>{
-        get_All_Products()
+       
         get_All_Products_Details()
     },[])
+
+
+    useEffect(()=>{
+        get_All_Products()
+    },[page])
 
     
 
 
     return (
-        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details  }}>
+        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details, page, setPage, disable  }}>
             {children}
         </ProductAuthContext.Provider>
     )

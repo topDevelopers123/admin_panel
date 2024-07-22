@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loader from '../Loader/Loader'
 import { useOrderAuthContext } from '../../Context/index.context'
 
 function Order() {
-    const { orders } = useOrderAuthContext()
+    const { orders, setPage, disable } = useOrderAuthContext()
+    console.log(orders);
+
+    
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const topScroll = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const totalHeight = window.innerHeight;
+
+            if (topScroll + totalHeight + 1 >= scrollHeight) {
+                setPage((prevPage) => prevPage + 1);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+   
 
   
     return (
@@ -115,6 +137,7 @@ function Order() {
                     </div>
 
 
+                    {disable ? <Loader className="w-100 flex justify-center mt-2"/> : ""}
                 </div>
             </div>
         </div>

@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import './Add_new_product_table.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 import { useProductAuthContext } from '../../Context/index.context'
+import Loader from "../Loader/Loader"
 
 function Add_new_product_table() {
-    const { allProduct, edit_Product, delete_Product } = useProductAuthContext()
+    const { allProduct, edit_Product, delete_Product, page, setPage, disable } = useProductAuthContext()
     const [flag, setFlag] = useState(false)
     const [index, setIndex] = useState(false)
     const [image, setImage] = useState(null)
@@ -33,6 +34,7 @@ function Add_new_product_table() {
     }
 
 
+ if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center"/>
 
 
     return (
@@ -200,6 +202,24 @@ function Add_new_product_table() {
 
                                     </tbody>
                                 </table>
+
+                                <nav aria-label="..." className=' flex justify-center items-center'>
+                                    <ul className="pagination m-0 my-3">
+                                        <li className="page-item ">
+                                            <button className="page-link" disabled={disable || allProduct?.length < 1} onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
+                                        </li>
+                                        
+                                        <li className="page-item active">
+                                            <a className="page-link" >{page}</a>
+                                        </li>
+                                     
+                                       
+                                        <li className="page-item">
+                                                <button className="page-link" disabled={disable ||  allProduct?.length < 4} onClick={() => setPage((prev) => prev + 1)}>Next</button>
+                                        </li>
+                               
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
