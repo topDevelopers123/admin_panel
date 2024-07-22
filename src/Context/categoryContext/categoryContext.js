@@ -14,6 +14,7 @@ function CategoryContextProvider({children}) {
     const [getCatgoryData ,setCategory] = useState(null)
     const [get_Sub_Category_data, setGet_Sub_Category_data] = useState(null)
     const [get_Sub_Inner_Category_data, setGet_Sub_Inner_Category_data] = useState(null)
+    const [page, setPage] = useState(1);
     const [all_Category, setAll_Category] = useState(null)
     
   
@@ -177,12 +178,20 @@ function CategoryContextProvider({children}) {
     // Sub-Inner-Category Code
 
     const get_All_Category = async () => {
+        setDisable(true)
         try {
-            const resp = await axios.get(`${API}/category/category`)
+            const resp = await axios.get(`${API}/sub-inner-category/get-admin?page=${page}&limit=5`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
             setAll_Category(resp.data.data);
+            // console.log(resp.data.data);
          
         } catch (error) {
             console.log(error)
+        }finally{
+            setDisable(false)
         }
     }
 
@@ -223,7 +232,7 @@ function CategoryContextProvider({children}) {
             console.log(resp);
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            get_Sub_Category()
+            get_All_Category()
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
@@ -260,9 +269,14 @@ function CategoryContextProvider({children}) {
 
       getCategory()
     get_Sub_Category()
-        get_All_Category()
+
       
     }, [])
+
+
+    useEffect(()=>{
+        get_All_Category()
+    },[page])
     
 
   
@@ -271,7 +285,7 @@ function CategoryContextProvider({children}) {
 
 
     return (
-        <CategoryContext.Provider value={{ addCategory, getCatgoryData, deleteCategory, editCategory, add_Sub_Category, get_Sub_Category_data, get_Sub_Inner_Category_data, all_Category, edit_Sub_Category, delete_Sub_Category, add_Sub_Inner_Category, delete_Sub_Inner_Category, edit_Sub_Inner_Category }}>
+        <CategoryContext.Provider value={{ addCategory, getCatgoryData, deleteCategory, editCategory, add_Sub_Category, get_Sub_Category_data, get_Sub_Inner_Category_data, all_Category, page, setPage, disable, edit_Sub_Category, delete_Sub_Category, add_Sub_Inner_Category, delete_Sub_Inner_Category, edit_Sub_Inner_Category }}>
             {children}
         </CategoryContext.Provider>
     )
