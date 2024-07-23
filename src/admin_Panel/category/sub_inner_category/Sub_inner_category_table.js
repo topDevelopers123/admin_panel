@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loader from "../../Loader/Loader"
 import { useCategoryContext } from '../../../Context/index.context'
 
 
@@ -19,7 +20,9 @@ function Sub_inner_category_table() {
     
     // console.log(all_Category);
 
-    console.log(editData);
+    // console.log(editData);
+
+    if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center" />
     
 
 
@@ -161,7 +164,7 @@ function Sub_inner_category_table() {
                                       </li>
                                       : "" 
                                       }
-                                      <li className="page-item"><a className="page-link" href="#">{page}</a></li>
+                                      <li className="page-item"><a className="page-link active">{page}</a></li>
                                   
                                     {all_Category?.length > 4 ?
                                       <li className="page-item">
