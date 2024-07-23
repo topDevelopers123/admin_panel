@@ -3,9 +3,11 @@ import './Product_details.css'
 import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 import { Link } from 'react-router-dom'
 import { useProductAuthContext } from '../../Context/index.context'
+import Loader from '../Loader/Loader'
 
 function Product_details_table() {
-    const { allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details } = useProductAuthContext()
+    const { allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details, page2, setPage2, disable, disable2, allProduct } = useProductAuthContext()
+    
     const [index, setIndex] = useState(null)
     const [flag, setFlag] = useState(false)
     const [allProductDetalsUpdate, setAllProductDetalsUpdate] = useState({
@@ -55,7 +57,8 @@ function Product_details_table() {
         
     });
 
-
+    if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center" />
+    
     
     return (
         <div>
@@ -203,6 +206,24 @@ function Product_details_table() {
 
                                     </tbody>
                                 </table>
+
+                                <nav aria-label="..." className=' flex justify-center items-center'>
+                                    <ul className="pagination m-0 my-3">
+                                        <li className="page-item ">
+                                            <button className="page-link" disabled={disable || allProduct?.length < 1 } onClick={() => setPage2((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
+                                        </li>
+
+                                        <li className="page-item active">
+                                            <a className="page-link" >{page2}</a>
+                                        </li>
+                                      
+                                        
+                                        <li className="page-item">
+                                            <button className="page-link" disabled={disable || disable2 < 4} onClick={() => setPage2((prev) => prev + 1)}>Next</button>
+                                        </li>
+
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>

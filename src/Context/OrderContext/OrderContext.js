@@ -24,7 +24,7 @@ function OrderContextProvider({ children }) {
             })
             
             setOrders(resp.data.data);
-            console.log(resp);
+           
        
 
         } catch (error) {
