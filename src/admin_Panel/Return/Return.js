@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
+import ReturnModal from './ReturnModal'
 
-function Users() {
-    const { users } = useUserAuthContext()
-
+function Return() {
+    const [toggle, setToggle] = useState({
+        boolean_val: false,
+    })
 
 
     return (
@@ -18,11 +19,10 @@ function Users() {
                                 <ol className="breadcrumb mb-0 p-0">
                                     <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
                                     </li>
-                                    <li className="breadcrumb-item active" aria-current="page">Users</li>
+                                    <li className="breadcrumb-item active" aria-current="page">Returns</li>
                                 </ol>
                             </nav>
                         </div>
-
                     </div>
 
                     <div className="card">
@@ -32,55 +32,65 @@ function Users() {
                                 <table className="table mb-0">
                                     <thead className="table-light">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>E-mail </th>
-                                            <th>Mobile Number </th>
-                                            <th>Create Account </th>
-                                           
+                                            <th>Product Title</th>                                            
+                                            <th>Size </th>
+                                            <th>Color </th>
+                                            <th>User ID  </th>
+                                            <th>User Address</th>
+                                            <th>UPI Number</th>
+                                            <th>Reason for return</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {users?.map((item) => (
+                                    <tbody>                                      
                                             <tr>
                                                 <td>
                                                     <div className="ms-2">
-                                                        {item?.name}
+                                                    
+                                                    5565
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                        {item?.email}
+                                                        7675
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                        {item?.phone}
+                                                       6778
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                       58768
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                       58768
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                       9875845625
                                                     </div>
                                                 </td>
                                                 <td>
 
-                                                    <div className="ms-2">
-                                                        {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
+                                                <div onClick={() => setToggle({ ...toggle, boolean_val: true})} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
+                                                     Reason
                                                     </div>
                                                 </td>
-                                               
                                             </tr>
-
-                                    ))} 
-
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
-
+                    {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Users
+export default Return;

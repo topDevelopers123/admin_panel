@@ -138,9 +138,6 @@ function ProductContextProvider({ children }) {
     }
 
 
-   
-
-
     const get_All_Products_Details = async () => {
         
         try {
@@ -151,8 +148,6 @@ function ProductContextProvider({ children }) {
                     }
                 }
             )
-
-
         
             setAllProductDetailsData(resp.data.data);
 

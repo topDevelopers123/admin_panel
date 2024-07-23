@@ -24,6 +24,7 @@ import Product_details_table from './admin_Panel/product/Product_details_table';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Users from './admin_Panel/Users/Users';
+import Return from './admin_Panel/Return/Return';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path='/sub_inner_category' element={<Sub_inner_category />} />
           <Route path='/users' element={<Users />} />
           <Route path='/orders' element={<Order />} />
+          <Route path='/returns' element={<Return />} />
         </Routes>
       </BrowserRouter>
     </>

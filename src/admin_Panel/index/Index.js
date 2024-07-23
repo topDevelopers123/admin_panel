@@ -189,7 +189,7 @@ const Index =() => {
                       </div>
                   </div>
                   <div className="row mt-5">
-                          <div className="col-12 col-lg-8 d-flex">
+                          <div className="col-12 col-lg-12 d-flex">
                               <div className="card radius-10 w-100">
                                   <div className="card-body">
                                       <div className="d-flex align-items-center">
@@ -252,33 +252,6 @@ const Index =() => {
                               </div>
                           </div>
 
-                      <div className="col-12 col-lg-4">
-                          <div className="card radius-10 bg-dark">
-                              <div className="card-body ">
-                                  <div className='d-flex flex-row w-100 justify-content-around'>
-                                  <h6 className="text-white">ACTIVE VISITORS</h6>
-                                  <h4 className="font-weight-bold text-white">3467</h4>
-                                  </div>
-                                  <p className="font-13 text-white text-center">Page View Per Day</p>
-                                  <div className='w-[100%] h-[19rem] bg-slate-100 py-3 px-3 rounded-xl' >
-                                      <Bar
-                                          data={{
-                                              labels: ["A", "B", "C"],
-                                              datasets: [
-                                                  {
-                                                      label: "ACTIVE VISITORS",
-                                                      data: [200, 300, 400],
-                                                      borderRadius: 5
-                                                  },
-                                                 
-                                              ]
-                                          }}
-                                      />
-                                  </div>
-                              </div>
-                          </div>
-                          
-                      </div>
                   </div>
                   
 

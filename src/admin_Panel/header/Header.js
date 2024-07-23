@@ -202,7 +202,7 @@ function Header() {
 
                   </li>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="/returns">
                       <div className="parent-icon">
                         <i className="bi bi-arrow-repeat"></i>
                       </div>
