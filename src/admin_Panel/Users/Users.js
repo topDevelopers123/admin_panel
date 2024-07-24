@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
+import Loader from '../Loader/Loader'
 
 function Users() {
-    const { users } = useUserAuthContext()
+    const { users, disable, page, setPage } = useUserAuthContext()
 
 
+    if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center" />
 
     return (
         <div>
@@ -72,6 +74,25 @@ function Users() {
 
                                     </tbody>
                                 </table>
+
+                                <nav aria-label="..." className=' flex justify-center items-center'>
+                                    <ul className="pagination m-0 my-3">
+                                        <li className="page-item ">
+                                            <button className="page-link" disabled={disable} onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
+                                        </li>
+
+                                        <li className="page-item active">
+                                            <a className="page-link" >{page}</a>
+                                        </li>
+
+
+                                        <li className="page-item">
+                                            <button className="page-link" disabled={disable || users?.length < 9} onClick={() => setPage((prev) => prev + 1)}>Next</button>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+
                             </div>
                         </div>
                     </div>

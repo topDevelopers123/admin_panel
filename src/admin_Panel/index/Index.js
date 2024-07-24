@@ -18,6 +18,8 @@ const Index =() => {
         // Number(i) + Number(r?.ProductDetails[0]?.sellingPrice)
      ),[])
 
+     console.log(orders);
+
 
     const booked = orders?.filter((item)=>{
         return item?.status === "pending"
