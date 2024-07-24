@@ -5,9 +5,10 @@ import { useCategoryContext } from '../../../Context/index.context'
 
 
 
+
 function Sub_inner_category_table() {
 
-    const { all_Category, page, setPage, disable, delete_Sub_Inner_Category, edit_Sub_Inner_Category } = useCategoryContext()
+    const { all_Category, page, InnerCategoryTable,  setPage, disable, delete_Sub_Inner_Category, edit_Sub_Inner_Category } = useCategoryContext()
     const [flag, setFlag] = useState(false)
     const [index, setIndex] = useState(null)
 
@@ -18,9 +19,9 @@ function Sub_inner_category_table() {
 
     })
 
-    // console.log(all_Category);
+    console.log(InnerCategoryTable)
 
-    // console.log(editData);
+
 
     if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center" />
     
@@ -62,7 +63,7 @@ function Sub_inner_category_table() {
                                     </thead>
                                     <tbody>
 
-                                        {all_Category?.map((item) => (
+                                        {InnerCategoryTable?.map((item) => (
                                             <>
                                                 <tr>
                                                     <td>{item?.parent_category1?.category_name}</td>
@@ -148,7 +149,7 @@ function Sub_inner_category_table() {
                               <div className='w-100  d-flex justify-content-center items-center'>
                               <nav aria-label="...">
                                   <ul className="pagination m-0 py-3">
-                                      {all_Category?.length < 6 ?
+                                            {InnerCategoryTable?.length < 6 ?
                                       <li className="page-item">
                                                   <button className="page-link" disabled={disable}  onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)}>Previous</button>
                                       </li>
@@ -156,7 +157,7 @@ function Sub_inner_category_table() {
                                       }
                                       <li className="page-item"><a className="page-link active">{page}</a></li>
                                   
-                                    {all_Category?.length > 4 ?
+                                    {InnerCategoryTable?.length > 4 ?
                                       <li className="page-item">
                                                   <button className="page-link" disabled={disable}  onClick={() => setPage((prev) => prev + 1)}>Next</button>
                                       </li>

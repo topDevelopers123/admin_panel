@@ -21,7 +21,7 @@ function Add_new_product() {
     national_deadline: ""
   });
   const [errors, setErrors] = useState({});
-
+  // console.log(all_Category)
   const validate = () => {
     const newErrors = {};
     for (const key in productData) {
@@ -86,6 +86,8 @@ function Add_new_product() {
                           {errors.description && <span className="text-danger">{errors.description}</span>}
                         </div>
                       </div>
+
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="category" className="form-label">Category</label>
@@ -94,13 +96,16 @@ function Add_new_product() {
                             onChange={(e) => setProductData({ ...productData, category: e.target.value })}
                           >
                             <option value="">Select Category</option>
-                            {all_Category?.map((item, index) => (
-                              <option key={index} value={item._id}>{item.category_name}</option>
-                            ))}
+                            {all_Category?.map((item, index) => {
+                 
+                              return <option key={index} value={item._id}>{item.category_name}</option>
+})}
                           </select>
                           {errors.category && <span className="text-danger">{errors.category}</span>}
                         </div>
                       </div>
+
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="sub_category" className="form-label">Sub Category</label>
@@ -109,8 +114,8 @@ function Add_new_product() {
                             onChange={(e) => setProductData({ ...productData, sub_category: e.target.value })}
                           >
                             <option value="">Select Sub Category</option>
-                            {all_Category?.filter(item => item._id === productData.category)
-                              .map(item => item.Subcategory.map((sub, index) => (
+                            {all_Category?.filter(item => item._id === productData?.category)
+                              .map(item => item?.Subcategory?.map((sub, index) => (
                                 <option key={index} value={sub._id}>{sub.sub_category_name}</option>
                               )))
                             }
@@ -118,6 +123,9 @@ function Add_new_product() {
                           {errors.sub_category && <span className="text-danger">{errors.sub_category}</span>}
                         </div>
                       </div>
+
+
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="sub_inner_category" className="form-label">Sub Inner Category</label>
@@ -127,7 +135,7 @@ function Add_new_product() {
                           >
                             <option value="">Select Sub Inner Category</option>
                             {all_Category?.filter(item => item._id === productData.category)
-                              .map(item => item.Subcategory.filter(sub => sub._id === productData.sub_category)
+                              .map(item => item.Subcategory?.filter(sub => sub._id === productData.sub_category)
                                 .map(sub => sub.InnerCategory.map((inner, index) => (
                                   <option key={index} value={inner._id}>{inner.sub_inner_category_name}</option>
                                 ))))
@@ -175,6 +183,7 @@ function Add_new_product() {
                           {errors.national_charges && <span className="text-danger">{errors.national_charges}</span>}
                         </div>
                       </div>
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="local_deadline" className="form-label">Local Deadline</label>
@@ -188,6 +197,7 @@ function Add_new_product() {
                           {errors.local_deadline && <span className="text-danger">{errors.local_deadline}</span>}
                         </div>
                       </div>
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="zonal_deadline" className="form-label">Zonal Deadline</label>
@@ -236,4 +246,3 @@ function Add_new_product() {
 }
 
 export default Add_new_product;
-
