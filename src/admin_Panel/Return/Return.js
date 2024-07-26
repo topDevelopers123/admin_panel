@@ -77,7 +77,8 @@ function Return() {
                                                             {item?.address_id?.city}
                                                             {item?.address_id?.state}
                                                             {item?.address_id?.country}
-                                                            {item?.address_id?.pincode}</span>
+                                                            {item?.address_id?.pincode}
+                                                        </span>
                                                     </div>
                                                 </td>
                                                 <td>
