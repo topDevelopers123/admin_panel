@@ -5,7 +5,7 @@ import { useOrderAuthContext } from '../../Context/index.context'
 
 function Order() {
     const { orders, setPage, disable } = useOrderAuthContext()
-    // console.log(orders);
+    console.log(orders);
 
     useEffect(() => {
         const handleScroll = () => {

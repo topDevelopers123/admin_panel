@@ -4,7 +4,8 @@ import ReturnModal from './ReturnModal'
 import { useOrderAuthContext } from '../../Context/index.context'
 
 function Return() {
-    const { returnData }=useOrderAuthContext();
+    const { returnData } = useOrderAuthContext();
+    console.log(returnData)
 
     const [toggle, setToggle] = useState({
         boolean_val: false,
@@ -30,60 +31,70 @@ function Return() {
 
                     <div className="card">
                         <div className="card-body">
-                          
+
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
                                         <tr>
-                                            <th>Product Title</th>                                            
+                                            <th>Product Title</th>
                                             <th>Size </th>
                                             <th>Color </th>
-                                            <th>User ID  </th>
+                                            <th>Email ID  </th>
                                             <th>User Address</th>
                                             <th>UPI Number</th>
                                             <th>Reason for return</th>
                                         </tr>
                                     </thead>
-                                    <tbody>                                      
+                                    <tbody>
+                                        {returnData?.map((item) => (
                                             <tr>
                                                 <td>
                                                     <div className="ms-2">
-                                                    
-                                                    5565
+
+                                                        {item?.product_id?.title}
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                        7675
+                                                        {item?.product_detail_id?.Size}
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                       6778
+                                                        {item?.product_detail_id?.color}
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                       58768
+                                                        example123@gmail.com
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                       58768
+                                                        <span>
+                                                            {item?.address_id?.house_no}
+                                                            {item?.address_id?.area}
+                                                            {item?.address_id?.city}
+                                                            {item?.address_id?.state}
+                                                            {item?.address_id?.country}
+                                                            {item?.address_id?.pincode}</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div className="ms-2">
-                                                       9875845625
+                                                        {item?.upi_account_no}
                                                     </div>
                                                 </td>
                                                 <td>
 
-                                                <div onClick={() => setToggle({ ...toggle, boolean_val: true})} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
-                                                     Reason
+                                                    <div onClick={() => setToggle({ ...toggle, boolean_val: true })} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
+                                                        {item?.reason}
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                        ))}
+
                                     </tbody>
                                 </table>
                             </div>

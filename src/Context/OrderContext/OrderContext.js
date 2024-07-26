@@ -43,7 +43,7 @@ function OrderContextProvider({ children }) {
                 }
             })
             getReturnData(resp.data.data);
-            console.log(resp.data.data);
+            // console.log(resp.data.data);
 
         } catch (error) {
             console.log(error)
