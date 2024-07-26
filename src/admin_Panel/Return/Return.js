@@ -5,13 +5,11 @@ import { useOrderAuthContext } from '../../Context/index.context'
 
 function Return() {
     const { returnData } = useOrderAuthContext();
-    console.log(returnData)
+    // console.log(returnData)
 
     const [toggle, setToggle] = useState({
         boolean_val: false,
     })
-
-
     return (
         <div>
             <div className="page-wrapper">
@@ -46,8 +44,8 @@ function Return() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {returnData?.map((item) => (
-                                            <tr>
+                                        {returnData?.map((item, i) => (
+                                            <tr key={i}>
                                                 <td>
                                                     <div className="ms-2">
 
