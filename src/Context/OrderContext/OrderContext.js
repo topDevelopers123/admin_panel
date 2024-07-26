@@ -13,6 +13,7 @@ function OrderContextProvider({ children }) {
     const [orders, setOrders] = useState([])
     const [page, setPage] = useState(1);
     const [disable, setDisable] = useState(false);
+    const [returnData, getReturnData] = useState([]);
 
     const getOrders = async () => {
         setDisable(true)
@@ -22,28 +23,45 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-            
             setOrders(resp.data.data);
-           
-       
 
         } catch (error) {
             console.log(error);
-        }finally{
+
+        } finally {
             setDisable(false)
         }
-
     }
+
+    // Get Return Product 
+
+    const getRetrunProduct = async () => {
+        try {
+            const resp = await axios.get(`${API}/return/get-return-order`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            getReturnData(resp.data.data);
+            console.log(resp.data.data);
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getRetrunProduct();
+    }, [])
 
 
     useEffect(() => {
-        getOrders()
-       
+        getOrders();
+
     }, [page])
 
 
     return (
-        <OrderAuthContext.Provider value={{ orders, setPage, disable }}>
+        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData }}>
             {children}
         </OrderAuthContext.Provider>
     )

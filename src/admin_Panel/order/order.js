@@ -7,8 +7,6 @@ function Order() {
     const { orders, setPage, disable } = useOrderAuthContext()
     // console.log(orders);
 
-
-
     useEffect(() => {
         const handleScroll = () => {
             const topScroll = document.documentElement.scrollTop;
@@ -19,14 +17,10 @@ function Order() {
                 setPage((prevPage) => prevPage + 1);
             }
         };
-
         window.addEventListener('scroll', handleScroll);
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-
-
 
     return (
         <div>
