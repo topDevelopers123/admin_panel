@@ -98,7 +98,7 @@ function Return() {
 
                                                     <td>
 
-                                                        <div className={`bg-stone-500 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-300" } `}>
+                                                        <div className={`bg-slate-700 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400" } `}>
 
                                                             {item?.approved===undefined ?"pending": item?.approved ?"approved":"rejected" }
                                                         </div>
