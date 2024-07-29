@@ -6,13 +6,10 @@ function ReturnModal({ toggle, setToggle }) {
     const [approved, setApproved] = useState(null);
     //    console.log(approved)
     // console.log(toggle?.toggle?.data?.image)
-
     function handleUpdate(data) {
-
         updateReturnProduct(toggle?.toggle?.data?._id, data)
         setToggle({ boolean_value: false })
     }
-
     return (
         <>
             <div className=" bg-gray-100 flex items-center justify-center h-screen">
@@ -24,7 +21,6 @@ function ReturnModal({ toggle, setToggle }) {
                                 <h3 className=" leading-6 font-medium text-gray-900 ">Return </h3>
                                 <button onClick={() => setToggle({ ...toggle, boolean_value: false })}><i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
                             </div>
-
                             <div className='row '>
                                 <div className='product_return'>
                                     <div className='reason w-100 p-4 bg-light-info text-lg shadow-sm rounded my-3'>
@@ -42,10 +38,7 @@ function ReturnModal({ toggle, setToggle }) {
                                     <button className='btn btn-success' onClick={() => handleUpdate(true)}>Approve</button>
                                     <button className='btn btn-danger' onClick={() => handleUpdate(false)}>Reject</button>
                                 </div>
-                               
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -53,6 +46,4 @@ function ReturnModal({ toggle, setToggle }) {
         </>
     )
 }
-
-
 export default ReturnModal;

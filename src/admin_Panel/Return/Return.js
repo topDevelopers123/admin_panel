@@ -43,7 +43,7 @@ function Return() {
                                             <th>User Address</th>
                                             <th>UPI Number</th>
                                             <th>Reason for return</th>
-                                            <th>Status</th>
+                                            <th>Status  </th>
 
                                         </tr>
                                     </thead>

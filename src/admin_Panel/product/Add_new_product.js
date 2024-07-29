@@ -16,6 +16,7 @@ function Add_new_product() {
     local_charges: "",
     zonal_charges: "",
     national_charges: "",
+    ActualWeight:"",
     local_deadline: "",
     zonal_deadline: "",
     national_deadline: ""
@@ -144,6 +145,21 @@ function Add_new_product() {
                           {errors.sub_inner_category && <span className="text-danger">{errors.sub_inner_category}</span>}
                         </div>
                       </div>
+
+                      <div className="col-12">
+                        <div className="mb-3">
+                          <label htmlFor="ActualWeight" className="form-label">Product Weight</label>
+                          <input
+                            type="text"
+                            onChange={(e) => setProductData({ ...productData, ActualWeight: e.target.value })}
+                            className="form-control"
+                            id="ActualWeight"
+                            placeholder="Enter Product Weight"
+                          />
+                          {errors.ActualWeight && <span className="text-danger">{errors.ActualWeight}</span>}
+                        </div>
+                      </div>
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="local_charges" className="form-label">Local Charges</label>
@@ -157,6 +173,7 @@ function Add_new_product() {
                           {errors.local_charges && <span className="text-danger">{errors.local_charges}</span>}
                         </div>
                       </div>
+
                       <div className="col-12">
                         <div className="mb-3">
                           <label htmlFor="zonal_charges" className="form-label">Zonal Charges</label>
