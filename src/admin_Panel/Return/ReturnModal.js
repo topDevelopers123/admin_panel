@@ -5,7 +5,7 @@ function ReturnModal({ toggle, setToggle }) {
     const { updateReturnProduct, returnData } = useOrderAuthContext();
     const [approved, setApproved] = useState(null);
     //    console.log(approved)
-    console.log(toggle?.toggle?.data?.image)
+    // console.log(toggle?.toggle?.data?.image)
 
     function handleUpdate(data) {
 

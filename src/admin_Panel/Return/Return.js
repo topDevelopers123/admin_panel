@@ -6,7 +6,7 @@ import { date } from 'yup';
 
 function Return() {
     const { returnData } = useOrderAuthContext();
-    console.log(returnData)
+    // console.log(returnData)
 
     const [toggle, setToggle] = useState({
         boolean_val: false,
@@ -48,9 +48,9 @@ function Return() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {returnData?.map((item, i) => (
+                                        {returnData?.map((item) => (
                                             <>
-                                                <tr key={i}>
+                                                <tr >
                                                     <td>
                                                         <div className="ms-2">
 
@@ -98,9 +98,9 @@ function Return() {
 
                                                     <td>
 
-                                                        <div className={`bg-slate-700 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400" } `}>
+                                                        <div className={`bg-slate-700 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
 
-                                                            {item?.approved===undefined ?"pending": item?.approved ?"approved":"rejected" }
+                                                            {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
                                                         </div>
                                                     </td>
 
