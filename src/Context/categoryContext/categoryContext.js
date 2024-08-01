@@ -16,7 +16,7 @@ function CategoryContextProvider({ children }) {
     const [get_Sub_Inner_Category_data, setGet_Sub_Inner_Category_data] = useState(null)
     const [all_Category, setAll_Category] = useState(null)
     const [page, setPage] = useState(1);
-    const [InnerCategoryTable,setInnerCategoryTable]= useState(null)
+    const [InnerCategoryTable, setInnerCategoryTable] = useState(null)
 
 
     const getCategory = async () => {
@@ -29,11 +29,11 @@ function CategoryContextProvider({ children }) {
 
 
             setCategory(resp.data.data)
-          
+
         } catch (error) {
             console.log(error)
         }
-    }   
+    }
     const get_All_Category_admin = async () => {
         setDisable(true)
         try {
@@ -52,7 +52,7 @@ function CategoryContextProvider({ children }) {
         }
     }
 
-   
+
 
     const addCategory = async (data) => {
         setDisable(true)
@@ -283,14 +283,14 @@ function CategoryContextProvider({ children }) {
         getCategory()
         get_Sub_Category()
         get_All_Category()
-        
+
     }, [])
     useEffect(() => {
-      
-    
+
+
         get_All_Category_admin()
     }, [page])
-    
+
 
 
 

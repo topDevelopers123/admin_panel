@@ -22,12 +22,12 @@ function UserContextProvider({ children }) {
             })
 
             setUsers(resp.data.data);
-       
+
 
         } catch (error) {
             console.log(error);
         }
-        finally{
+        finally {
             setDisable(false)
         }
 

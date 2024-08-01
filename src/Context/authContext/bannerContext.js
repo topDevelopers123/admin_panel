@@ -22,7 +22,7 @@ function BannerContext({ children }) {
                 }
             })
             setBannerData(resp.data.data)
-           
+
 
         } catch (error) {
             console.log(error);

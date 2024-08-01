@@ -29,7 +29,7 @@ function Users() {
 
                     <div className="card">
                         <div className="card-body">
-                          
+
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
@@ -38,7 +38,7 @@ function Users() {
                                             <th>E-mail </th>
                                             <th>Mobile Number </th>
                                             <th>Create Account </th>
-                                           
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,10 +65,10 @@ function Users() {
                                                         {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
                                                     </div>
                                                 </td>
-                                               
+
                                             </tr>
 
-                                    ))} 
+                                        ))}
 
 
 
