@@ -1,12 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-
 import { useAuthContext } from "../index.context";
 
 
-export const OrderAuthContext = createContext()
-
+export const OrderAuthContext = createContext();
 
 
 function OrderContextProvider({ children }) {
@@ -36,7 +34,6 @@ function OrderContextProvider({ children }) {
     }
 
     // Get Return Product 
-
     const getRetrunProduct = async () => {
         try {
             const resp = await axios.get(`${API}/return/get-return-order`, {
@@ -45,16 +42,13 @@ function OrderContextProvider({ children }) {
                 }
             })
             getReturnData(resp.data.data);
-            // console.log(resp.data.data);
-
         } catch (error) {
             console.log(error)
         }
     }
 
     // Update Return Product 
-
-    const updateReturnProduct = async (id,approved, ) => {
+    const updateReturnProduct = async (id, approved,) => {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.patch(`${API}/return/update-return/${id}`, { approved }, {
@@ -62,10 +56,9 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-          
+
             toast.dismiss(toastId);
             toast.success("Status updated succesfully")
-          
             getRetrunProduct();
 
         } catch (error) {
@@ -87,10 +80,9 @@ function OrderContextProvider({ children }) {
 
 
     return (
-        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData,  updateReturnProduct }}>
+        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData, updateReturnProduct }}>
             {children}
         </OrderAuthContext.Provider>
     )
 }
-
 export default OrderContextProvider;
