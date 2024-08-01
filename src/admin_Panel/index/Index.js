@@ -15,7 +15,6 @@ const Index = () => {
     let totalrevenue = 0
     orders?.map((i,) => (
         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
-        // Number(i) + Number(r?.ProductDetails[0]?.sellingPrice)
     ), [])
 
     console.log(orders);
