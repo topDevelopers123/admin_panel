@@ -20,7 +20,6 @@ const Index = () => {
 
     console.log(orders);
 
-
     const booked = orders?.filter((item) => {
         return item?.status === "pending"
     })
@@ -94,19 +93,14 @@ const Index = () => {
             "cost": 39175
         }
     ]
-
     return (
         <div>
-
             <div className="page-wrapper mt-5">
                 <div className="page-content p-0">
-
                     <div className="row row-cols-1 row-cols-lg-12 px-2">
                         <div className="col-4">
-
                             <div className="card radius-10 overflow-hidden bg-gradient-cosmic">
                                 <div className="card-body">
-
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <p className="mb-0 text-white">Total Orders</p>
@@ -155,7 +149,6 @@ const Index = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div className="card radius-10 mt-5">
@@ -164,8 +157,6 @@ const Index = () => {
                                 <div>
                                     <h6 className="font-weight-bold mb-2 mb-lg-0">Monthly Revenue</h6>
                                 </div>
-
-
                             </div>
                         </div>
                         <div className="card-body">
@@ -180,13 +171,13 @@ const Index = () => {
                                                 backgroundColor: "#70db70",
                                                 borderColor: "#70db70"
                                             },
-
                                         ]
                                     }}
                                 />
                             </div>
                         </div>
                     </div>
+
                     <div className="row mt-5">
                         <div className="col-12 col-lg-12 d-flex">
                             <div className="card radius-10 w-100">
@@ -250,7 +241,6 @@ const Index = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
