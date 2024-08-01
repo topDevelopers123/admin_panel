@@ -114,17 +114,12 @@ function Order() {
                                                     <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-400" : ""} ${item?.status === "delivered" ? " bg-green-400" : ""} ${item?.status === "cancelled" ? " bg-red-400" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
                                                 </td>
                                             </tr>
-
                                         ))}
-
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
 
                     {disable ? <Loader className="w-100 flex justify-center mt-2" /> : ""}
                 </div>
@@ -132,5 +127,4 @@ function Order() {
         </div>
     )
 }
-
 export default Order
