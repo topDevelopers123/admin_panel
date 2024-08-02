@@ -14,8 +14,6 @@ const Index = () => {
     const { users } = useUserAuthContext()
     let totalrevenue = 0
 
-    console.log(monthlyData)
-
     orders?.map((i,) => (
         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
     ), [])
