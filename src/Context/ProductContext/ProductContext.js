@@ -30,8 +30,7 @@ function ProductContextProvider({ children }) {
                 }
             )
            
-            
-            setAllProduct(resp.data.data)
+            (resp.data.data)
 
           
         } catch (error) {
@@ -108,7 +107,6 @@ function ProductContextProvider({ children }) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
-
     }
 
 
@@ -209,9 +207,6 @@ function ProductContextProvider({ children }) {
         }
 
     }
-
-
-
 
     useEffect(()=>{
        

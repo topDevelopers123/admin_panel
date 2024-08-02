@@ -25,6 +25,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Users from './admin_Panel/Users/Users';
 import Return from './admin_Panel/Return/Return';
+import Login from './admin_Panel/Login/Login';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Routes>
           <Route path='/banner' element={<Banner />} />
           <Route path='/short-banner' element={<ShortBanner />} />
-          <Route path='/' element={<Index />} />
+          <Route path='/dashboard' element={<Index />} />
           <Route path='/add-new-banner' element={<Add_new_banner />} />
           <Route path='/add-short-banner' element={<Add_short_banner />} />
           <Route path='/product-details' element={<Product_details />} />
@@ -52,6 +53,7 @@ function App() {
           <Route path='/users' element={<Users />} />
           <Route path='/orders' element={<Order />} />
           <Route path='/returns' element={<Return />} />
+          <Route path='/' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
