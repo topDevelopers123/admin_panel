@@ -10,14 +10,17 @@ defaults.responsive = true
 
 const Index = () => {
     const [totalSelling, setTotalSelling] = useState(0)
-    const { orders } = useOrderAuthContext()
+    const { orders, monthlyData } = useOrderAuthContext()
     const { users } = useUserAuthContext()
     let totalrevenue = 0
+
+    console.log(monthlyData)
+    
     orders?.map((i,) => (
         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
     ), [])
 
-    console.log(orders);
+    // console.log(orders);
 
     const booked = orders?.filter((item) => {
         return item?.status === "pending"
@@ -162,11 +165,11 @@ const Index = () => {
                             <div className='bg-slate-100 h-[20rem] w-full  rounded-xl px-3 py-2 ' >
                                 <Line
                                     data={{
-                                        labels: revenue.map((data) => data.label),
+                                        labels: monthlyData.data?.label?.map((data) => data),
                                         datasets: [
                                             {
                                                 label: "Revenue",
-                                                data: revenue.map((item) => item.revenue),
+                                                data: monthlyData.data?.revenue.map((item) => item),
                                                 backgroundColor: "#70db70",
                                                 borderColor: "#70db70"
                                             },
