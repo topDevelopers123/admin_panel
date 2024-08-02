@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useOrderAuthContext } from '../../Context/index.context';
 
 function ReturnModal({ toggle, setToggle }) {
+    const { updateReturnProduct, returnData } = useOrderAuthContext();
+    const [approved, setApproved] = useState(null);
+    //    console.log(approved)
+    // console.log(toggle?.toggle?.data?.image)
+    function handleUpdate(data) {
+        updateReturnProduct(toggle?.toggle?.data?._id, data)
+        setToggle({ boolean_value: false })
+    }
     return (
         <>
             <div className=" bg-gray-100 flex items-center justify-center h-screen">
@@ -13,23 +22,22 @@ function ReturnModal({ toggle, setToggle }) {
                                 <button onClick={() => setToggle({ ...toggle, boolean_value: false })}><i className="bi bi-x-circle m-0 p-0 " style={{ fontSize: "30px" }}></i></button>
                             </div>
                             <div className='row '>
-                                    <div className='product_return'>
+                                <div className='product_return'>
                                     <div className='reason w-100 p-4 bg-light-info text-lg shadow-sm rounded my-3'>
-                                            Other
-                                        </div>
+                                        {toggle?.toggle?.data.reason}
+                                    </div>
                                     <div className='product_img w-100 p-4 sm:flex block gap-4 bg-light-info shadow-sm rounded my-3'>
-                                            <img width={150} height={150} className='rounded m-2' src='https://media.very.co.uk/i/sd/ctmt-210-womens-dept-1?%24poi%24=&aspect=1%3A1&w=900&qlt=default&fmt=jpg&fmt.jpeg.interlaced=true' alt='img' />
-                                            <img  width={150} height={150} className='rounded m-2'src='https://media.very.co.uk/i/sd/ctmt-210-womens-dept-1?%24poi%24=&aspect=1%3A1&w=900&qlt=default&fmt=jpg&fmt.jpeg.interlaced=true' alt='img' />
-                                            <img width={150} height={150} className='rounded m-2' src='https://media.very.co.uk/i/sd/ctmt-210-womens-dept-1?%24poi%24=&aspect=1%3A1&w=900&qlt=default&fmt=jpg&fmt.jpeg.interlaced=true' alt='img' />
-                                        </div>
+                                        {toggle?.toggle?.data?.image?.map(item => <img className='w-40 max-h-36' src={item?.image_url}></img>)}
+
+                                    </div>
                                     <div className='description w-100 p-4 bg-light-info text-lg  shadow-sm rounded my-3'>
-                                        unmet expectations, damaged or defective products, and incorrect fit.
-                                        </div>
+                                        {toggle?.toggle?.data?.description}
                                     </div>
-                                    <div className='flex gap-3 items-center mx-2'>
-                                        <button className='btn btn-success'>Approve</button>
-                                    <button className='btn btn-danger'>Reject</button>
-                                    </div>
+                                </div>
+                                <div className='flex gap-3 items-center mx-2'>
+                                    <button className='btn btn-success' onClick={() => handleUpdate(true)}>Approve</button>
+                                    <button className='btn btn-danger' onClick={() => handleUpdate(false)}>Reject</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -38,6 +46,4 @@ function ReturnModal({ toggle, setToggle }) {
         </>
     )
 }
-
-
 export default ReturnModal;

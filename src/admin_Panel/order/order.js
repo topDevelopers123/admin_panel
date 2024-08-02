@@ -5,9 +5,7 @@ import { useOrderAuthContext } from '../../Context/index.context'
 
 function Order() {
     const { orders, setPage, disable } = useOrderAuthContext()
-    console.log(orders);
-
-    
+    // console.log(orders);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,15 +17,11 @@ function Order() {
                 setPage((prevPage) => prevPage + 1);
             }
         };
-
         window.addEventListener('scroll', handleScroll);
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-   
-
-  
     return (
         <div>
             <div className="page-wrapper">
@@ -48,7 +42,7 @@ function Order() {
 
                     <div className="card">
                         <div className="card-body">
-                          
+
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
@@ -65,8 +59,8 @@ function Order() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orders?.map((item)=>(
-                                            <tr>
+                                        {orders?.map((item) => (
+                                            <tr >
                                                 <td>
                                                     <div className="ms-2">
                                                         <img src={item?.ProductDetails
@@ -84,32 +78,32 @@ function Order() {
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    
+
                                                     <div className="ms-2">
                                                         {item?.UserAddress
                                                         [0]?.fullname}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {console.log(item)}
+                                                    {/* {console.log(item)} */}
                                                     <div className="ms-2">
                                                         <span>{item?.UserAddress
-                                                        [0].house_no} {item?.UserAddress
-                                                            [0].area} {item?.UserAddress
-                                                            [0].city} {item?.UserAddress
-                                                            [0].state} {item?.UserAddress
-                                                            [0].country} {item?.UserAddress
-                                                            [0].pincode}</span>
+                                                        [0]?.house_no} {item?.UserAddress
+                                                        [0]?.area} {item?.UserAddress
+                                                        [0]?.city} {item?.UserAddress
+                                                        [0]?.state} {item?.UserAddress
+                                                        [0]?.country} {item?.UserAddress
+                                                        [0]?.pincode}</span>
                                                     </div>
                                                 </td>
-                                                    <td>
-                                               
-                                                        <div className="ms-2">
+                                                <td>
+
+                                                    <div className="ms-2">
                                                         {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
-                                                        </div>
-                                              
-                                                    </td>
-                                                
+                                                    </div>
+
+                                                </td>
+
                                                 <td>
                                                     <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.payment_type}</div>
                                                 </td>
@@ -117,26 +111,20 @@ function Order() {
                                                     <div className={`badge rounded-pill  ${item?.payment_status === "pending" ? " bg-orange-400" : "bg-green-400"} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
                                                 </td>
                                                 <td>
-                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-400" : ""} ${item?.status === "delivered" ? " bg-green-400" : ""} ${item?.status === "cancelled" ? " bg-red-400" : "" } p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
+                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-400" : ""} ${item?.status === "delivered" ? " bg-green-400" : ""} ${item?.status === "cancelled" ? " bg-red-400" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
                                                 </td>
                                             </tr>
-
                                         ))}
-                                        
-                                        
-                                       
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
 
-
-                    {disable ? <Loader className="w-100 flex justify-center mt-2"/> : ""}
+                    {disable ? <Loader className="w-100 flex justify-center mt-2" /> : ""}
                 </div>
             </div>
         </div>
     )
 }
-
 export default Order

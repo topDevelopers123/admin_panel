@@ -8,34 +8,41 @@ export const UserAuthContext = createContext()
 function UserContextProvider({ children }) {
     const { authorizeToken, API } = useAuthContext()
     const [users, setUsers] = useState([])
-    // const [disable, setDisable] = useState(false);
+    const [disable, setDisable] = useState(false);
+    const [page, setPage] = useState(1)
+
 
     const getUsers = async () => {
+        setDisable(true)
         try {
-            const resp = await axios.get(`${API}/user/getAllUserByAdmin`, {
+            const resp = await axios.get(`${API}/user/getAllUserByAdmin?page=${page}&limit=9`, {
                 headers: {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
 
             setUsers(resp.data.data);
-       
+
 
         } catch (error) {
             console.log(error);
+        }
+        finally {
+            setDisable(false)
         }
 
     }
 
 
+
     useEffect(() => {
         getUsers()
 
-    }, [])
+    }, [page])
 
 
     return (
-        <UserAuthContext.Provider value={{ users }}>
+        <UserAuthContext.Provider value={{ users, disable, page, setPage }}>
             {children}
         </UserAuthContext.Provider>
     )

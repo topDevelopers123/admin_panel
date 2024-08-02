@@ -19,7 +19,7 @@ root.render(
           <OrderContextProvider>
             <BannerContext>
               <UserContextProvider>
-              <App />
+                <App />
               </UserContextProvider>
             </BannerContext>
           </OrderContextProvider>

@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ReturnModal from './ReturnModal'
+import { useOrderAuthContext } from '../../Context/index.context'
+import { date } from 'yup';
 
 function Return() {
+    const { returnData } = useOrderAuthContext();
+    // console.log(returnData)
+
     const [toggle, setToggle] = useState({
         boolean_val: false,
+        data: []
     })
-
-
     return (
         <div>
             <div className="page-wrapper">
@@ -27,66 +31,90 @@ function Return() {
 
                     <div className="card">
                         <div className="card-body">
-                          
+
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
                                         <tr>
-                                            <th>Product Title</th>                                            
+                                            <th>Product Title</th>
                                             <th>Size </th>
                                             <th>Color </th>
-                                            <th>User ID  </th>
+                                            <th>Email ID  </th>
                                             <th>User Address</th>
                                             <th>UPI Number</th>
                                             <th>Reason for return</th>
+                                            <th>Status  </th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>                                      
-                                            <tr>
-                                                <td>
-                                                    <div className="ms-2">
-                                                    
-                                                    5565
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="ms-2">
-                                                        7675
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="ms-2">
-                                                       6778
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="ms-2">
-                                                       58768
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="ms-2">
-                                                       58768
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div className="ms-2">
-                                                       9875845625
-                                                    </div>
-                                                </td>
-                                                <td>
+                                    <tbody>
+                                        {returnData?.map((item) => (
+                                            <>
+                                                <tr >
+                                                    <td>
+                                                        <div className="ms-2">
 
-                                                <div onClick={() => setToggle({ ...toggle, boolean_val: true})} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
-                                                     Reason
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                            {item?.product_id?.title}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="ms-2">
+                                                            {item?.product_detail_id?.Size}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="ms-2">
+                                                            {item?.product_detail_id?.color}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="ms-2">
+                                                            example123@gmail.com
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="ms-2">
+                                                            <span>
+                                                                {item?.address_id?.house_no}
+                                                                {item?.address_id?.area}
+                                                                {item?.address_id?.city}
+                                                                {item?.address_id?.state}
+                                                                {item?.address_id?.country}
+                                                                {item?.address_id?.pincode}
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="ms-2">
+                                                            {item?.upi_account_no}
+                                                        </div>
+                                                    </td>
+                                                    <td>
+
+                                                        <div onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
+                                                            {item?.reason}
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+
+                                                        <div className={`bg-slate-700 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
+
+                                                            {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+
+                                                {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
+                                            </>
+                                        ))}
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
                 </div>
             </div>
         </div>

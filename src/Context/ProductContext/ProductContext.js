@@ -58,7 +58,7 @@ function ProductContextProvider({ children }) {
 
         } catch (error) {
             toast.dismiss(toastId);
-            toast.error(error?.response?.data?.message)
+            toast.error(error?.response?.data?.error)
             console.log(error);
 
         } finally {

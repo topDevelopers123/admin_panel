@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAsyncValue } from "react-router-dom";
 import { useAuthContext } from "../index.context";
 
-export const OrderAuthContext = createContext()
 
+export const OrderAuthContext = createContext();
 
 
 function OrderContextProvider({ children }) {
@@ -13,6 +12,8 @@ function OrderContextProvider({ children }) {
     const [orders, setOrders] = useState([])
     const [page, setPage] = useState(1);
     const [disable, setDisable] = useState(false);
+    const [returnData, getReturnData] = useState([]);
+
 
     const getOrders = async () => {
         setDisable(true)
@@ -22,31 +23,66 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-            
             setOrders(resp.data.data);
-           
-       
 
         } catch (error) {
             console.log(error);
-        }finally{
+
+        } finally {
             setDisable(false)
         }
-
     }
+
+    // Get Return Product 
+    const getRetrunProduct = async () => {
+        try {
+            const resp = await axios.get(`${API}/return/get-return-order`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            getReturnData(resp.data.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Update Return Product 
+    const updateReturnProduct = async (id, approved,) => {
+        const toastId = toast.loading('Loading...');
+        try {
+            const resp = await axios.patch(`${API}/return/update-return/${id}`, { approved }, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+
+            toast.dismiss(toastId);
+            toast.success("Status updated succesfully")
+            getRetrunProduct();
+
+        } catch (error) {
+            console.log(error);
+            toast.dismiss(toastId);
+            toast.error(error?.response?.data?.message)
+        }
+    }
+
+    useEffect(() => {
+        getRetrunProduct();
+    }, [])
 
 
     useEffect(() => {
-        getOrders()
-       
+        getOrders();
+
     }, [page])
 
 
     return (
-        <OrderAuthContext.Provider value={{ orders, setPage, disable }}>
+        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData, updateReturnProduct }}>
             {children}
         </OrderAuthContext.Provider>
     )
 }
-
 export default OrderContextProvider;
