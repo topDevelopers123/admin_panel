@@ -69,14 +69,20 @@ function OrderContextProvider({ children }) {
     }
 
     useEffect(() => {
-        getRetrunProduct();
-    }, [])
+        if (authorizeToken) {
+            
+            getRetrunProduct();
+        }
+    }, [authorizeToken])
 
 
     useEffect(() => {
-        getOrders();
+        if (authorizeToken) {
+            
+            getOrders();
+        }
 
-    }, [page])
+    }, [page, authorizeToken])
 
 
     return (

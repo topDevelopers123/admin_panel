@@ -1,11 +1,34 @@
 import React from 'react'
 import "./Header.css";
-
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import { Link } from 'react-router-dom';
 import user_img from "./img/user_img.png"
+import toast from "react-hot-toast";
 
 
 function Header() {
+
+  const handleLogout = () => {
+    confirmAlert({
+      title: 'Confirm to logout',
+      message: 'Do you really wants to logout?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            toast.success('Logout successful!');
+            localStorage.clear();
+            window.location.href = '/';
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => { }
+        }
+      ]
+    });
+  };
 
   return (
     <div>
@@ -43,7 +66,7 @@ function Header() {
                     <p className="user-name mb-0">Admin</p>
                   </div>
                 </Link>
-                <ul className="dropdown-menu dropdown-menu-end">
+                <ul className="dropdown-menu dropdown-menu-end" onClick={handleLogout}>
                   <li>
                     <Link className="dropdown-item" to="javascript:;"><i className="bx bx-log-out-circle"></i><span>Logout</span></Link>
                   </li>
@@ -76,7 +99,7 @@ function Header() {
                         <i className="bi bi-house-door"></i>
                       </div>
                       <div className=" d-flex align-items-center">
-                        <Link to="/" className='text-dark'>Dashboard</Link>
+                        <Link to="/dashboard" className='text-dark'>Dashboard</Link>
                       </div>
                      
                     </Link>

@@ -279,17 +279,21 @@ function CategoryContextProvider({ children }) {
 
 
     useEffect(() => {
+        if (authorizeToken){
+            getCategory()
+            get_Sub_Category()
+            get_All_Category()
+        }
 
-        getCategory()
-        get_Sub_Category()
-        get_All_Category()
 
-    }, [])
+    }, [authorizeToken])
     useEffect(() => {
+        if (authorizeToken) {
+            get_All_Category_admin()
 
+        }
 
-        get_All_Category_admin()
-    }, [page])
+    }, [page, authorizeToken])
 
 
 

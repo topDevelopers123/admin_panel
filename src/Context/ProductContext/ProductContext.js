@@ -9,16 +9,16 @@ export const ProductAuthContext = createContext()
 
 
 function ProductContextProvider({ children }) {
-    
+
     const { authorizeToken, API } = useAuthContext()
     const [disable, setDisable] = useState(false);
     const [allProduct, setAllProduct] = useState([])
     const [page, setPage] = useState(1)
     const [page2, setPage2] = useState(1)
-    const [disable2,setDisable2] = useState(0)
+    const [disable2, setDisable2] = useState(0)
     const [allProductDetailsData, setAllProductDetailsData] = useState([])
 
-    
+
     const get_All_Products = async () => {
         setDisable(true)
         try {
@@ -29,20 +29,20 @@ function ProductContextProvider({ children }) {
                     }
                 }
             )
-           
-            (resp.data.data)
 
-          
+                (resp.data.data)
+
+
         } catch (error) {
             console.log(error)
-        }finally{
+        } finally {
             setDisable(false)
         }
     }
 
-    
+
     const addProduct = async (data) => {
-        
+
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -80,7 +80,7 @@ function ProductContextProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products()
-           
+
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
@@ -114,7 +114,7 @@ function ProductContextProvider({ children }) {
 
 
     const addProductDetails = async (data) => {
-        
+
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
@@ -126,7 +126,7 @@ function ProductContextProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products_Details()
-         
+
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
@@ -140,7 +140,7 @@ function ProductContextProvider({ children }) {
 
     const get_All_Products_Details = async () => {
         setDisable(true)
-        
+
         try {
             const resp = await axios.get(`${API}/product/admin-get?page=${page2}&limit=4`,
                 {
@@ -151,12 +151,12 @@ function ProductContextProvider({ children }) {
             )
             setAllProductDetailsData(resp.data.data);
             setDisable2(resp.data.data.length)
-            
+
 
 
         } catch (error) {
             console.log(error)
-        }finally{
+        } finally {
             setDisable(false)
         }
     }
@@ -172,11 +172,11 @@ function ProductContextProvider({ children }) {
                 }
             })
             // console.log(resp);
-            
+
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products_Details()
-         
+
 
         } catch (error) {
             console.log(error);
@@ -199,7 +199,7 @@ function ProductContextProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products_Details()
-          
+
         } catch (error) {
 
             toast.dismiss(toastId);
@@ -208,27 +208,36 @@ function ProductContextProvider({ children }) {
 
     }
 
-    useEffect(()=>{
-       
-        get_All_Products_Details()
-    },[])
+    useEffect(() => {
+        if (authorizeToken) {
+
+            get_All_Products_Details()
+        }
+
+    }, [authorizeToken])
 
 
-    useEffect(()=>{
-        get_All_Products()
-    },[page])
+    useEffect(() => {
+        if (authorizeToken) {
+
+            get_All_Products()
+        }
+    }, [page, authorizeToken])
 
 
-    useEffect(()=>{
-        get_All_Products_Details()
-    },[page2])
+    useEffect(() => {
+        if (authorizeToken) {
+
+            get_All_Products_Details()
+        }
+    }, [page2, authorizeToken])
 
 
 
 
 
 
-    
+
 
 
     return (

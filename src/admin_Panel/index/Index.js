@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthContext, useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
 import "./Index.css";
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
@@ -12,12 +12,14 @@ const Index = () => {
     const [totalSelling, setTotalSelling] = useState(0)
     const { orders } = useOrderAuthContext()
     const { users } = useUserAuthContext()
+    const { authorizeToken } = useAuthContext()
+    const navigate = useNavigate()
     let totalrevenue = 0
     orders?.map((i,) => (
         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
     ), [])
 
-    console.log(orders);
+    // console.log(orders);
 
     const booked = orders?.filter((item) => {
         return item?.status === "pending"
@@ -32,22 +34,22 @@ const Index = () => {
 
     const revenue = [
         {
-            "label": "Jan",
+            "label": "January",
             "revenue": 64854,
             "cost": 32652
         },
         {
-            "label": "Feb",
+            "label": "February",
             "revenue": 54628,
             "cost": 42393
         },
         {
-            "label": "Mar",
+            "label": "March",
             "revenue": 117238,
             "cost": 50262
         },
         {
-            "label": "Apr",
+            "label": "April",
             "revenue": 82830,
             "cost": 64731
         },
@@ -57,41 +59,47 @@ const Index = () => {
             "cost": 41893
         },
         {
-            "label": "Jun",
+            "label": "June",
             "revenue": 103609,
             "cost": 83809
         },
         {
-            "label": "Jul",
+            "label": "July",
             "revenue": 90974,
             "cost": 44772
         },
         {
-            "label": "Aug",
+            "label": "August",
             "revenue": 82919,
             "cost": 37590
         },
         {
-            "label": "Sep",
+            "label": "September",
             "revenue": 62407,
             "cost": 43349
         },
         {
-            "label": "Oct",
+            "label": "October",
             "revenue": 82528,
             "cost": 45324
         },
         {
-            "label": "Nov",
+            "label": "November",
             "revenue": 56979,
             "cost": 47978
         },
         {
-            "label": "Dec",
+            "label": "December",
             "revenue": 87436,
             "cost": 39175
         }
     ]
+    if (!authorizeToken) {
+        navigate("/")
+        return
+    }
+    // console.log(authorizeToken);
+
     return (
         <div>
             <div className="page-wrapper mt-5">

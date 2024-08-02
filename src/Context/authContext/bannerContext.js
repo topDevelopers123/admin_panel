@@ -136,9 +136,12 @@ function BannerContext({ children }) {
     }
 
     useEffect(() => {
-        getBanner()
-        getShortBanner()
-    }, [])
+        if (authorizeToken) {
+            getBanner()
+            getShortBanner()
+        }
+
+    }, [authorizeToken])
 
 
     return (

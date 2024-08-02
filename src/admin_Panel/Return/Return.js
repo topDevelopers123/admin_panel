@@ -97,13 +97,10 @@ function Return() {
                                                     </td>
 
                                                     <td>
-
-                                                        <div className={`bg-slate-700 p-1 rounded-md ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
-
+                                                        <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
                                                             {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
                                                         </div>
                                                     </td>
-
                                                 </tr>
 
                                                 {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}

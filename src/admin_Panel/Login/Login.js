@@ -1,7 +1,6 @@
 import React from 'react'
 import login_img from "./login.jpg"
 import "./Login.css"
-
 import { useFormik } from 'formik'
 import * as yup from "yup"
 import { useAuthContext } from '../../Context/index.context'
@@ -14,20 +13,21 @@ function Login() {
         email: "",
         password: ""
     }
-    console.log(initialValue)
-
+ 
     const Login = yup.object({
         email: yup.string().email().required("Email is Required"),
         password: yup.string().min(6).max(16).required("Password is Required")
     })
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, handleReset } = useFormik({
         initialValues: initialValue,
         validationSchema: Login,
         onSubmit: (value) => {
-            login(value)
+            login(value, handleReset)
         }
     })
+
+
     console.log(values)
 
     return (
@@ -40,7 +40,7 @@ function Login() {
                     <div className='col-md-6'>
                         <div className='login_form h-[100vh] bg-white flex flex-column justify-center items-center'>
                             <h2 className='mb-5 text-[#4d869c]'>Admin Login </h2>
-                            <form className='w-[70%]' onSubmit={handleSubmit}>
+                            <form className='w-[70%]' onSubmit={handleSubmit} >
                                 <div className="mb-3">
                                     <label for="exampleInputEmail1" className="form-label">
                                         Enter Email *

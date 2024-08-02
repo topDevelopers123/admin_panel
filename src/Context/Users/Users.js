@@ -36,9 +36,12 @@ function UserContextProvider({ children }) {
 
 
     useEffect(() => {
-        getUsers()
+        if (authorizeToken){
 
-    }, [page])
+            getUsers()
+        }
+
+    }, [page, authorizeToken])
 
 
     return (
