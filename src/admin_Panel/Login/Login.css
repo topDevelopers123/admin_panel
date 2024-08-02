@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Login  */
+.login_form form input {
+    height: 50px;
+    border-radius: 0;
+    border-left: 4px solid #4d869c;
+}
+.login_form button{
+        border-radius: 0;
+            background: #4d869c;
+            /* outline: none; */
+            border: none;
+}

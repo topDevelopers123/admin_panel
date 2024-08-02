@@ -28,14 +28,27 @@ function AuthContextProvider({children}) {
     }
 
     const login = async (data) => {
-        const toastId = toast.loading('Loading...');
+        let toastId
         try {
             const resp = await axios.post(`${API}/user/login`, data)
+
+            
+
+            if (resp?.data?.data?.role ==="admin"){
+                 toastId = toast.loading('Loading...');
+                localStorage.setItem("token", resp.data.token)
+                setAuthorizeToken(resp?.data.token)
+                toast.dismiss(toastId);
+                toast.success(resp.data.message)
+                window.location.href="/"
+            }else{
+                    toast.error("Unauthorize")
+                    window.location.href="/login"
+                    console.log( "ghrehertjhk")
+            }
+
           
-            localStorage.setItem("token",resp.data.token)
-            setAuthorizeToken(resp.data.token) 
-            toast.dismiss(toastId);
-            toast.success(resp.data.message)
+
         } catch (error) {
 
             toast.dismiss(toastId);
