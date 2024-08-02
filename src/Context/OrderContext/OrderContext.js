@@ -92,14 +92,21 @@ function OrderContextProvider({ children }) {
     useEffect(() => {
         if (authorizeToken) {
             
+            getToatalMonthlySelling()
+        }
+    }, [authorizeToken])
+
+    useEffect(() => {
+        if (authorizeToken){
+
             getRetrunProduct();
         }
     }, [authorizeToken])
 
 
     useEffect(() => {
-        if (authorizeToken) {
-            
+        if(authorizeToken){
+
             getOrders();
         }
 

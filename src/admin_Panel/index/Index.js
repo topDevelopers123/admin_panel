@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuthContext, useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
+import { Link } from 'react-router-dom'
+import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
 import "./Index.css";
 import { Chart as ChartJS, defaults } from "chart.js/auto"
 import { Bar, Doughnut, Line } from "react-chartjs-2"
@@ -12,96 +12,14 @@ const Index = () => {
     const [totalSelling, setTotalSelling] = useState(0)
     const { orders, monthlyData } = useOrderAuthContext()
     const { users } = useUserAuthContext()
-    const { authorizeToken } = useAuthContext()
-    const navigate = useNavigate()
     let totalrevenue = 0
 
     console.log(monthlyData)
-    
+
     orders?.map((i,) => (
         i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
     ), [])
 
-    // console.log(orders);
-
-    const booked = orders?.filter((item) => {
-        return item?.status === "pending"
-    })
-    const delivered = orders?.filter((item) => {
-        return item?.status === "delivered"
-    })
-
-    const cancel = orders?.filter((item) => {
-        return item?.status === "cancelled"
-    })
-
-    const revenue = [
-        {
-            "label": "January",
-            "revenue": 64854,
-            "cost": 32652
-        },
-        {
-            "label": "February",
-            "revenue": 54628,
-            "cost": 42393
-        },
-        {
-            "label": "March",
-            "revenue": 117238,
-            "cost": 50262
-        },
-        {
-            "label": "April",
-            "revenue": 82830,
-            "cost": 64731
-        },
-        {
-            "label": "May",
-            "revenue": 91208,
-            "cost": 41893
-        },
-        {
-            "label": "June",
-            "revenue": 103609,
-            "cost": 83809
-        },
-        {
-            "label": "July",
-            "revenue": 90974,
-            "cost": 44772
-        },
-        {
-            "label": "August",
-            "revenue": 82919,
-            "cost": 37590
-        },
-        {
-            "label": "September",
-            "revenue": 62407,
-            "cost": 43349
-        },
-        {
-            "label": "October",
-            "revenue": 82528,
-            "cost": 45324
-        },
-        {
-            "label": "November",
-            "revenue": 56979,
-            "cost": 47978
-        },
-        {
-            "label": "December",
-            "revenue": 87436,
-            "cost": 39175
-        }
-    ]
-    if (!authorizeToken) {
-        navigate("/")
-        return
-    }
-    // console.log(authorizeToken);
 
     return (
         <div>
@@ -215,17 +133,17 @@ const Index = () => {
                                                 datasets: [
                                                     {
                                                         label: "Booked",
-                                                        data: [booked?.length],
+                                                        data: [monthlyData?.booking],
                                                         borderRadius: 5
                                                     },
                                                     {
                                                         label: "Delivered",
-                                                        data: [delivered?.length],
+                                                        data: [monthlyData?.delivered],
                                                         borderRadius: 5
                                                     },
                                                     {
                                                         label: "Cancelled",
-                                                        data: [cancel?.length],
+                                                        data: [monthlyData?.cancelled],
                                                         borderRadius: 5
                                                     },
 
@@ -236,15 +154,15 @@ const Index = () => {
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between text-center px-3 pt-3">
                                         <div>
-                                            <h5 className="mb-1 font-weight-bold">{booked?.length}</h5>
+                                            <h5 className="mb-1 font-weight-bold">{monthlyData?.booking}</h5>
                                             <p className="mb-0 text-secondary">Booked</p>
                                         </div>
                                         <div className="mb-1">
-                                            <h5 className="mb-1 font-weight-bold">{delivered?.length}</h5>
+                                            <h5 className="mb-1 font-weight-bold">{monthlyData?.delivered}</h5>
                                             <p className="mb-0 text-secondary">Delivered</p>
                                         </div>
                                         <div>
-                                            <h5 className="mb-1 font-weight-bold">{cancel?.length}</h5>
+                                            <h5 className="mb-1 font-weight-bold">{monthlyData?.cancelled}</h5>
                                             <p className="mb-0 text-secondary">Cancelled</p>
                                         </div>
                                     </div>
