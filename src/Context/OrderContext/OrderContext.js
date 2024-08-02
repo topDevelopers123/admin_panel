@@ -13,6 +13,7 @@ function OrderContextProvider({ children }) {
     const [page, setPage] = useState(1);
     const [disable, setDisable] = useState(false);
     const [returnData, getReturnData] = useState([]);
+    const [monthlyData, setMonthlyData] = useState([]);
 
 
     const getOrders = async () => {
@@ -24,6 +25,26 @@ function OrderContextProvider({ children }) {
                 }
             })
             setOrders(resp.data.data);
+
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            setDisable(false)
+        }
+    }
+
+    // getMonthlySellingChart
+
+    const getToatalMonthlySelling = async () => {
+        setDisable(true)
+        try {
+            const resp = await axios.get(`${API}/order/Admin-dashboard-revenue`, {
+                headers: {
+                    'Authorization': `Bearer ${authorizeToken}`
+                }
+            })
+            setMonthlyData(resp.data);
 
         } catch (error) {
             console.log(error);
@@ -86,7 +107,7 @@ function OrderContextProvider({ children }) {
 
 
     return (
-        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData, updateReturnProduct }}>
+        <OrderAuthContext.Provider value={{ orders, setPage, disable, returnData, updateReturnProduct, monthlyData }}>
             {children}
         </OrderAuthContext.Provider>
     )
