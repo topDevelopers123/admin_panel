@@ -31,7 +31,7 @@ function Order() {
                         <div className="ps-3">
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 p-0">
-                                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">Orders</li>
                                 </ol>
@@ -59,8 +59,8 @@ function Order() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orders?.map((item) => (
-                                            <tr >
+                                        {orders?.map((item, i) => (
+                                            <tr key={i}>
                                                 <td>
                                                     <div className="ms-2">
                                                         <img src={item?.ProductDetails

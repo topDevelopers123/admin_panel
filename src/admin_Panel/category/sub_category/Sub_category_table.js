@@ -14,7 +14,6 @@ function Sub_category_table() {
     })
 
     const saveHandler = (id) => {
-        console.log(editData);
         edit_Sub_Category(editData, id)
     }
 
@@ -29,7 +28,7 @@ function Sub_category_table() {
                       <div className="ps-3">
                           <nav aria-label="breadcrumb">
                               <ol className="breadcrumb mb-0 p-0">
-                                  <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                  <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                   </li>
                                   <li className="breadcrumb-item active" aria-current="page">Sub Category Table</li>
                               </ol>
@@ -66,14 +65,14 @@ function Sub_category_table() {
                                             <td>{item?.createdAt.split("T")[0]}</td>
                                             <td>
                                                 <div className="d-flex order-actions">
-                                                    {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => { saveHandler(item._id); setFlag(false) }}></i>
+                                                    {flag && index === ind ? <> <Link to="#" className="mx-2"><i class="bi bi-floppy" onClick={() => { saveHandler(item._id); setFlag(false) }}></i>
                                                         </Link>
 
-                                                        <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
+                                                        <Link to="#" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
                                                          </> :
                                                       
-                                                        <><Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setEditData({ ...editData, parent_category: item.parent_category._id, sub_category_name:item.sub_category_name }) ; setIndex(index) }}></i></Link>
-                                                            <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Sub_Category(item._id)}></i></Link> </> 
+                                                        <><Link to="#" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setEditData({ ...editData, parent_category: item.parent_category._id, sub_category_name:item.sub_category_name }) ; setIndex(index) }}></i></Link>
+                                                            <Link to="#" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Sub_Category(item._id)}></i></Link> </> 
                                     }
                                                 </div>
                                             </td>

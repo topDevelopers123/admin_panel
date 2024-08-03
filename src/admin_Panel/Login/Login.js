@@ -28,7 +28,6 @@ function Login() {
     })
 
 
-    console.log(values)
 
     return (
         <div>
@@ -42,7 +41,7 @@ function Login() {
                             <h2 className='mb-5 text-[#4d869c]'>Admin Login </h2>
                             <form className='w-[70%]' onSubmit={handleSubmit} >
                                 <div className="mb-3">
-                                    <label for="exampleInputEmail1" className="form-label">
+                                    <label htmlFor="exampleInputEmail1" className="form-label">
                                         Enter Email *
                                     </label>
                                     <input
@@ -59,7 +58,7 @@ function Login() {
                                     {touched.email && errors.email ? <p className="text-start text-danger ps-1 mt-1">{errors.email}</p> : null}
                                 </div>
                                 <div className="mb-3">
-                                    <label for="exampleInputPassword1" className="form-label">
+                                    <label htmlFor="exampleInputPassword1" className="form-label">
                                         Enter Password *
                                     </label>
                                     <input

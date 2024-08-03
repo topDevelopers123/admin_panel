@@ -98,10 +98,12 @@ const saveHandler = (id) => {
                                                     <div className="d-flex order-actions">
                                                         {flag && index === ind ? <> <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={()=>{saveHandler(item._id); setFlag(false)}}></i>
                                                         </Link>
-                                                        <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={()=>setFlag(!flag)} ></i></Link>
+                                                        <span>
+                                                                <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => setFlag(!flag)} ></i></Link></span>
                                                         </>
                                                         : <> <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(!flag); setIndex(index) ;setEditData({...editData, image:item.image, category_name:item.category_name}) }}></i></Link>
-                                                        <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link>
+                                                        <span>
+                                                                    <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => deleteCategory(item._id)}></i></Link></span>
                                                         </>
                                                            
                                                         }

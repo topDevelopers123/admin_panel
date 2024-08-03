@@ -20,7 +20,6 @@ function Category() {
     }
 
     const submitHandler = () => {
-        console.log(data);
         if (data.name === null || data.image === null) {
             setError(true)
             return
@@ -48,7 +47,7 @@ function Category() {
                             <div className="ps-3">
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                        <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                         </li>
                                         <li className="breadcrumb-item active" aria-current="page">Add Category</li>
                                     </ol>
@@ -67,7 +66,7 @@ function Category() {
 
                                             <div className="col-12">
                                                 <div className="mb-3">
-                                                    <label for="cat_name" className="form-label">Category Name</label>
+                                                    <label htmlFor="cat_name" className="form-label">Category Name</label>
                                                     <input type="text" className="form-control" id="cat_name" onChange={(e) => setData({ ...data, name: e.target.value })} placeholder="Enter Category Name" />
                                                     {!data.name && error ? <p className='text-red-500 my-2'>Please Enter Category Name</p> : ""}
                                                 </div>
@@ -75,7 +74,7 @@ function Category() {
                                             <div className="col-lg-12">
 
                                                 <div className="mb-3 ">
-                                                    <label for="inputProductImages" className="form-label">Upload Category Image</label> <br></br>
+                                                    <label htmlFor="inputProductImages" className="form-label">Upload Category Image</label> <br></br>
                                                     <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" onChange={imageHadler} />
                                                     {!data.image && error ? <p className='text-red-500 my-2'>Please Select Image</p> : ""}
                                                 </div>

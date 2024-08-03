@@ -68,7 +68,7 @@ function Header() {
                 </Link>
                 <ul className="dropdown-menu dropdown-menu-end" onClick={handleLogout}>
                   <li>
-                    <Link className="dropdown-item" to="javascript:;"><i className="bx bx-log-out-circle"></i><span>Logout</span></Link>
+                    <Link className="dropdown-item" to="#"><i className="bx bx-log-out-circle"></i><span>Logout</span></Link>
                   </li>
                 </ul>
               </div>
@@ -106,7 +106,7 @@ function Header() {
                     
                   </li>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="#" data-bs-toggle="dropdown">
                       <div className="parent-icon"><i className="bi bi-images"></i></div>
                       <div className="menu-title d-flex align-items-center">
                         Banners
@@ -133,7 +133,7 @@ function Header() {
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="#" data-bs-toggle="dropdown">
                       <div className="parent-icon">
                         <i className="bi bi-cart-check"></i>
                       </div>
@@ -163,7 +163,7 @@ function Header() {
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="javascript:;" data-bs-toggle="dropdown">
+                    <Link className="nav-link dropdown-toggle dropdown-toggle-nocaret" to="#" data-bs-toggle="dropdown">
                       <div className="parent-icon">
                        <i className="bi bi-ui-checks-grid"></i>
                       </div>

@@ -18,7 +18,7 @@ function Users() {
                         <div className="ps-3">
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 p-0">
-                                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">Users</li>
                                 </ol>
@@ -42,8 +42,8 @@ function Users() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {users?.map((item) => (
-                                            <tr>
+                                        {users?.map((item, i) => (
+                                            <tr key={i}>
                                                 <td>
                                                     <div className="ms-2">
                                                         {item?.name}
@@ -82,7 +82,7 @@ function Users() {
                                         </li>
 
                                         <li className="page-item active">
-                                            <a className="page-link" >{page}</a>
+                                            <Link className="page-link" >{page}</Link>
                                         </li>
 
 

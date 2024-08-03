@@ -22,7 +22,6 @@ function Add_new_product() {
     national_deadline: ""
   });
   const [errors, setErrors] = useState({});
-  // console.log(all_Category)
   const validate = () => {
     const newErrors = {};
     for (const key in productData) {
@@ -47,7 +46,7 @@ function Add_new_product() {
               <div className="ps-3">
                 <nav aria-label="breadcrumb">
                   <ol className="breadcrumb mb-0 p-0">
-                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
+                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add New Product</li>
                   </ol>
                 </nav>

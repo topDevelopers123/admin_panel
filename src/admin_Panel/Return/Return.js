@@ -6,7 +6,6 @@ import { date } from 'yup';
 
 function Return() {
     const { returnData } = useOrderAuthContext();
-    // console.log(returnData)
 
     const [toggle, setToggle] = useState({
         boolean_val: false,
@@ -21,7 +20,7 @@ function Return() {
                         <div className="ps-3">
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 p-0">
-                                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">Returns</li>
                                 </ol>
@@ -48,9 +47,9 @@ function Return() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {returnData?.map((item) => (
-                                            <>
-                                                <tr >
+                                        {returnData?.map((item, i) => (
+                                          
+                                                <tr key={i}>
                                                     <td>
                                                         <div className="ms-2">
 
@@ -100,11 +99,11 @@ function Return() {
                                                         <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
                                                             {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
                                                         </div>
-                                                    </td>
-                                                </tr>
 
                                                 {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
-                                            </>
+                                                    </td>
+                                                </tr>
+                                          
                                         ))}
 
                                     </tbody>

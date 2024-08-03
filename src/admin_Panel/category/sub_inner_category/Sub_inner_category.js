@@ -31,7 +31,7 @@ function Sub_inner_category() {
                             <div className="ps-3">
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb mb-0 p-0">
-                                        <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link></li>
+                                        <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link></li>
                                         <li className="breadcrumb-item active" aria-current="page">Add Sub Inner Category</li>
                                     </ol>
                                 </nav>

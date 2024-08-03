@@ -70,7 +70,7 @@ function Product_details_table() {
                         <div className="ps-3">
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 p-0">
-                                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">Product Details Table</li>
                                 </ol>
@@ -105,14 +105,14 @@ function Product_details_table() {
 
                                         {allProductDetailsData?.map((item, ind) => (
 
-                                            <>
+                                            <div key={ind}>
                                                
                                                 {item?.ProductDetail?.filter((ele, i) => {
                                                     return item._id === ele.product_id
                                                 }).map((ite, i) => (
                                                     <>
                                                     {/* {console.log(ite)} */}
-                                                        <tr className='' key={ind} >
+                                                        <tr className='' key={i} >
                                                             <td>
                                                                 <div className="d-flex align-items-center images_div">
                                                                     {/* {console.log(ite)} */}
@@ -183,23 +183,25 @@ function Product_details_table() {
                                                             <td className=''>
                                                                 {flag && index === ite._id ? <>
 
-                                                                    <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => { setFlag(false); edit_All_Product_Details(allProductDetalsUpdate, ite._id)}}></i>
+                                                                    <Link to="#" className="mx-2"><i class="bi bi-floppy" onClick={() => { setFlag(false); edit_All_Product_Details(allProductDetalsUpdate, ite._id)}}></i>
                                                                     </Link>
-
-                                                                    <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
+                                                                        <span>
+                                                                        <Link to="#" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link></span>
                                                                 </> : <>
-                                                                        <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => {
+                                                                        <Link to="#" className=""><i className="bi bi-pencil-square" onClick={() => {
                                                                             setFlag(true); setIndex(ite._id); setAllProductDetalsUpdate({
                                                                                 ...allProductDetalsUpdate, Size: ite.Size, color: ite.color, MRP: ite.MRP, sellingPrice: ite.sellingPrice, selling_quantity: ite.selling_quantity, inStock: ite.inStock, product_id: item._id, image: ite.image
                                                                     })}} ></i></Link>
-                                                                        <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_All_Product_Details(ite._id)}></i></Link>
+                                                                    <span>
+                                                                        <Link to="#" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_All_Product_Details(ite._id)}></i></Link>
+                                                                        </span>
                                                                 </>}
                                                             </td>
                                                         </tr>
                                                     </>
                                                 ))}
 
-                                            </>
+                                            </div>
                                         ))}
 
 
@@ -214,7 +216,7 @@ function Product_details_table() {
                                         </li>
 
                                         <li className="page-item active">
-                                            <a className="page-link" >{page2}</a>
+                                            <Link className="page-link" >{page2}</Link>
                                         </li>
                                       
                                         

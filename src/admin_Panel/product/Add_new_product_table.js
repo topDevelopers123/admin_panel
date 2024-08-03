@@ -48,7 +48,7 @@ function Add_new_product_table() {
                         <div className="ps-3">
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0 p-0">
-                                    <li className="breadcrumb-item"><Link to="javascript:;"><i className="bx bx-home-alt"></i></Link>
+                                    <li className="breadcrumb-item"><Link to="#"><i className="bx bx-home-alt"></i></Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">Add_new_product_table</li>
                                 </ol>
@@ -82,7 +82,7 @@ function Add_new_product_table() {
                                     <tbody >
 
                                         {allProduct?.map((item, ind) => (
-                                            <tr className='' >
+                                            <tr className='' key={ind} >
 
                                                 <>
                                                 {/* {console.log(item)} */}
@@ -183,13 +183,14 @@ function Add_new_product_table() {
 
                                                         {flag && index === ind ? <>
 
-                                                            <Link to="javascript:;" className="mx-2"><i class="bi bi-floppy" onClick={() => { setFlag(false); saveHandler(item._id) }}></i>
+                                                            <Link to="#" className="mx-2"><i class="bi bi-floppy" onClick={() => { setFlag(false); saveHandler(item._id) }}></i>
                                                             </Link>
-
-                                                            <Link to="javascript:;" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link>
+                                                            <span>
+                                                                <Link to="#" className=""><i class="bi bi-x-circle-fill" onClick={() => { setFlag(!flag) }} ></i></Link></span>
                                                         </> : <>
-                                                            <Link to="javascript:;" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(true); setIndex(ind); setproductData({ ...productData, title: item.title, description: item.description, category: item.category[0]._id, sub_category: item.sub_category[0]._id, sub_inner_category: item.sub_inner_category[0]._id, local_charges: item.local_charges, zonal_charges: item.zonal_charges, national_charges: item.national_charges, local_deadline: item.local_deadline, zonal_deadline: item.zonal_deadline, national_deadline: item.national_deadline }) }} ></i></Link>
-                                                            <Link to="javascript:;" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Product(item._id)} ></i></Link>
+                                                            <Link to="#" className=""><i className="bi bi-pencil-square" onClick={() => { setFlag(true); setIndex(ind); setproductData({ ...productData, title: item.title, description: item.description, category: item.category[0]._id, sub_category: item.sub_category[0]._id, sub_inner_category: item.sub_inner_category[0]._id, local_charges: item.local_charges, zonal_charges: item.zonal_charges, national_charges: item.national_charges, local_deadline: item.local_deadline, zonal_deadline: item.zonal_deadline, national_deadline: item.national_deadline }) }} ></i></Link>
+                                                            <span>
+                                                                    <Link to="#" className="ms-3"><i className="bi bi-trash3-fill" onClick={() => delete_Product(item._id)} ></i></Link></span>
                                                         </>}
 
                                                     </td>
@@ -210,7 +211,7 @@ function Add_new_product_table() {
                                         </li>
                                         
                                         <li className="page-item active">
-                                            <a className="page-link" >{page}</a>
+                                            <Link className="page-link" >{page}</Link>
                                         </li>
                                      
                                        

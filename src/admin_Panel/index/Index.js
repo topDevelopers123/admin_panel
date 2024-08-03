@@ -35,7 +35,7 @@ const Index = () => {
                                         <div className="ms-auto text-white"><i className='bx bx-cart font-30'></i>
                                         </div>
                                     </div>
-                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px;" }}>
+                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px" }}>
                                         <div className="progress-bar bg-white" role="progressbar" style={{ width: "46%" }}></div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@ const Index = () => {
                                         <div className="ms-auto text-white"><i className='bx bx-wallet font-30'></i>
                                         </div>
                                     </div>
-                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px;" }}>
+                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px" }}>
                                         <div className="progress-bar bg-white" role="progressbar" style={{ width: "72%" }}></div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@ const Index = () => {
                                         <div className="ms-auto text-white"><i className='bx bx-bulb font-30'></i>
                                         </div>
                                     </div>
-                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px;" }}>
+                                    <div className="progress bg-white-2 radius-10 mt-4" style={{ height: "4.5px" }}>
                                         <div className="progress-bar bg-white" role="progressbar" style={{ width: "68%" }}></div>
                                     </div>
                                 </div>
@@ -116,10 +116,10 @@ const Index = () => {
                                             <div className="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i className="bx bx-dots-horizontal-rounded"></i>
                                             </div>
                                             <div className="dropdown-menu dropdown-menu-end">
-                                                <Link className="dropdown-item" to="javaScript:;">Action</Link>
-                                                <Link className="dropdown-item" to="javaScript:;">Another action</Link>
+                                                <span><Link className="dropdown-item" to="#">Action</Link></span>
+                                                <span><Link className="dropdown-item" to="#">Another action</Link></span>
                                                 <div className="dropdown-divider"></div>
-                                                <Link className="dropdown-item" to="javaScript:;">Something else here</Link>
+                                            <span><Link className="dropdown-item" to="#">Something else here</Link></span>
                                             </div>
                                         </div>
                                     </div>

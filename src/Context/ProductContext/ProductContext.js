@@ -30,7 +30,6 @@ function ProductContextProvider({ children }) {
                 }
             )
 
-                (resp.data.data)
 
 
         } catch (error) {

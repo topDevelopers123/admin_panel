@@ -4,8 +4,7 @@ import { useOrderAuthContext } from '../../Context/index.context';
 function ReturnModal({ toggle, setToggle }) {
     const { updateReturnProduct, returnData } = useOrderAuthContext();
     const [approved, setApproved] = useState(null);
-    //    console.log(approved)
-    // console.log(toggle?.toggle?.data?.image)
+    
     function handleUpdate(data) {
         updateReturnProduct(toggle?.toggle?.data?._id, data)
         setToggle({ boolean_value: false })
@@ -27,7 +26,7 @@ function ReturnModal({ toggle, setToggle }) {
                                         {toggle?.toggle?.data.reason}
                                     </div>
                                     <div className='product_img w-100 p-4 sm:flex block gap-4 bg-light-info shadow-sm rounded my-3'>
-                                        {toggle?.toggle?.data?.image?.map(item => <img className='w-40 max-h-36' src={item?.image_url}></img>)}
+                                        {toggle?.toggle?.data?.image?.map((item,i) => <img key={i} className='w-40 max-h-36' src={item?.image_url}></img>)}
 
                                     </div>
                                     <div className='description w-100 p-4 bg-light-info text-lg  shadow-sm rounded my-3'>
