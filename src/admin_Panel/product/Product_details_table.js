@@ -105,7 +105,7 @@ function Product_details_table() {
 
                                         {allProductDetailsData?.map((item, ind) => (
 
-                                            <div key={ind}>
+                                            <>
                                                
                                                 {item?.ProductDetail?.filter((ele, i) => {
                                                     return item._id === ele.product_id
@@ -201,7 +201,7 @@ function Product_details_table() {
                                                     </>
                                                 ))}
 
-                                            </div>
+                                            </>
                                         ))}
 
 

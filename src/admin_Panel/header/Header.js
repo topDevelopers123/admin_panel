@@ -94,15 +94,18 @@ function Header() {
               <div className="offcanvas-body">
                 <ul className="navbar-nav align-items-center flex-grow-1">
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle-nocaret" to="#" data-bs-toggle="">
-                      <div className="parent-icon">
-                        <i className="bi bi-house-door"></i>
+                    <div className="nav-link dropdown-toggle-nocaret" to="#" data-bs-toggle="">
+                      <div className='flex'>
+                      <div className="parent-icon me-2">
+                        <i className="bi bi-house-door text-black text-xl"></i>
+                        
                       </div>
                       <div className=" d-flex align-items-center">
-                        <Link to="/dashboard" className='text-dark'>Dashboard</Link>
+                        <Link to="/dashboard" className='text-dark text-[16px]'>Dashboard</Link>
+                      </div>
                       </div>
                      
-                    </Link>
+                    </div>
                     
                   </li>
                   <li className="nav-item dropdown">
