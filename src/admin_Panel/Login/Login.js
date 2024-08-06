@@ -6,9 +6,7 @@ import * as yup from "yup"
 import { useAuthContext } from '../../Context/index.context'
 
 function Login() {
-
     const { login } = useAuthContext()
-
     const initialValue = {
         email: "",
         password: ""
@@ -27,9 +25,8 @@ function Login() {
         }
     })
 
-
-
     return (
+
         <div>
             <div className='dashboard-login h-100'>
                 <div className='flex'>
@@ -69,8 +66,7 @@ function Login() {
                                         name='password'
                                         value={values.password}
                                         onBlur={handleBlur}
-                                        onChange={handleChange}
-                                       
+                                        onChange={handleChange} 
                                     />
                                     {touched.password && errors.password ? <p className="text-start text-danger ps-1 mt-1">{errors.password}</p> : null}
                                 </div>
@@ -86,4 +82,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

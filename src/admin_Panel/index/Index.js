@@ -144,7 +144,6 @@ const Index = () => {
                                                         data: [monthlyData?.cancelled],
                                                         borderRadius: 5
                                                     },
-
                                                 ]
                                             }}
                                         />
@@ -173,4 +172,4 @@ const Index = () => {
         </div>
     )
 }
-export default Index
+export default Index;

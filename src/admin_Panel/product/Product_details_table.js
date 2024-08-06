@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Product_details.css'
-import tshirt from './images/Product-Your-Design-Here-02-3.jpg'
 import { Link } from 'react-router-dom'
 import { useProductAuthContext } from '../../Context/index.context'
 import Loader from '../Loader/Loader'
@@ -16,7 +15,6 @@ function Product_details_table() {
         Size:"",
         color:"",
         MRP:"",
-        sellingPrice:"",
         sellingPrice:"",
         inStock:""
 
@@ -36,10 +34,10 @@ function Product_details_table() {
     //                 }
     //             })
     //         }
-    //     })
-        
+    //     })  
     // });
     // console.log(abc)
+
     allProductDetailsData.forEach(item => {
         let temp = new Map();
         item?.ProductDetail?.forEach(data => {
@@ -64,7 +62,6 @@ function Product_details_table() {
         <div>
             <div className="page-wrapper">
                 <div className="page-content">
-
                     <div className="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
                         <div className="breadcrumb-title pe-3">Mayavi Fashion</div>
                         <div className="ps-3">
@@ -76,24 +73,17 @@ function Product_details_table() {
                                 </ol>
                             </nav>
                         </div>
-
                     </div>
-
-
                     <div className="card">
                         <div className="card-body">
-
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
-
                                         <tr>
                                             <th>Image</th>
-
                                             <th>Product Title</th>
                                             <th>Size</th>
                                             <th>Color</th>
-
                                             <th>MRP</th>
                                             <th>Selling Price</th>
                                             <th>Selling Quantity</th>
@@ -104,9 +94,7 @@ function Product_details_table() {
                                     <tbody >
 
                                         {allProductDetailsData?.map((item, ind) => (
-
-                                            <>
-                                               
+                                            <> 
                                                 {item?.ProductDetail?.filter((ele, i) => {
                                                     return item._id === ele.product_id
                                                 }).map((ite, i) => (
@@ -229,8 +217,6 @@ function Product_details_table() {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
