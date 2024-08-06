@@ -199,12 +199,15 @@ function CategoryContextProvider({ children }) {
 
 
     const get_All_Category = async () => {
+        setDisable(true);
         try {
             const resp = await axios.get(`${API}/category/category`)
             setAll_Category(resp.data.data);
 
         } catch (error) {
             console.log(error)
+        }finally{
+            setDisable(false);
         }
     }
 
