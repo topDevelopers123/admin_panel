@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAsyncValue } from "react-router-dom";
 import { useAuthContext } from "../index.context";
 
 export const ProductAuthContext = createContext()
@@ -20,11 +19,12 @@ function ProductContextProvider({ children }) {
     const get_All_Products = async () => {
         setDisable(true)
         try {
-            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=4`,
+            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=10`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
-                    }})
+                    }
+                })
             setAllProduct(resp.data.data)
 
         } catch (error) {
@@ -145,8 +145,6 @@ function ProductContextProvider({ children }) {
             setAllProductDetailsData(resp.data.data);
             setDisable2(resp.data.data.length)
 
-
-
         } catch (error) {
             console.log(error)
         } finally {
@@ -165,7 +163,6 @@ function ProductContextProvider({ children }) {
                 }
             })
             // console.log(resp);
-
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products_Details()
@@ -194,11 +191,9 @@ function ProductContextProvider({ children }) {
             get_All_Products_Details()
 
         } catch (error) {
-
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
-
     }
 
     useEffect(() => {
@@ -206,7 +201,6 @@ function ProductContextProvider({ children }) {
 
             get_All_Products_Details()
         }
-
     }, [authorizeToken])
 
 
@@ -220,7 +214,6 @@ function ProductContextProvider({ children }) {
 
     useEffect(() => {
         if (authorizeToken) {
-
             get_All_Products_Details()
         }
     }, [page2, authorizeToken])
@@ -235,5 +228,4 @@ function ProductContextProvider({ children }) {
         </ProductAuthContext.Provider>
     )
 }
-
 export default ProductContextProvider;
