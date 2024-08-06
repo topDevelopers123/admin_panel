@@ -19,7 +19,7 @@ function ProductContextProvider({ children }) {
     const get_All_Products = async () => {
         setDisable(true)
         try {
-            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=10`,
+            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=8`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
