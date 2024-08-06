@@ -6,8 +6,6 @@ import { useAuthContext } from "../index.context";
 
 export const ProductAuthContext = createContext()
 
-
-
 function ProductContextProvider({ children }) {
 
     const { authorizeToken, API } = useAuthContext()
@@ -26,11 +24,8 @@ function ProductContextProvider({ children }) {
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
-                    }
-                }
-            )
-
-
+                    }})
+            setAllProduct(resp.data.data)
 
         } catch (error) {
             console.log(error)
@@ -38,7 +33,6 @@ function ProductContextProvider({ children }) {
             setDisable(false)
         }
     }
-
 
     const addProduct = async (data) => {
 
@@ -230,10 +224,6 @@ function ProductContextProvider({ children }) {
             get_All_Products_Details()
         }
     }, [page2, authorizeToken])
-
-
-
-
 
 
 
