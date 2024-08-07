@@ -24,7 +24,7 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-            setOrders(resp.data.data);
+            setOrders(resp?.data?.data);
 
         } catch (error) {
             console.log(error);
@@ -44,8 +44,7 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-            setMonthlyData(resp.data);
-
+            setMonthlyData(resp?.data);
         } catch (error) {
             console.log(error);
 
@@ -62,7 +61,7 @@ function OrderContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-            getReturnData(resp.data.data);
+            getReturnData(resp?.data?.data);
         } catch (error) {
             console.log(error)
         }
