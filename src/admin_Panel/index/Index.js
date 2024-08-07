@@ -11,7 +11,8 @@ defaults.responsive = true
 const Index = () => {
     const [totalSelling, setTotalSelling] = useState(0)
     const { orders, monthlyData } = useOrderAuthContext()
-    const { users } = useUserAuthContext()
+    const { users } = useUserAuthContext();
+    
     let totalrevenue = 0
 
     orders?.map((i,) => (
