@@ -12,7 +12,7 @@ const Index = () => {
     const [totalSelling, setTotalSelling] = useState(0)
     const { orders, monthlyData } = useOrderAuthContext()
     const { users } = useUserAuthContext();
-    
+    console.log(users)
     let totalrevenue = 0
 
     orders?.map((i,) => (
@@ -65,7 +65,7 @@ const Index = () => {
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <p className="mb-0 text-white">Total Users</p>
-                                            <h5 className="mb-0 text-white">{users?.length}</h5>
+                                            <h5 className="mb-0 text-white">{users?.totalUsers}</h5>
                                         </div>
                                         <div className="ms-auto text-white"><i className='bx bx-bulb font-30'></i>
                                         </div>

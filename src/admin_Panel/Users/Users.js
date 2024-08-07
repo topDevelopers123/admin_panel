@@ -42,7 +42,7 @@ function Users() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {users?.map((item, i) => (
+                                        {users?.data?.map((item, i) => (
                                             <tr key={i}>
                                                 <td>
                                                     <div className="ms-2">
