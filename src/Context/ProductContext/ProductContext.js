@@ -14,12 +14,13 @@ function ProductContextProvider({ children }) {
     const [page2, setPage2] = useState(1)
     const [disable2, setDisable2] = useState(0)
     const [allProductDetailsData, setAllProductDetailsData] = useState([])
+    const [getAdminProducData, setAdminProductData] = useState([]);
 
 
     const get_All_Products = async () => {
         setDisable(true)
         try {
-            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=10`,
+            const resp = await axios.get(`${API}/product/admin-get?page=${page}&limit=4`,
                 {
                     headers: {
                         'Authorization': `Bearer ${authorizeToken}`
@@ -152,6 +153,18 @@ function ProductContextProvider({ children }) {
         }
     }
 
+    // GetAdminProductDetails 
+    const getAdminAllProductDetails = async () => {
+        try {
+            const resp = await axios.get(`${API}/product/admin-getAllProduct`, {
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
+            })
+            setAdminProductData(resp?.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     const edit_All_Product_Details = async (data, id) => {
         const toastId = toast.loading('Loading...');
@@ -218,12 +231,17 @@ function ProductContextProvider({ children }) {
         }
     }, [page2, authorizeToken])
 
+    useEffect(() => {
+        if (authorizeToken) {
+            getAdminAllProductDetails();
+        }
+    }, [authorizeToken])
 
 
 
 
     return (
-        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details, page, setPage, disable, page2, setPage2, disable2 }}>
+        <ProductAuthContext.Provider value={{ addProduct, allProduct, edit_Product, delete_Product, addProductDetails, get_All_Products_Details, get_All_Products, allProductDetailsData, edit_All_Product_Details, delete_All_Product_Details, page, setPage, disable, page2, setPage2, disable2, getAdminProducData }}>
             {children}
         </ProductAuthContext.Provider>
     )

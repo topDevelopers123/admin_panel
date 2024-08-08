@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useOrderAuthContext, useUserAuthContext } from '../../Context/index.context'
 import "./Index.css";
@@ -9,15 +9,11 @@ defaults.maintainAspectRatio = false
 defaults.responsive = true
 
 const Index = () => {
-    const [totalSelling, setTotalSelling] = useState(0)
-    const { orders, monthlyData } = useOrderAuthContext()
-    const { users } = useUserAuthContext()
-    let totalrevenue = 0
+    
+    const { orders, monthlyData } = useOrderAuthContext();
+    const { users } = useUserAuthContext();
 
-    orders?.map((i,) => (
-        i?.status === "delivered" ? totalrevenue += Number(i?.ProductDetails[0]?.sellingPrice) : ""
-    ), [])
-
+   const totalRevenue = monthlyData?.data?.revenue?.reduce((i,r)=> i+r);
 
     return (
         <div>
@@ -30,7 +26,7 @@ const Index = () => {
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <p className="mb-0 text-white">Total Orders</p>
-                                            <h5 className="mb-0 text-white">{orders?.length}</h5>
+                                            <h5 className="mb-0 text-white">{monthlyData?.booking + monthlyData?.delivered}</h5>
                                         </div>
                                         <div className="ms-auto text-white"><i className='bx bx-cart font-30'></i>
                                         </div>
@@ -46,8 +42,8 @@ const Index = () => {
                                 <div className="card-body">
                                     <div className="d-flex align-items-center">
                                         <div>
-                                            <p className="mb-0 text-white">Total Orders Income (Delivered)</p>
-                                            <h5 className="mb-0 text-white">₹ {totalrevenue}</h5>
+                                            <p className="mb-0 text-white">Total Orders Income</p>
+                                            <h5 className="mb-0 text-white">₹ {totalRevenue}</h5>
                                         </div>
                                         <div className="ms-auto text-white"><i className='bx bx-wallet font-30'></i>
                                         </div>
@@ -64,7 +60,7 @@ const Index = () => {
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <p className="mb-0 text-white">Total Users</p>
-                                            <h5 className="mb-0 text-white">{users?.length}</h5>
+                                            <h5 className="mb-0 text-white">{users?.totalUsers}</h5>
                                         </div>
                                         <div className="ms-auto text-white"><i className='bx bx-bulb font-30'></i>
                                         </div>
@@ -119,7 +115,7 @@ const Index = () => {
                                                 <span><Link className="dropdown-item" to="#">Action</Link></span>
                                                 <span><Link className="dropdown-item" to="#">Another action</Link></span>
                                                 <div className="dropdown-divider"></div>
-                                            <span><Link className="dropdown-item" to="#">Something else here</Link></span>
+                                                <span><Link className="dropdown-item" to="#">Something else here</Link></span>
                                             </div>
                                         </div>
                                     </div>

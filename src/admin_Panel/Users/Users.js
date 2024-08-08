@@ -42,7 +42,7 @@ function Users() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {users?.map((item, i) => (
+                                        {users?.data?.map((item, i) => (
                                             <tr key={i}>
                                                 <td>
                                                     <div className="ms-2">
@@ -87,7 +87,7 @@ function Users() {
 
 
                                         <li className="page-item">
-                                            <button className="page-link" disabled={disable || users?.length < 9} onClick={() => setPage((prev) => prev + 1)}>Next</button>
+                                            <button className="page-link" disabled={disable || users?.data?.length < 9} onClick={() => setPage((prev) => prev + 1)}>Next</button>
                                         </li>
 
                                     </ul>

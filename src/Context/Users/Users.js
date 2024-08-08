@@ -20,9 +20,7 @@ function UserContextProvider({ children }) {
                     'Authorization': `Bearer ${authorizeToken}`
                 }
             })
-
-            setUsers(resp.data.data);
-
+            setUsers(resp?.data);
 
         } catch (error) {
             console.log(error);
@@ -36,7 +34,7 @@ function UserContextProvider({ children }) {
 
 
     useEffect(() => {
-        if (authorizeToken){
+        if (authorizeToken) {
 
             getUsers()
         }

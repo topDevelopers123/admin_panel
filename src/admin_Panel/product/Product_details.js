@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { useProductAuthContext } from '../../Context/index.context';
 
 function ProductDetails() {
-    const { addProductDetails, allProduct } = useProductAuthContext();
+    const { addProductDetails, allProduct, getAdminProducData } = useProductAuthContext();
     const [selectedImages, setSelectedImages] = useState([]);
+
     const [productDetail, setProductDetail] = useState({
         product_id: "",
         Size: "",
@@ -105,8 +106,8 @@ function ProductDetails() {
                                                 <label htmlFor="product-select" className="form-label">Select Product</label>
                                                 <select id="product-select" className="form-select " onChange={(event) => setProductDetail({ ...productDetail, product_id: event.target.value })}>
                                                     <option>Select Product</option>
-                                                    {allProduct?.map((item, i) => (
-                                                        <option key={i} value={item._id}>{item.title}</option>
+                                                    {getAdminProducData?.data?.map((item, i) => (
+                                                        <option key={i} value={item?._id}>{item?.title}</option>
                                                     ))}
                                                 </select>
                                                 {errors.product_id && <span className="text-danger">{errors.product_id}</span>}
@@ -198,28 +199,26 @@ function ProductDetails() {
                                                 {errors.sellingPrice && <span className="text-danger">{errors.sellingPrice}</span>}
                                             </div>
                                         </div>
-                                       
+
                                         <div className="col-12">
-                                                    <div className="mb-3">
-                                                        <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
-                                                        <input type="text" onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
+                                            <div className="mb-3">
+                                                <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
                                                 {errors.selling_quantity && <span className="text-danger">{errors.selling_quantity}</span>}
 
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="mb-3">
-                                                        <label htmlFor="in-stock" className="form-label">In Stock</label>
-                                                        <input type="text" onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
+                                            </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="mb-3">
+                                                <label htmlFor="in-stock" className="form-label">In Stock</label>
+                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
                                                 {errors.inStock && <span className="text-danger">{errors.inStock}</span>}
 
-                                                    </div>
-                                                </div>
-                                                <div className="col-12">
-                                                    <div className="d-grid w-50 m-auto">
-                                                        <button type="button" className="btn btn-primary" onClick={submitHandler}>Submit</button>
-                                                    </div>
-                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="d-grid w-50 m-auto">
+                                                <button type="button" className="btn btn-primary" onClick={submitHandler}>Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -228,7 +227,9 @@ function ProductDetails() {
                         </div>
                     </div>
                 </div>
-                );
+            </div>
+        </div>
+    );
 }
 
-                export default ProductDetails;
+export default ProductDetails;
