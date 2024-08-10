@@ -27,7 +27,6 @@ function Return() {
                             </nav>
                         </div>
                     </div>
-
                     <div className="card">
                         <div className="card-body">
 
@@ -48,64 +47,62 @@ function Return() {
                                     </thead>
                                     <tbody>
                                         {returnData?.map((item, i) => (
-                                          
-                                                <tr key={i}>
-                                                    <td>
-                                                        <div className="ms-2">
 
-                                                            {item?.product_id?.title}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="ms-2">
-                                                            {item?.product_detail_id?.Size}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="ms-2">
-                                                            {item?.product_detail_id?.color}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="ms-2">
-                                                            example123@gmail.com
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="ms-2">
-                                                            <span>
-                                                                {item?.address_id?.house_no}
-                                                                {item?.address_id?.area}
-                                                                {item?.address_id?.city}
-                                                                {item?.address_id?.state}
-                                                                {item?.address_id?.country}
-                                                                {item?.address_id?.pincode}
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="ms-2">
-                                                            {item?.upi_account_no}
-                                                        </div>
-                                                    </td>
-                                                    <td>
+                                            <tr key={i}>
+                                                <td>
+                                                    <div className="ms-2">
 
-                                                        <div onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
-                                                            {item?.reason}
-                                                        </div>
-                                                    </td>
+                                                        {item?.product_id?.title}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        {item?.product_detail_id?.Size}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        {item?.product_detail_id?.color}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        example123@gmail.com
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        <span>
+                                                            {item?.address_id?.house_no}
+                                                            {item?.address_id?.area}
+                                                            {item?.address_id?.city}
+                                                            {item?.address_id?.state}
+                                                            {item?.address_id?.country}
+                                                            {item?.address_id?.pincode}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="ms-2">
+                                                        {item?.upi_account_no}
+                                                    </div>
+                                                </td>
+                                                <td>
 
-                                                    <td>
-                                                        <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
-                                                            {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
-                                                        </div>
+                                                    <div onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
+                                                        {item?.reason}
+                                                    </div>
+                                                </td>
 
-                                                {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
-                                                    </td>
-                                                </tr>
-                                          
+                                                <td>
+                                                    <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
+                                                        {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
+                                                    </div>
+
+                                                    {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
+                                                </td>
+                                            </tr>
                                         ))}
-
                                     </tbody>
                                 </table>
                             </div>
@@ -116,5 +113,4 @@ function Return() {
         </div>
     )
 }
-
 export default Return;
