@@ -9,12 +9,14 @@ defaults.maintainAspectRatio = false
 defaults.responsive = true
 
 const Index = () => {
-    
+
     const { orders, monthlyData } = useOrderAuthContext();
     const { users } = useUserAuthContext();
 
-   const totalRevenue = monthlyData?.data?.revenue?.reduce((i,r)=> i+r);
+    const totalRevenue = monthlyData?.data?.revenue?.reduce((i, r) => i + r, 0) ?? 0;
 
+
+console.log(monthlyData)
     return (
         <div>
             <div className="page-wrapper mt-5">
@@ -43,7 +45,7 @@ const Index = () => {
                                     <div className="d-flex align-items-center">
                                         <div>
                                             <p className="mb-0 text-white">Total Orders Income</p>
-                                            <h5 className="mb-0 text-white">₹ {totalRevenue}</h5>
+                                            <h5 className="mb-0 text-white">₹ {totalRevenue }</h5>
                                         </div>
                                         <div className="ms-auto text-white"><i className='bx bx-wallet font-30'></i>
                                         </div>
