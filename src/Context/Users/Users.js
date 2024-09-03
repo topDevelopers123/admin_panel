@@ -16,9 +16,7 @@ function UserContextProvider({ children }) {
         setDisable(true)
         try {
             const resp = await axios.get(`${API}/user/getAllUserByAdmin?page=${page}&limit=9`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             setUsers(resp?.data);
 
@@ -35,10 +33,8 @@ function UserContextProvider({ children }) {
 
     useEffect(() => {
         if (authorizeToken) {
-
-            getUsers()
+            getUsers();
         }
-
     }, [page, authorizeToken])
 
 
