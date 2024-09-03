@@ -22,29 +22,21 @@ function CategoryContextProvider({ children }) {
     const getCategory = async () => {
         try {
             const resp = await axios.get(`${API}/category/get-admin`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-
-
-            setCategory(resp.data.data)
-
+            setCategory(resp?.data?.data)
         } catch (error) {
             console.log(error)
         }
     }
+
     const get_All_Category_admin = async () => {
         setDisable(true)
         try {
             const resp = await axios.get(`${API}/sub-inner-category/get-admin?page=${page}&limit=5`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-            setInnerCategoryTable(resp.data.data);
-            // console.log(resp.data.data);
-
+            setInnerCategoryTable(resp?.data?.data);
         } catch (error) {
             console.log(error)
         } finally {
@@ -59,9 +51,7 @@ function CategoryContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/category/create`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -80,19 +70,15 @@ function CategoryContextProvider({ children }) {
 
         try {
             const resp = await axios.delete(`${API}/category/delete/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             getCategory()
         } catch (error) {
-
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
-
     }
 
 
@@ -100,9 +86,7 @@ function CategoryContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.put(`${API}/category/update/${id}`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             console.log(resp);
             toast.dismiss(toastId);
@@ -120,26 +104,21 @@ function CategoryContextProvider({ children }) {
     const get_Sub_Category = async () => {
         try {
             const resp = await axios.get(`${API}/sub-category/get?page=1&limit=10`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-
-            setGet_Sub_Category_data(resp.data.data);
+            setGet_Sub_Category_data(resp?.data?.data);
         } catch (error) {
             console.log(error)
         }
     }
 
-    const add_Sub_Category = async (data) => {
 
+    const add_Sub_Category = async (data) => {
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/sub-category/create`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -147,7 +126,6 @@ function CategoryContextProvider({ children }) {
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
-
         } finally {
             setDisable(false)
         }
@@ -157,9 +135,7 @@ function CategoryContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.put(`${API}/sub-category/update/${id}`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             console.log(resp);
             toast.dismiss(toastId);
@@ -176,25 +152,18 @@ function CategoryContextProvider({ children }) {
 
     const delete_Sub_Category = async (id) => {
         const toastId = toast.loading('Loading...');
-
         try {
             const resp = await axios.delete(`${API}/sub-category/delete/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_Sub_Category()
         } catch (error) {
-
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
-
     }
-
-
 
 
 
@@ -202,11 +171,11 @@ function CategoryContextProvider({ children }) {
         setDisable(true);
         try {
             const resp = await axios.get(`${API}/category/category`)
-            setAll_Category(resp.data.data);
+            setAll_Category(resp?.data?.data);
 
         } catch (error) {
             console.log(error)
-        }finally{
+        } finally {
             setDisable(false);
         }
     }
@@ -219,18 +188,14 @@ function CategoryContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.post(`${API}/sub-inner-category/create`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Category()
-
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
-
 
         } finally {
             setDisable(false)
@@ -241,9 +206,7 @@ function CategoryContextProvider({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.put(`${API}/sub-inner-category/update/${id}`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             console.log(resp);
             toast.dismiss(toastId);
@@ -260,45 +223,36 @@ function CategoryContextProvider({ children }) {
 
     const delete_Sub_Inner_Category = async (id) => {
         const toastId = toast.loading('Loading...');
-
         try {
             const resp = await axios.delete(`${API}/sub-inner-category/delete/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Category()
 
         } catch (error) {
-
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
         }
-
     }
 
 
 
     useEffect(() => {
-        if (authorizeToken){
+        if (authorizeToken) {
             getCategory()
             get_Sub_Category()
             get_All_Category()
         }
-
-
     }, [authorizeToken])
+
+
     useEffect(() => {
         if (authorizeToken) {
             get_All_Category_admin()
-
         }
-
     }, [page, authorizeToken])
-
-
 
 
 
