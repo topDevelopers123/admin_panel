@@ -19,16 +19,13 @@ function UserContextProvider({ children }) {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             setUsers(resp?.data);
-
         } catch (error) {
             console.log(error);
         }
         finally {
             setDisable(false)
         }
-
     }
-
 
 
     useEffect(() => {

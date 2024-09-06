@@ -6,7 +6,6 @@ import Loader from '../Loader/Loader'
 function Users() {
     const { users, disable, page, setPage } = useUserAuthContext()
 
-
     if (disable) return <Loader className="w-100 h-[100vh] flex justify-center items-center" />
 
     return (
@@ -24,12 +23,9 @@ function Users() {
                                 </ol>
                             </nav>
                         </div>
-
                     </div>
-
                     <div className="card">
                         <div className="card-body">
-
                             <div className="table-responsive">
                                 <table className="table mb-0">
                                     <thead className="table-light">
@@ -38,7 +34,6 @@ function Users() {
                                             <th>E-mail </th>
                                             <th>Mobile Number </th>
                                             <th>Create Account </th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +55,6 @@ function Users() {
                                                     </div>
                                                 </td>
                                                 <td>
-
                                                     <div className="ms-2">
                                                         {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
                                                     </div>
@@ -69,35 +63,25 @@ function Users() {
                                             </tr>
 
                                         ))}
-
-
-
                                     </tbody>
                                 </table>
-
+                                
                                 <nav aria-label="..." className=' flex justify-center items-center'>
                                     <ul className="pagination m-0 my-3">
                                         <li className="page-item ">
                                             <button className="page-link" disabled={disable} onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
                                         </li>
-
                                         <li className="page-item active">
                                             <Link className="page-link" >{page}</Link>
                                         </li>
-
-
                                         <li className="page-item">
                                             <button className="page-link" disabled={disable || users?.data?.length < 9} onClick={() => setPage((prev) => prev + 1)}>Next</button>
                                         </li>
-
                                     </ul>
                                 </nav>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

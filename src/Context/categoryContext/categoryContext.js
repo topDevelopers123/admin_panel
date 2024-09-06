@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAuthContext, useCategoryContext } from "../index.context";
+import { useAuthContext } from "../index.context";
 
 export const CategoryContext = createContext()
 
@@ -67,7 +67,6 @@ function CategoryContextProvider({ children }) {
 
     const deleteCategory = async (id) => {
         const toastId = toast.loading('Loading...');
-
         try {
             const resp = await axios.delete(`${API}/category/delete/${id}`, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
@@ -253,8 +252,6 @@ function CategoryContextProvider({ children }) {
             get_All_Category_admin()
         }
     }, [page, authorizeToken])
-
-
 
 
 
