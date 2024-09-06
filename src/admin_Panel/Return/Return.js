@@ -88,17 +88,14 @@ function Return() {
                                                     </div>
                                                 </td>
                                                 <td>
-
-                                                    <div onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })} className="badge ms-2 rounded-pill text-info bg-light-info p-2 cursor-pointer text-uppercase px-3">
+                                                    <div onClick={() => setToggle({ ...toggle, boolean_val: true, data: item })} className="badge ms-2 rounded-pill font-bold text-black bg-cyan-400 p-2 cursor-pointer text-uppercase px-3">
                                                         {item?.reason}
                                                     </div>
                                                 </td>
-
                                                 <td>
-                                                    <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
+                                                    <div className={`bg-slate-700 p-1 rounded-full px-3 py-1 text-center font-bold ${item?.approved === undefined ? "  text-orange-300" : item?.approved ? "text-green-500" : "text-red-400"} `}>
                                                         {item?.approved === undefined ? "pending" : item?.approved ? "approved" : "rejected"}
                                                     </div>
-
                                                     {toggle?.boolean_val ? <ReturnModal setToggle={setToggle} toggle={{ toggle }} /> : null}
                                                 </td>
                                             </tr>

@@ -5,7 +5,6 @@ import { useOrderAuthContext } from '../../Context/index.context'
 
 function Order() {
     const { orders, setPage, disable } = useOrderAuthContext()
-    // console.log(orders);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,7 +17,6 @@ function Order() {
             }
         };
         window.addEventListener('scroll', handleScroll);
-
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -37,9 +35,7 @@ function Order() {
                                 </ol>
                             </nav>
                         </div>
-
                     </div>
-
                     <div className="card">
                         <div className="card-body">
 
@@ -78,14 +74,12 @@ function Order() {
                                                     </div>
                                                 </td>
                                                 <td>
-
                                                     <div className="ms-2">
                                                         {item?.UserAddress
                                                         [0]?.fullname}
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    {/* {console.log(item)} */}
                                                     <div className="ms-2">
                                                         <span>{item?.UserAddress
                                                         [0]?.house_no} {item?.UserAddress
@@ -97,21 +91,18 @@ function Order() {
                                                     </div>
                                                 </td>
                                                 <td>
-
                                                     <div className="ms-2">
                                                         {item?.createdAt?.split("T")[0].replaceAll("-", "/")}
                                                     </div>
-
                                                 </td>
-
                                                 <td>
                                                     <div className="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i className='bx bxs-circle me-1'></i>{item?.payment_type}</div>
                                                 </td>
                                                 <td>
-                                                    <div className={`badge rounded-pill  ${item?.payment_status === "pending" ? " bg-orange-400" : "bg-green-400"} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
+                                                    <div className={`badge rounded-pill  ${item?.payment_status === "pending" ? " bg-orange-500" : "bg-green-700"} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
                                                 </td>
                                                 <td>
-                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-400" : ""} ${item?.status === "delivered" ? " bg-green-400" : ""} ${item?.status === "cancelled" ? " bg-red-400" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
+                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-500" : ""} ${item?.status === "delivered" ? " bg-green-700" : ""} ${item?.status === "cancelled" ? " bg-red-500" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
                                                 </td>
                                             </tr>
                                         ))}
@@ -120,7 +111,6 @@ function Order() {
                             </div>
                         </div>
                     </div>
-
                     {disable ? <Loader className="w-100 flex justify-center mt-2" /> : ""}
                 </div>
             </div>

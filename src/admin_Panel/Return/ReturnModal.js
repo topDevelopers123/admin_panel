@@ -33,7 +33,7 @@ function ReturnModal({ toggle, setToggle }) {
                                         {toggle?.toggle?.data?.description}
                                     </div>
                                 </div>
-                                <div className='flex gap-3 items-center mx-2'>
+                                <div className='flex gap-3 items-center mx-2 '>
                                     <button className='btn btn-success' onClick={() => handleUpdate(true)}>Approve</button>
                                     <button className='btn btn-danger' onClick={() => handleUpdate(false)}>Reject</button>
                                 </div>
