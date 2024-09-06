@@ -147,13 +147,13 @@ function Add_new_product() {
 
                       <div className="col-12">
                         <div className="mb-3">
-                          <label htmlFor="ActualWeight" className="form-label">Product Weight</label>
+                          <label htmlFor="ActualWeight" className="form-label">Product Weight <span className='text-xs'> (in kg)</span></label>
                           <input
                             type="text"
                             onChange={(e) => setProductData({ ...productData, ActualWeight: e.target.value })}
                             className="form-control"
                             id="ActualWeight"
-                            placeholder="Enter Product Weight"
+                            placeholder="Enter Product Weight (in kg)"
                           />
                           {errors.ActualWeight && <span className="text-danger">{errors.ActualWeight}</span>}
                         </div>

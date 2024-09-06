@@ -7,6 +7,7 @@ function Banner() {
 
     const { bannerData, deleteBanner,disable } = useBannerAuthContext()
 
+
  
     return (
         <div>
@@ -18,8 +19,8 @@ function Banner() {
                         <div className='col-lg-4' key={index}>
                             <div className='banner-img'>
                                 <div className=' d-flex justify-content-end m-3'>
-                                    <img className='img-fluid' src={item.image.image_url} />
-                                        <button disabled={disable} ><i  onClick={()=>deleteBanner(item._id)} className="bi bi-trash"></i></button>
+                                    <img className='img-fluid' src={item?.image?.image_url} />
+                                        <button disabled={disable} ><i  onClick={()=>deleteBanner(item?._id)} className="bi bi-trash"></i></button>
                                 </div>
                             </div>
                         </div>
