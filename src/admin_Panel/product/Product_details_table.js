@@ -140,16 +140,16 @@ function Product_details_table() {
                                                             <td className=''>
 
                                                                 {flag && index === ite._id ?
-                                                                    <input defaultValue={ite?.sellingPrice} onChange={(event) => setAllProductDetalsUpdate({ ...allProductDetalsUpdate, sellingPrice: event.target.value })} style={{ backgroundColor: " rgb(230, 249, 255)", padding: "5px 20px", width: "100px" }} />
+                                                                    <input defaultValue={ite?.MRP} onChange={(event) => setAllProductDetalsUpdate({ ...allProductDetalsUpdate, MRP: event.target.value })} style={{ backgroundColor: " rgb(230, 249, 255)", padding: "5px 20px", width: "100px" }} />
                                                                     :
-                                                                    ite.sellingPrice
+                                                                    ite.MRP
                                                                 }
                                                             </td>
                                                             <td className=''>
                                                                 {flag && index === ite._id  ?
-                                                                    <input defaultValue={ite?.MRP} onChange={(event) => setAllProductDetalsUpdate({ ...allProductDetalsUpdate, MRP: event.target.value })} style={{ backgroundColor: " rgb(230, 249, 255)", padding: "5px 20px", width: "100px" }} />
+                                                                    <input defaultValue={ite?.sellingPrice} onChange={(event) => setAllProductDetalsUpdate({ ...allProductDetalsUpdate, sellingPrice: event.target.value })} style={{ backgroundColor: " rgb(230, 249, 255)", padding: "5px 20px", width: "100px" }} />
                                                                     :
-                                                                    ite.MRP
+                                                                    ite.sellingPrice
                                                                 }
                                                             </td>
 
