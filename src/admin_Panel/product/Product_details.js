@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductAuthContext } from '../../Context/index.context';
 
@@ -7,6 +7,7 @@ function ProductDetails() {
     const { addProductDetails, allProduct, getAdminProducData } = useProductAuthContext();
     const [selectedImages, setSelectedImages] = useState([]);
     const [errors, setErrors] = useState({});
+
 
     const [productDetail, setProductDetail] = useState({
         product_id: "",
@@ -18,6 +19,9 @@ function ProductDetails() {
         inStock: "",
         image: []
     });
+    const [restsProductDetails, setrestsProductDetails] = useState(productDetail)
+    const productDetailsImage = useRef();
+
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
         const newImages = files.map(file => ({
@@ -68,6 +72,9 @@ function ProductDetails() {
         });
         try {
             await addProductDetails(formData);
+            setProductDetail(restsProductDetails);
+            productDetailsImage.current.value = "";
+            setSelectedImages([]);
         } catch (error) {
             console.error('Error adding product details:', error);
         }
@@ -98,7 +105,7 @@ function ProductDetails() {
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="product-select" className="form-label">Select Product</label>
-                                                <select id="product-select" className="form-select " onChange={(event) => setProductDetail({ ...productDetail, product_id: event.target.value })}>
+                                                <select id="product-select" className="form-select " value={productDetail?.product_id} onChange={(event) => setProductDetail({ ...productDetail, product_id: event.target.value })}>
                                                     <option>Select Product</option>
                                                     {getAdminProducData?.data?.map((item, i) => (
                                                         <option key={i} value={item?._id}>{item?.title}</option>
@@ -110,15 +117,15 @@ function ProductDetails() {
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="size-select" className="form-label">Size</label>
-                                                <input id="size-select" onChange={(e) => setProductDetail({ ...productDetail, Size: e.target.value })} className="form-select" />
+                                                <input id="size-select" value={productDetail?.Size} onChange={(e) => setProductDetail({ ...productDetail, Size: e.target.value })} className="form-select" />
                                                 {errors.Size && <span className="text-danger">{errors.Size}</span>}
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="color-select" className="form-label">Color</label>
-                                                <select id="color-select" onChange={(e) => setProductDetail({ ...productDetail, color: e.target.value })} className="form-select">
-                                                    <option>Select</option>
+                                                <select id="color-select" value={productDetail?.color} onChange={(e) => setProductDetail({ ...productDetail, color: e.target.value })} className="form-select">
+                                                    <options  >Select</options>
                                                     <option>Red</option>
                                                     <option>Blue</option>
                                                     <option>Pink</option>
@@ -143,6 +150,7 @@ function ProductDetails() {
                                                             <div className="mb-3">
                                                                 <label htmlFor="image-upload" className="form-label mb-3">Upload Images</label><br />
                                                                 <input
+                                                                    ref={productDetailsImage}
                                                                     id="image-upload"
                                                                     type="file"
                                                                     accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
@@ -152,12 +160,12 @@ function ProductDetails() {
                                                                 {errors.image && <span className="text-danger">{errors.image}</span>}
                                                             </div>
                                                             <div className="image-preview mt-4">
-                                                                {selectedImages.map((image, index) => (
+                                                                {selectedImages?.map((image, index) => (
                                                                     <div key={index} className="image-container" style={{ position: 'relative', display: 'inline-block', margin: '10px' }}>
-                                                                        <img src={image.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+                                                                        <img src={image?.url} alt={`preview-${index}`} style={{ maxWidth: '150px', maxHeight: '150px' }} />
                                                                         <button
                                                                             type="button"
-                                                                            onClick={() => handleImageDelete(image.id)}
+                                                                            onClick={() => handleImageDelete(image?.id)}
                                                                             style={{
                                                                                 position: 'absolute',
                                                                                 top: '5px',
@@ -182,28 +190,28 @@ function ProductDetails() {
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="mrp" className="form-label">MRP</label>
-                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, MRP: e.target.value })} className="form-control" id="mrp" placeholder="Enter MRP" />
+                                                <input type="text" value={productDetail?.MRP} onChange={(e) => setProductDetail({ ...productDetail, MRP: e.target.value })} className="form-control" id="mrp" placeholder="Enter MRP" />
                                                 {errors.MRP && <span className="text-danger">{errors.MRP}</span>}
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="selling-price" className="form-label">Selling Price</label>
-                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, sellingPrice: e.target.value })} className="form-control" id="selling-price" placeholder="Enter Selling Price" />
+                                                <input type="text" value={productDetail?.sellingPrice} onChange={(e) => setProductDetail({ ...productDetail, sellingPrice: e.target.value })} className="form-control" id="selling-price" placeholder="Enter Selling Price" />
                                                 {errors.sellingPrice && <span className="text-danger">{errors.sellingPrice}</span>}
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
-                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
+                                                <input type="text" value={productDetail?.selling_quantity} onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
                                                 {errors.selling_quantity && <span className="text-danger">{errors.selling_quantity}</span>}
                                             </div>
                                         </div>
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="in-stock" className="form-label">In Stock</label>
-                                                <input type="text" onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
+                                                <input type="text" value={productDetail?.inStock} onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
                                                 {errors.inStock && <span className="text-danger">{errors.inStock}</span>}
                                             </div>
                                         </div>
