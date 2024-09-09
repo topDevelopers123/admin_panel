@@ -4,11 +4,9 @@ import { useBannerAuthContext } from '../../Context/index.context';
 
 
 function Banner() {
-
     const { bannerData, deleteBanner,disable } = useBannerAuthContext()
 
 
- 
     return (
         <div>
             <div className='container container-fluid bg-light'>
@@ -27,7 +25,6 @@ function Banner() {
                         )
                         )}
                       
-
                     </div>
                 </div>
             </div>

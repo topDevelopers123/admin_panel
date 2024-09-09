@@ -25,8 +25,6 @@ function ShortBanner() {
                             </div>
                         )
                         )}
-
-
                     </div>
                 </div>
             </div>

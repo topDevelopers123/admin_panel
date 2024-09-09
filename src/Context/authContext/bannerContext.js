@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAsyncValue } from "react-router-dom";
 import { useAuthContext } from "../index.context";
 
 export const BannerAuthContext = createContext()
@@ -17,28 +16,20 @@ function BannerContext({ children }) {
     const getBanner = async () => {
         try {
             const resp = await axios.get(`${API}/banner/get-admin`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-            setBannerData(resp.data.data)
-
-
+            setBannerData(resp?.data?.data)
         } catch (error) {
             console.log(error);
         }
-
     }
 
     const image_Handler = async (data) => {
         setDisable(true)
         const toastId = toast.loading('Loading...');
         try {
-
             const resp = await axios.post(`${API}/banner/create`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -50,7 +41,6 @@ function BannerContext({ children }) {
             toast.error(error?.response?.data?.message || error.response.data?.split("<pre>")[1]?.split("</pre>")[0])
         }
         finally { setDisable(false) }
-
     }
 
 
@@ -60,9 +50,7 @@ function BannerContext({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.delete(`${API}/banner/delete/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -81,9 +69,7 @@ function BannerContext({ children }) {
         try {
 
             const resp = await axios.post(`${API}/shortBanner/create`, data, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -101,17 +87,12 @@ function BannerContext({ children }) {
     const getShortBanner = async () => {
         try {
             const resp = await axios.get(`${API}/shortBanner/get-admin`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
-            setShortBannerData(resp.data.data)
-
-
+            setShortBannerData(resp?.data?.data)
         } catch (error) {
             console.log(error);
         }
-
     }
 
     const deleteShortBanner = async (id) => {
@@ -120,9 +101,7 @@ function BannerContext({ children }) {
         const toastId = toast.loading('Loading...');
         try {
             const resp = await axios.delete(`${API}/shortBanner/delete/${id}`, {
-                headers: {
-                    'Authorization': `Bearer ${authorizeToken}`
-                }
+                headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
@@ -140,7 +119,6 @@ function BannerContext({ children }) {
             getBanner()
             getShortBanner()
         }
-
     }, [authorizeToken])
 
 

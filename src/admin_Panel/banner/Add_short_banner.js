@@ -8,7 +8,6 @@ function AddShortBanner() {
     const [selectedImages, setSelectedImages] = useState([]);
     const [file, setFile] = useState(null);
     const [error, setError] = useState("");
-
     const { shortBanner_Handler, disable } = useBannerAuthContext();
 
     const handleImageChange = (event) => {
