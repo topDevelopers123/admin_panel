@@ -6,6 +6,7 @@ import { useProductAuthContext } from '../../Context/index.context';
 function ProductDetails() {
     const { addProductDetails, allProduct, getAdminProducData } = useProductAuthContext();
     const [selectedImages, setSelectedImages] = useState([]);
+    const [errors, setErrors] = useState({});
 
     const [productDetail, setProductDetail] = useState({
         product_id: "",
@@ -17,8 +18,6 @@ function ProductDetails() {
         inStock: "",
         image: []
     });
-    const [errors, setErrors] = useState({});
-
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files);
         const newImages = files.map(file => ({
@@ -51,14 +50,11 @@ function ProductDetails() {
         if (!productDetail.selling_quantity) newErrors.selling_quantity = "Selling Quantity is required";
         if (!productDetail.inStock) newErrors.inStock = "Stock information is required";
         if (!productDetail.image.length) newErrors.image = "At least one image is required";
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
     const submitHandler = async () => {
         if (!validate()) return;
-
         const formData = new FormData();
         formData.append('product_id', productDetail.product_id);
         formData.append('Size', productDetail.Size);
@@ -70,7 +66,6 @@ function ProductDetails() {
         productDetail.image.forEach((file) => {
             formData.append(`image`, file);
         });
-
         try {
             await addProductDetails(formData);
         } catch (error) {
@@ -93,7 +88,6 @@ function ProductDetails() {
                             </nav>
                         </div>
                     </div>
-
                     <div className="card">
                         <div className="card-body p-4">
                             <h5 className="card-title">Product Details</h5>
@@ -199,13 +193,11 @@ function ProductDetails() {
                                                 {errors.sellingPrice && <span className="text-danger">{errors.sellingPrice}</span>}
                                             </div>
                                         </div>
-
                                         <div className="col-12">
                                             <div className="mb-3">
                                                 <label htmlFor="selling-quantity" className="form-label">Selling Quantity</label>
                                                 <input type="text" onChange={(e) => setProductDetail({ ...productDetail, selling_quantity: e.target.value })} className="form-control" id="selling-quantity" placeholder="Enter Selling Quantity" />
                                                 {errors.selling_quantity && <span className="text-danger">{errors.selling_quantity}</span>}
-
                                             </div>
                                         </div>
                                         <div className="col-12">
@@ -213,7 +205,6 @@ function ProductDetails() {
                                                 <label htmlFor="in-stock" className="form-label">In Stock</label>
                                                 <input type="text" onChange={(e) => setProductDetail({ ...productDetail, inStock: e.target.value })} className="form-control" id="in-stock" placeholder="In Stock Value" />
                                                 {errors.inStock && <span className="text-danger">{errors.inStock}</span>}
-
                                             </div>
                                         </div>
                                         <div className="col-12">
