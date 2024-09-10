@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Add_new_banner.css";
 import { useBannerAuthContext } from '../../Context/index.context';
@@ -11,6 +11,7 @@ function AddNewBanner() {
 
     const { image_Handler, disable } = useBannerAuthContext();
 
+    const resetBannerImage = useRef();
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         setFile(file);
@@ -18,7 +19,7 @@ function AddNewBanner() {
         setSelectedImages(newFile);
     };
 
-    const uploadImage = () => {
+    const uploadImage = async () => {
         if (!file) {
             setError("Please upload a banner image.");
             return;
@@ -27,6 +28,9 @@ function AddNewBanner() {
         const formData = new FormData();
         formData.append("image", file);
         image_Handler(formData);
+        resetBannerImage.current.value = "";
+        setSelectedImages([]);
+        setFile(null);
     };
 
     return (
@@ -57,6 +61,7 @@ function AddNewBanner() {
                                                 <div className="mb-3 text-center">
                                                     <label className="form-label mb-3">Upload Banner</label><br />
                                                     <input
+                                                        ref={resetBannerImage}
                                                         type="file"
                                                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                                                         onChange={handleImageChange}

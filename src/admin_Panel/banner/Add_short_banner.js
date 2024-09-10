@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Add_new_banner.css";
 import { useBannerAuthContext } from '../../Context/index.context';
@@ -17,6 +17,7 @@ function AddShortBanner() {
         setSelectedImages(newFile);
     };
 
+    const resetShortBannerImage = useRef();
     const uploadImage = () => {
         if (!file) {
             setError("Please upload a short banner image.");
@@ -26,6 +27,9 @@ function AddShortBanner() {
         const formData = new FormData();
         formData.append("image", file);
         shortBanner_Handler(formData);
+        resetShortBannerImage.current.value = "";
+        setSelectedImages([]);
+        setFile(null);
     };
 
     return (
@@ -58,6 +62,7 @@ function AddShortBanner() {
                                                     <input
                                                         type="file"
                                                         accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
+                                                        ref={resetShortBannerImage}
                                                         onChange={handleImageChange}
                                                     />
                                                 </div>
