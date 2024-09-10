@@ -19,7 +19,7 @@ function ProductDetails() {
         inStock: "",
         image: []
     });
-    const [restsProductDetails, setrestsProductDetails] = useState(productDetail)
+    const [resetsProductDetails, setresetsProductDetails] = useState(productDetail)
     const productDetailsImage = useRef();
 
     const handleImageChange = (event) => {
@@ -72,7 +72,7 @@ function ProductDetails() {
         });
         try {
             await addProductDetails(formData);
-            setProductDetail(restsProductDetails);
+            setProductDetail(resetsProductDetails);
             productDetailsImage.current.value = "";
             setSelectedImages([]);
         } catch (error) {

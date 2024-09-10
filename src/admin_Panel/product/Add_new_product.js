@@ -16,11 +16,12 @@ function Add_new_product() {
     local_charges: "",
     zonal_charges: "",
     national_charges: "",
-    ActualWeight:"",
+    ActualWeight: "",
     local_deadline: "",
     zonal_deadline: "",
     national_deadline: ""
   });
+  const [resetAddProduct, setResetAddProduct] = useState(productData);
   const [errors, setErrors] = useState({});
   const validate = () => {
     const newErrors = {};
@@ -31,9 +32,10 @@ function Add_new_product() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validate()) return;
-    addProduct(productData);
+    await addProduct(productData);
+    setProductData(resetAddProduct);
   };
 
   return (
@@ -65,6 +67,7 @@ function Add_new_product() {
                           <label htmlFor="title" className="form-label">Product Title</label>
                           <input
                             type="text"
+                            value={productData?.title}
                             onChange={(e) => setProductData({ ...productData, title: e.target.value })}
                             className="form-control"
                             id="title"
@@ -78,6 +81,7 @@ function Add_new_product() {
                           <label htmlFor="description" className="form-label">Product Description</label>
                           <input
                             type="text"
+                            value={productData?.description}
                             onChange={(e) => setProductData({ ...productData, description: e.target.value })}
                             className="form-control"
                             id="description"
@@ -93,13 +97,14 @@ function Add_new_product() {
                           <label htmlFor="category" className="form-label">Category</label>
                           <select
                             className="form-select"
+                            value={productData?.category}
                             onChange={(e) => setProductData({ ...productData, category: e.target.value })}
                           >
                             <option value="">Select Category</option>
                             {all_Category?.map((item, index) => {
-                 
+
                               return <option key={index} value={item._id}>{item.category_name}</option>
-})}
+                            })}
                           </select>
                           {errors.category && <span className="text-danger">{errors.category}</span>}
                         </div>
@@ -111,6 +116,7 @@ function Add_new_product() {
                           <label htmlFor="sub_category" className="form-label">Sub Category</label>
                           <select
                             className="form-select"
+                            value={productData?.sub_category}
                             onChange={(e) => setProductData({ ...productData, sub_category: e.target.value })}
                           >
                             <option value="">Select Sub Category</option>
@@ -131,6 +137,7 @@ function Add_new_product() {
                           <label htmlFor="sub_inner_category" className="form-label">Sub Inner Category</label>
                           <select
                             className="form-select"
+                            value={productData?.sub_inner_category}
                             onChange={(e) => setProductData({ ...productData, sub_inner_category: e.target.value })}
                           >
                             <option value="">Select Sub Inner Category</option>
@@ -150,6 +157,7 @@ function Add_new_product() {
                           <label htmlFor="ActualWeight" className="form-label">Product Weight <span className='text-xs'> (in kg)</span></label>
                           <input
                             type="text"
+                            value={productData?.ActualWeight}
                             onChange={(e) => setProductData({ ...productData, ActualWeight: e.target.value })}
                             className="form-control"
                             id="ActualWeight"
@@ -164,6 +172,7 @@ function Add_new_product() {
                           <label htmlFor="local_charges" className="form-label">Local Charges</label>
                           <input
                             type="text"
+                            value={productData?.local_charges}
                             onChange={(e) => setProductData({ ...productData, local_charges: e.target.value })}
                             className="form-control"
                             id="local_charges"
@@ -178,6 +187,7 @@ function Add_new_product() {
                           <label htmlFor="zonal_charges" className="form-label">Zonal Charges</label>
                           <input
                             type="text"
+                            value={productData?.zonal_charges}
                             onChange={(e) => setProductData({ ...productData, zonal_charges: e.target.value })}
                             className="form-control"
                             id="zonal_charges"
@@ -191,6 +201,7 @@ function Add_new_product() {
                           <label htmlFor="national_charges" className="form-label">National Charges</label>
                           <input
                             type="text"
+                            value={productData?.national_charges}
                             onChange={(e) => setProductData({ ...productData, national_charges: e.target.value })}
                             className="form-control"
                             id="national_charges"
@@ -205,6 +216,7 @@ function Add_new_product() {
                           <label htmlFor="local_deadline" className="form-label">Local Deadline</label>
                           <input
                             type="text"
+                            value={productData?.local_deadline}
                             onChange={(e) => setProductData({ ...productData, local_deadline: e.target.value })}
                             className="form-control"
                             id="local_deadline"
@@ -219,6 +231,7 @@ function Add_new_product() {
                           <label htmlFor="zonal_deadline" className="form-label">Zonal Deadline</label>
                           <input
                             type="text"
+                            value={productData?.zonal_deadline}
                             onChange={(e) => setProductData({ ...productData, zonal_deadline: e.target.value })}
                             className="form-control"
                             id="zonal_deadline"
@@ -232,6 +245,7 @@ function Add_new_product() {
                           <label htmlFor="national_deadline" className="form-label">National Deadline</label>
                           <input
                             type="text"
+                            value={productData?.national_deadline}
                             onChange={(e) => setProductData({ ...productData, national_deadline: e.target.value })}
                             className="form-control"
                             id="national_deadline"
