@@ -11,13 +11,14 @@ function Sub_inner_category() {
         sub_inner_category_name: ""
     });
     const [error, setError] = useState("");
-
+    const [resetSubInnerCategory, setResetSubInnerCategory] = useState(sub_inner_Category);
     const handleSubmit = () => {
         if (!sub_inner_Category.parent_category1 || !sub_inner_Category.parent_category2 || !sub_inner_Category.sub_inner_category_name) {
             setError("Please select a category, sub category, and enter a sub inner category name.");
         } else {
             setError("");
             add_Sub_Inner_Category(sub_inner_Category);
+            setSub_inner_Category(resetSubInnerCategory);
         }
     };
 
@@ -37,7 +38,6 @@ function Sub_inner_category() {
                                 </nav>
                             </div>
                         </div>
-
                         <div className="card">
                             <div className="card-body p-4">
                                 <h5 className="card-title">Add Sub Inner Category</h5>
@@ -51,6 +51,7 @@ function Sub_inner_category() {
                                                     <select
                                                         className="form-select"
                                                         id="inputProductType"
+                                                        value={sub_inner_Category?.parent_category1}
                                                         onChange={(e) => setSub_inner_Category({ ...sub_inner_Category, parent_category1: e.target.value })}
                                                     >
                                                         <option>Select Category</option>
@@ -60,13 +61,13 @@ function Sub_inner_category() {
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div className="col-12">
                                                 <div className="mb-3">
                                                     <label htmlFor="inputProductType" className="form-label">Select Sub Category</label>
                                                     <select
                                                         className="form-select"
                                                         id="inputProductType"
+                                                        value={sub_inner_Category?.parent_category2}
                                                         onChange={(e) => setSub_inner_Category({ ...sub_inner_Category, parent_category2: e.target.value })}
                                                     >
                                                         <option>Select Sub Category</option>
@@ -78,7 +79,6 @@ function Sub_inner_category() {
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div className="col-12">
                                                 <div className="mb-3">
                                                     <label htmlFor="subinnercat_name" className="form-label">Sub Inner Category Name</label>
@@ -87,11 +87,11 @@ function Sub_inner_category() {
                                                         className="form-control"
                                                         id="subinnercat_name"
                                                         placeholder="Enter Sub Inner Category Name"
+                                                        value={sub_inner_Category?.sub_inner_category_name}
                                                         onChange={(event) => setSub_inner_Category({ ...sub_inner_Category, sub_inner_category_name: event.target.value })}
                                                     />
                                                 </div>
                                             </div>
-
                                             {error && (
                                                 <div className="col-12">
                                                     <div className="alert text-danger" role="alert">
@@ -99,7 +99,6 @@ function Sub_inner_category() {
                                                     </div>
                                                 </div>
                                             )}
-
                                             <div className="col-12">
                                                 <div className="d-grid w-50 m-auto">
                                                     <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>

@@ -10,13 +10,14 @@ function Sub_category() {
         sub_category_name: ""
     });
     const [error, setError] = useState("");
-
+    const [resetSubCategoryForm, setResetSubCategoryForm] = useState(SubCategory);
     const handleSubmit = () => {
         if (!SubCategory.parent_category || !SubCategory.sub_category_name) {
             setError("Please select a parent category and enter a sub category name.");
         } else {
             setError("");
             add_Sub_Category(SubCategory);
+            setSubCategory(resetSubCategoryForm);
         }
     };
 
@@ -36,7 +37,6 @@ function Sub_category() {
                                 </nav>
                             </div>
                         </div>
-
                         <div className="card">
                             <div className="card-body p-4">
                                 <h5 className="card-title">Add Sub Category</h5>
@@ -50,6 +50,7 @@ function Sub_category() {
                                                     <select
                                                         className="form-select"
                                                         id="inputProductType"
+                                                        value={SubCategory?.parent_category}
                                                         onChange={(event) => setSubCategory({ ...SubCategory, parent_category: event.target.value })}
                                                     >
                                                         <option>Select</option>
@@ -68,6 +69,7 @@ function Sub_category() {
                                                             className="form-control"
                                                             id="subcat_name"
                                                             placeholder="Enter Sub Category Name"
+                                                            value={SubCategory?.sub_category_name}
                                                             onChange={(event) => setSubCategory({ ...SubCategory, sub_category_name: event.target.value })}
                                                         />
                                                     </div>
@@ -96,5 +98,4 @@ function Sub_category() {
         </div>
     );
 }
-
 export default Sub_category;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCategoryContext } from '../../../Context/index.context'
 import '../main_category/Category.css'
@@ -7,35 +7,33 @@ function Category() {
 
     const { addCategory } = useCategoryContext()
     const [image, setImage] = useState(null)
-    const [error,setError] = useState(false)
+    const [error, setError] = useState(false)
     const [data, setData] = useState({
         image: null,
-        name: null
+        name: ""
     })
+    const [resetCategoryForm, setResetCategoryForm] = useState(data)
     const imageHadler = (e) => {
         const file = e.target.files[0]
         const imageURl = URL.createObjectURL(file)
         setImage(imageURl)
         setData({ ...data, image: file })
     }
-
+    const resetCategoryImage = useRef();
     const submitHandler = () => {
         if (data.name === null || data.image === null) {
             setError(true)
             return
-        }else{
+        } else {
             const formData = new FormData()
             formData.append("category_name", data.name)
             formData.append("image", data.image)
-            addCategory(formData)
+            addCategory(formData);
+            setData(resetCategoryForm);
+            resetCategoryImage.current.value = "";
+            setImage([]);
         }
-        
-
     }
-
-
-
-
 
     return (
         <div>
@@ -53,9 +51,7 @@ function Category() {
                                     </ol>
                                 </nav>
                             </div>
-
                         </div>
-
                         <div className="card">
                             <div className="card-body p-4">
                                 <h5 className="card-title">Add Category</h5>
@@ -63,19 +59,17 @@ function Category() {
                                 <div className="form-body mt-4">
                                     <div className="row">
                                         <div className="border border-3 p-4 rounded">
-
                                             <div className="col-12">
                                                 <div className="mb-3">
                                                     <label htmlFor="cat_name" className="form-label">Category Name</label>
-                                                    <input type="text" className="form-control" id="cat_name" onChange={(e) => setData({ ...data, name: e.target.value })} placeholder="Enter Category Name" />
+                                                    <input type="text" className="form-control" id="cat_name" value={data?.name} onChange={(e) => setData({ ...data, name: e.target.value })} placeholder="Enter Category Name" />
                                                     {!data.name && error ? <p className='text-red-500 my-2'>Please Enter Category Name</p> : ""}
                                                 </div>
                                             </div>
                                             <div className="col-lg-12">
-
                                                 <div className="mb-3 ">
                                                     <label htmlFor="inputProductImages" className="form-label">Upload Category Image</label> <br></br>
-                                                    <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" onChange={imageHadler} />
+                                                    <input id="image-uploadify" type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" ref={resetCategoryImage} onChange={imageHadler} />
                                                     {!data.image && error ? <p className='text-red-500 my-2'>Please Select Image</p> : ""}
                                                 </div>
                                                 <div className="col-12">
@@ -86,8 +80,6 @@ function Category() {
                                             </div>
                                             <img className='preview_image' src={image} />
                                         </div>
-                                      
-
                                     </div>
                                 </div>
                             </div>

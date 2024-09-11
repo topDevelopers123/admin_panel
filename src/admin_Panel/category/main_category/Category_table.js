@@ -12,7 +12,6 @@ function Category_table() {
         category_name:""
     })
    
-
 const saveHandler = (id) => {
     
     const formData = new FormData()
