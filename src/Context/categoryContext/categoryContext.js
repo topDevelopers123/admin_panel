@@ -21,10 +21,11 @@ function CategoryContextProvider({ children }) {
 
     const getCategory = async () => {
         try {
-            const resp = await axios.get(`${API}/category/get-admin`, {
+            const resp = await axios.get(`${API}/category/get-admin?page=1&limit=10`, {
                 headers: { 'Authorization': `Bearer ${authorizeToken}` }
             })
             setCategory(resp?.data?.data)
+            
         } catch (error) {
             console.log(error)
         }
