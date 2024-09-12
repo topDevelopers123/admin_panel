@@ -153,7 +153,7 @@ function Add_new_product_table() {
                                 <nav aria-label="..." className=' flex justify-center items-center'>
                                     <ul className="pagination m-0 my-3">
                                         <li className="page-item ">
-                                            <button className="page-link" disabled={disable || allProduct?.length < 1} onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
+                                            <button className="page-link" disabled={disable} onClick={() => setPage((prev) => prev < 2 ? 1 : prev - 1)} >Previous</button>
                                         </li>
                                         <li className="page-item active">
                                             <Link className="page-link" >{page}</Link>
@@ -168,7 +168,6 @@ function Add_new_product_table() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
