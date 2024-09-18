@@ -49,19 +49,19 @@ function ProductDetails() {
 
     const validate = () => {
         const newErrors = {};
-        if (!productDetail.product_id) newErrors.product_id = "Product is required";
-        if (!productDetail.Size) newErrors.Size = "Size is required";
-        if (!productDetail.color) newErrors.color = "Color is required";
-        if (!productDetail.MRP) newErrors.MRP = "MRP is required";
-        if (!productDetail.sellingPrice) newErrors.sellingPrice = "Selling Price is required";
-        if (!productDetail.selling_quantity) newErrors.selling_quantity = "Selling Quantity is required";
-        if (!productDetail.inStock) newErrors.inStock = "Stock information is required";
+        if (!productDetail.product_id.trim()) newErrors.product_id = "Product is required";
+        if (!productDetail.Size.trim()) newErrors.Size = "Size is required";
+        if (!productDetail.color.trim()) newErrors.color = "Color is required";
+        if (!productDetail.MRP.trim()) newErrors.MRP = "MRP is required";
+        if (!productDetail.sellingPrice.trim()) newErrors.sellingPrice = "Selling Price is required";
+        if (!productDetail.selling_quantity.trim()) newErrors.selling_quantity = "Selling Quantity is required";
+        if (!productDetail.inStock.trim()) newErrors.inStock = "Stock information is required";
         if (productDetail?.image?.length < 1 && toggle()) newErrors.image = "At least one image is required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
     const submitHandler = async () => {
-        if (!validate()) return;
+        if (! validate()) return;
         const formData = new FormData();
         formData.append('product_id', productDetail.product_id);
         formData.append('Size', productDetail.Size);
