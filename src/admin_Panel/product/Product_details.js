@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductAuthContext } from '../../Context/index.context';
 
@@ -44,6 +44,9 @@ function ProductDetails() {
         }));
     };
 
+    // console.log(productDetail?.image && productDetail);
+
+
     const validate = () => {
         const newErrors = {};
         if (!productDetail.product_id) newErrors.product_id = "Product is required";
@@ -53,7 +56,7 @@ function ProductDetails() {
         if (!productDetail.sellingPrice) newErrors.sellingPrice = "Selling Price is required";
         if (!productDetail.selling_quantity) newErrors.selling_quantity = "Selling Quantity is required";
         if (!productDetail.inStock) newErrors.inStock = "Stock information is required";
-        if (!productDetail.image.length) newErrors.image = "At least one image is required";
+        if (productDetail?.image?.length < 1 && toggle()) newErrors.image = "At least one image is required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -79,6 +82,16 @@ function ProductDetails() {
             console.error('Error adding product details:', error);
         }
     };
+
+    const toggle = () => {
+
+        return !allProduct.filter((item) => item._id === productDetail.product_id)[0]?.ProductDetail?.filter((lm) => lm.color === productDetail.color).length > 0
+
+    }
+
+
+    // console.log(toggle());
+
 
     return (
         <div className="wrapper">
@@ -143,7 +156,7 @@ function ProductDetails() {
                                             </div>
                                         </div>
                                         {
-                                            !allProduct.filter((item) => item._id === productDetail.product_id)[0]?.ProductDetail?.filter((lm) => lm.color === productDetail.color).length > 0 && <div className="col-12" >
+                                            toggle() && <div className="col-12" >
                                                 <div className="form-body mt-4">
                                                     <div className="row">
                                                         <div className="col-lg-12">
