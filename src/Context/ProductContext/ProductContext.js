@@ -41,8 +41,8 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            get_All_Products()
-
+            get_All_Products();
+            getAdminAllProductDetails();
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.error)
@@ -63,7 +63,7 @@ function ProductContextProvider({ children }) {
             toast.dismiss(toastId);
             toast.success(resp.data.message)
             get_All_Products()
-
+            
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
@@ -80,7 +80,8 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            get_All_Products()
+            get_All_Products();
+            getAdminAllProductDetails();
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error?.response?.data?.message)
@@ -151,7 +152,7 @@ function ProductContextProvider({ children }) {
             })
             toast.dismiss(toastId);
             toast.success(resp.data.message)
-            get_All_Products_Details()
+            get_All_Products_Details();
         } catch (error) {
             console.log(error);
             toast.dismiss(toastId);
