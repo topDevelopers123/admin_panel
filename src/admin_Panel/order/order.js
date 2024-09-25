@@ -102,7 +102,7 @@ function Order() {
                                                     <div className={`badge rounded-pill  ${item?.payment_status === "pending" ? " bg-orange-500" : "bg-green-700"} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.payment_status}</div>
                                                 </td>
                                                 <td>
-                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-500" : ""} ${item?.status === "delivered" ? " bg-green-700" : ""} ${item?.status === "cancelled" ? " bg-red-500" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
+                                                    <div className={`badge rounded-pill ${item?.status === "pending" ? " bg-orange-500" : ""} ${item?.status === "delivered" ? " bg-green-700" : ""} ${item?.status === "cancelled" ? " bg-red-500" : ""} ${item?.status === "returned" ? " bg-sky-600" : ""} p-2 text-uppercase px-3`}><i className='bx bxs-circle me-1'></i>{item?.status}</div>
                                                 </td>
                                             </tr>
                                         ))}
