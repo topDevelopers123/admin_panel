@@ -6,7 +6,6 @@ import { date } from 'yup';
 
 function Return() {
     const { returnData } = useOrderAuthContext();
-
     const [toggle, setToggle] = useState({
         boolean_val: false,
         data: []
@@ -73,12 +72,7 @@ function Return() {
                                                 <td>
                                                     <div className="ms-2">
                                                         <span>
-                                                            {item?.address_id?.house_no}
-                                                            {item?.address_id?.area}
-                                                            {item?.address_id?.city}
-                                                            {item?.address_id?.state}
-                                                            {item?.address_id?.country}
-                                                            {item?.address_id?.pincode}
+                                                            {item?.address_id?.house_no} {item?.address_id?.area} {item?.address_id?.city} {item?.address_id?.state} {item?.address_id?.country} {item?.address_id?.pincode}
                                                         </span>
                                                     </div>
                                                 </td>
